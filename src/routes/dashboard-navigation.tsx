@@ -10,9 +10,9 @@ export const ICONS = {
 };
 
 export const DashboardNavigation = [
-  { title: "Home", path: paths.dashboard.root, icon: ICONS.home },
+  { title: "home", path: paths.dashboard.root, icon: ICONS.home },
   {
-    title: "Users",
+    title: "users",
     path: paths.dashboard.users.root,
     icon: ICONS.home,
   },

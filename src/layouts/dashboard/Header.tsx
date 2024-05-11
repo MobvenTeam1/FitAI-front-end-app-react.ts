@@ -1,28 +1,37 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { DashboardNavigation } from "../../routes/dashboard-navigation";
+import { ChangeLng } from "../../locales/change-lng";
+import { useTranslation } from "react-i18next";
 
 export const Header: React.FC = () => {
   const location = useLocation();
+  const { t } = useTranslation();
 
   const isCurrentPath = (path: string) => {
     return location.pathname === path;
   };
 
   return (
-    <header>
-      <nav>
-        {DashboardNavigation.map((item, index) => {
-          return (
-            <Link
-              style={{ color: isCurrentPath(item.path) ? "red" : "black" }}
-              key={index}
-              to={item.path}
-            >
-              {item.icon} {item.title}
-            </Link>
-          );
-        })}
+    <header className="bg-gray-800 text-white">
+      <nav className="container mx-auto flex justify-between p-6">
+        <div className="flex space-x-4">
+          {DashboardNavigation.map((item, index) => {
+            return (
+              <Link
+                className={`py-2 px-4 rounded ${
+                  isCurrentPath(item.path) ? "bg-red-600" : "hover:bg-gray-700"
+                }`}
+                key={index}
+                to={item.path}
+              >
+                {item.icon} {t(item.title)}
+              </Link>
+            );
+          })}
+        </div>
+
+        <ChangeLng />
       </nav>
     </header>
   );
