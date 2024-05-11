@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer utilities {
   .animate-spin {
     animation: spin 10s linear infinite;

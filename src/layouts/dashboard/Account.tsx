@@ -22,7 +22,7 @@ export const Account: React.FC = () => {
   return (
     <div
       onClick={toggle}
-      className={`overflow-hidden rounded-full cursor-pointer ${
+      className={`overflow-hidden rounded-full cursor-pointer hover:shadow-lg ${
         active ? "animate-spin" : ""
       } bg-[#efdeda]`}
     >
