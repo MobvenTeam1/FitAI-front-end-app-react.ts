@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { DashboardNavigation } from "../../routes/dashboard-navigation";
 import { ChangeLng } from "../../locales/change-lng";
 import { useTranslation } from "react-i18next";
+import { Account } from "./Account";
 
 export const Header: React.FC = () => {
   const location = useLocation();
@@ -31,7 +32,10 @@ export const Header: React.FC = () => {
           })}
         </div>
 
-        <ChangeLng />
+        <div className="flex gap-3 items-center">
+          <Account />
+          <ChangeLng />
+        </div>
       </nav>
     </header>
   );

@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .animate-spin {
+    animation: spin 10s linear infinite;
+  }
+  .animate-bounce {
+    animation: bounce 200ms linear infinite alternate;
+  }
+  @keyframes bounce {
+    to {
+      transform: translate(0, 6px);
+    }
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(-1turn);
+    }
+  }
+}
