@@ -60,41 +60,4 @@ export const CustomModal: React.FC<CustomModalProps> = ({
   );
 };
 
-/**
- * `CustomModal` is a modal component built with Tailwind CSS.
- * It takes three props:
- * - `isOpen`: a boolean that controls whether the modal is open or not.
- * - `onClose`: a function that is called when the modal needs to be closed.
- * - `children`: the content of the modal.
- *
- * Here is an example of how to use it:
- *
- * ```tsx
- * import React, { useState } from 'react';
- * import { CustomModal } from './CustomModal';
- *
- * function App() {
- *   const [isOpen, setIsOpen] = useState(false);
- *
- *   const handleOpen = () => {
- *     setIsOpen(true);
- *   };
- *
- *   const handleClose = () => {
- *     setIsOpen(false);
- *   };
- *
- *   return (
- *     <div>
- *       <button onClick={handleOpen}>Open Modal</button>
- *       <CustomModal isOpen={isOpen} onClose={handleClose}>
- *         <h2 id="modal-title">Hello, World!</h2>
- *         <p>This is a custom modal!</p>
- *       </CustomModal>
- *     </div>
- *   );
- * }
- *
- * export default App;
- * ```
- */
+
