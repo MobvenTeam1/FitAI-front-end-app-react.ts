@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
 
   return (
     <header className="bg-gray-800 text-white">
-      <nav className="container mx-auto flex justify-between p-6">
+      <nav className="container mx-auto flex justify-between p-6 max-sm:flex-col gap-4">
         <div className="flex space-x-4">
           {DashboardNavigation.map((item, index) => {
             return (
@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
           })}
         </div>
 
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-3 items-center max-sm:justify-end">
           <Account />
           <ChangeLng />
         </div>
