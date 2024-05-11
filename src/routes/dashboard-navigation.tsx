@@ -2,7 +2,7 @@ import SvgColor from "../components/svg-color";
 import { paths } from "./paths";
 
 const icon = (name: string) => (
-  <SvgColor src={`/src/assets/img/icons/${name}.svg`} />
+  <SvgColor src={`/icons/${name}.svg`} />
 );
 
 export const ICONS = {
