@@ -55,7 +55,7 @@ export const TemplateHookForm: React.FC = () => {
   return (
     <>
       <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8 p-6 bg-white rounded-lg shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+        <div className="max-w-md w-full space-y-8 p-6 bg-white rounded-lg shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-800">
               React-Hook-Form
