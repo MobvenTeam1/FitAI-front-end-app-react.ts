@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -23,14 +23,12 @@ const defaultValues: FormValues = {
 };
 
 export const TemplateRHFYup: React.FC = () => {
-    
   const form = useForm<FormValues>({
     defaultValues,
     resolver: yupResolver(schema),
   });
 
-  const { register, control, handleSubmit, formState, watch } = form;
-  const { errors } = formState;
+  const { control, handleSubmit, watch } = form;
 
   const values = watch();
 
@@ -47,50 +45,44 @@ export const TemplateRHFYup: React.FC = () => {
               RHF-Yup
             </h2>
           </div>
-          <form
-            className="mt-8 space-y-6"
-            onSubmit={handleSubmit(onSubmit)}
-            noValidate
-          >
-            <div className="flex flex-col gap-3 rounded-md shadow-sm -space-y-px">
-              <RHFTextfield
-                name="email"
-                type="email"
-                register={register}
-                label="Email address"
-                error={errors.email}
-              />
-              <RHFTextfield
-                name="password"
-                type="password"
-                register={register}
-                label="Password"
-                error={errors.password}
-              />
-            </div>
+          <FormProvider {...form}>
+            <form
+              className="mt-8 space-y-6"
+              onSubmit={handleSubmit(onSubmit)}
+              noValidate
+            >
+              <div className="flex flex-col gap-3 rounded-md shadow-sm -space-y-px">
+                <RHFTextfield name="email" type="email" label="Email address" />
+                <RHFTextfield
+                  name="password"
+                  type="password"
+                  label="Password"
+                />
+              </div>
 
-            <div>
-              <button
-                type="submit"
-                className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:shadow-lg transition-colors duration-200}`}
-              >
-                Submit
-              </button>
-            </div>
+              <div>
+                <button
+                  type="submit"
+                  className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:shadow-lg transition-colors duration-200}`}
+                >
+                  Submit
+                </button>
+              </div>
 
-            <hr />
+              <hr />
 
-            <div className="flex flex-col gap-1">
-              <code>
-                <span className="text-blue-500">Email:</span>
-                {JSON.stringify(values.email, null, 2)}
-              </code>
-              <code>
-                <span className="text-blue-500">Password:</span>
-                {JSON.stringify(values.password, null, 2)}
-              </code>
-            </div>
-          </form>
+              <div className="flex flex-col gap-1">
+                <code>
+                  <span className="text-blue-500">Email:</span>
+                  {JSON.stringify(values.email, null, 2)}
+                </code>
+                <code>
+                  <span className="text-blue-500">Password:</span>
+                  {JSON.stringify(values.password, null, 2)}
+                </code>
+              </div>
+            </form>
+          </FormProvider>
         </div>
       </div>
 
