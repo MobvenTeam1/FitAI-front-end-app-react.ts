@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { RHFTextfield } from "../../components/hook-form/RHFTextfield";
 
 type FormValues = {
   email: string;
@@ -16,14 +17,18 @@ const schema = yup.object().shape({
   password: yup.string().min(6).required("Password is required"),
 });
 
+const defaultValues: FormValues = {
+  email: "",
+  password: "",
+};
+
 export const TemplateRHFYup: React.FC = () => {
+    
   const form = useForm<FormValues>({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+    defaultValues,
     resolver: yupResolver(schema),
   });
+
   const { register, control, handleSubmit, formState, watch } = form;
   const { errors } = formState;
 
@@ -48,32 +53,20 @@ export const TemplateRHFYup: React.FC = () => {
             noValidate
           >
             <div className="flex flex-col gap-3 rounded-md shadow-sm -space-y-px">
-              <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="email-address"
-                  type="email"
-                  {...register("email")}
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm hover:border-indigo-500 transition-colors duration-200"
-                  placeholder="Email address"
-                />
-                <p className="text-red-500">{errors.email?.message}</p>
-              </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  type="password"
-                  {...register("password")}
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm hover:border-indigo-500 transition-colors duration-200"
-                  placeholder="Password"
-                />
-                <p className="text-red-500">{errors.password?.message}</p>
-              </div>
+              <RHFTextfield
+                name="email"
+                type="email"
+                register={register}
+                label="Email address"
+                error={errors.email}
+              />
+              <RHFTextfield
+                name="password"
+                type="password"
+                register={register}
+                label="Password"
+                error={errors.password}
+              />
             </div>
 
             <div>
