@@ -13,7 +13,10 @@ type FormValues = {
     name: string;
     age: number;
   }[];
+  date: Date;
 };
+
+type ValueOf<T> = T[keyof T];
 
 export const TemplateHookForm: React.FC = () => {
   const form = useForm<FormValues>({
@@ -36,9 +39,18 @@ export const TemplateHookForm: React.FC = () => {
           age: 12,
         },
       ],
+      date: new Date(),
     },
   });
-  const { register, control, handleSubmit, formState, watch } = form;
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState,
+    watch,
+    getValues,
+    setValue,
+  } = form;
   const { errors } = formState;
 
   const values = watch();
@@ -47,6 +59,23 @@ export const TemplateHookForm: React.FC = () => {
     control,
     name: "users",
   });
+
+  const handleSetValue = (
+    field: keyof FormValues,
+    value: ValueOf<FormValues>
+  ) => {
+    setValue(field, value, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  };
+
+  const handleGetValues = () => {
+    console.log("getValues", getValues());
+    // console.log("getValues", getValues(["email", "password"]));
+    // console.log("getValues", getValues("social.facebook"));
+  };
 
   const onSubmit = (data: FormValues) => {
     console.log("data", data);
@@ -223,6 +252,7 @@ export const TemplateHookForm: React.FC = () => {
                       <input
                         type="number"
                         {...register(`users.${index}.age`, {
+                          valueAsNumber: true,
                           required: {
                             value: true,
                             message: "This is required",
@@ -251,23 +281,74 @@ export const TemplateHookForm: React.FC = () => {
                   </div>
                 </div>
               </div>
+
+              <div>
+                <label htmlFor="date" className="sr-only">
+                  Date
+                </label>
+                <input
+                  id="date"
+                  type="date"
+                  {...register("date", {
+                    valueAsDate: true,
+                    required: {
+                      value: true,
+                      message: "This is required",
+                    },
+                  })}
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm hover:border-indigo-500 transition-colors duration-200"
+                  placeholder="Date"
+                />
+                <p className="text-red-500">{errors.date?.message}</p>
+              </div>
             </div>
 
             <div>
               <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:shadow-lg transition-colors duration-200"
+                type="button"
+                onClick={() => handleSetValue("email", "Set Value Updated")}
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 hover:shadow-lg transition-colors duration-200"
               >
-                Login
+                Set Value
+              </button>
+            </div>
+
+            {/* her click attığın zaman o anki tıkladığında oluşan values değerlerini almaya yarar */}
+            <div>
+              <button
+                type="button"
+                onClick={handleGetValues}
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 hover:shadow-lg transition-colors duration-200"
+              >
+                Get Values
               </button>
             </div>
 
             <div className="flex flex-col gap-1">
-              <code>{JSON.stringify(values.email, null, 2)}</code>
-              <code>{JSON.stringify(values.password, null, 2)}</code>
-              <code>{JSON.stringify(values.social, null, 2)}</code>
-              <code>{JSON.stringify(values.phoneNumbers, null, 2)}</code>
-              <code>{JSON.stringify(values.users, null, 2)}</code>
+              <code>
+                <span className="text-blue-500">Email:</span>
+                {JSON.stringify(values.email, null, 2)}
+              </code>
+              <code>
+                <span className="text-blue-500">Password:</span>
+                {JSON.stringify(values.password, null, 2)}
+              </code>
+              <code>
+                <span className="text-blue-500">Socials:</span>
+                {JSON.stringify(values.social, null, 2)}
+              </code>
+              <code>
+                <span className="text-blue-500">Phone Numbers:</span>
+                {JSON.stringify(values.phoneNumbers, null, 2)}
+              </code>
+              <code>
+                <span className="text-blue-500">Users:</span>
+                {JSON.stringify(values.users, null, 2)}
+              </code>
+              <code>
+                <span className="text-blue-500">Date:</span>
+                {JSON.stringify(values.date, null, 2)}
+              </code>
             </div>
           </form>
         </div>
