@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { RHFTextfield } from "../../components/hook-form/RHFTextfield";
 import { RHFSubmitButton } from "../../components/hook-form/RHFSubmitButton";
+import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 
 type FormValues = {
   email: string;
@@ -29,9 +30,7 @@ export const TemplateRHFYup: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  const { control, handleSubmit, watch } = form;
-
-  const values = watch();
+  const { control, handleSubmit } = form;
 
   const onSubmit = (data: FormValues) => {
     console.log("data", data);
@@ -63,16 +62,7 @@ export const TemplateRHFYup: React.FC = () => {
 
               <RHFSubmitButton />
 
-              <div className="flex flex-col gap-1">
-                <code>
-                  <span className="text-blue-500">Email:</span>
-                  {JSON.stringify(values.email, null, 2)}
-                </code>
-                <code>
-                  <span className="text-blue-500">Password:</span>
-                  {JSON.stringify(values.password, null, 2)}
-                </code>
-              </div>
+              <RHFFormValues />
             </form>
           </FormProvider>
         </div>
