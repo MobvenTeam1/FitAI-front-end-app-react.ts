@@ -1,18 +1,28 @@
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 type FormValues = {
   email: string;
   password: string;
 };
 
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Email format is required")
+    .required("Email is required"),
+  password: yup.string().min(6).required("Password is required"),
+});
+
 export const TemplateRHFYup: React.FC = () => {
   const form = useForm<FormValues>({
-    // mode: "onBlur",
     defaultValues: {
       email: "",
       password: "",
     },
+    resolver: yupResolver(schema),
   });
   const { register, control, handleSubmit, formState, watch } = form;
   const { errors } = formState;
