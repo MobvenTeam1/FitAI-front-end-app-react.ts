@@ -30,7 +30,7 @@ const CustomPopover: React.FC<PopoverProps> = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   return (
     <div className="relative" ref={node}>

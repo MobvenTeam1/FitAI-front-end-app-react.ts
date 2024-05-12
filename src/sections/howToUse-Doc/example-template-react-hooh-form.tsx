@@ -1,5 +1,6 @@
 import { useForm, useFieldArray, FieldErrors } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { useEffect } from "react";
 
 type FormValues = {
   email: string;
@@ -50,8 +51,20 @@ export const TemplateHookForm: React.FC = () => {
     watch,
     getValues,
     setValue,
+    reset,
+    trigger,
   } = form;
-  const { errors, touchedFields, dirtyFields, isDirty, isValid } = formState;
+  const {
+    errors,
+    touchedFields,
+    dirtyFields,
+    isDirty,
+    isValid,
+    isSubmitting,
+    isSubmitted,
+    isSubmitSuccessful,
+    submitCount,
+  } = formState;
 
   const values = watch();
 
@@ -85,10 +98,16 @@ export const TemplateHookForm: React.FC = () => {
     console.log("data", data);
   };
 
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
+
   return (
     <>
       <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8 p-6 bg-white rounded-lg shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+        <div className="max-w-2xl w-full space-y-8 p-6 bg-white rounded-lg shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-800">
               React-Hook-Form
@@ -123,6 +142,14 @@ export const TemplateHookForm: React.FC = () => {
                       notBlackedList: (fieldValue: string) =>
                         !fieldValue.includes("blacklist") ||
                         "This email is blacklisted",
+                      emailAvaible: async (fieldValue: string) => {
+                        // Sincere@april.biz
+                        const response = await fetch(
+                          `https://jsonplaceholder.typicode.com/users?email=${fieldValue}`
+                        );
+                        const data = await response.json();
+                        return data.length === 0 || "Email already taken";
+                      },
                     },
                   })}
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm hover:border-indigo-500 transition-colors duration-200"
@@ -188,7 +215,7 @@ export const TemplateHookForm: React.FC = () => {
                       message: "This is required",
                     },
                   })}
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm hover:border-indigo-500 transition-colors duration-200"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm hover:border-indigo-500 transition-colors duration-200"
                   placeholder="Twitter"
                 />
                 <p className="text-red-500">
@@ -208,7 +235,7 @@ export const TemplateHookForm: React.FC = () => {
                       message: "This is required",
                     },
                   })}
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm hover:border-indigo-500 transition-colors duration-200"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm hover:border-indigo-500 transition-colors duration-200"
                   placeholder="Primary Phone Number"
                 />
                 <p className="text-red-500">
@@ -228,7 +255,7 @@ export const TemplateHookForm: React.FC = () => {
                       message: "This is required",
                     },
                   })}
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm hover:border-indigo-500 transition-colors duration-200"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm hover:border-indigo-500 transition-colors duration-200"
                   placeholder="Secondary Phone Number"
                 />
                 <p className="text-red-500">
@@ -309,8 +336,8 @@ export const TemplateHookForm: React.FC = () => {
               </div>
             </div>
 
-            {/* her click attığın zaman o anki tıkladığında oluşan values değerlerini almaya yarar */}
             <div className="flex gap-1 items-center">
+              {/* her click attığın zaman o anki tıkladığında oluşan values değerlerini almaya yarar */}
               <button
                 type="button"
                 onClick={handleGetValues}
@@ -325,19 +352,40 @@ export const TemplateHookForm: React.FC = () => {
               >
                 Set Value
               </button>
+              {/* Errorları tetikleyip göstermememize yarar */}
+              <button
+                type="button"
+                onClick={() => trigger()}
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 hover:shadow-lg transition-colors duration-200"
+              >
+                Trigger
+              </button>
+              <button
+                type="button"
+                onClick={() => reset()}
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 hover:shadow-lg transition-colors duration-200"
+              >
+                Reset
+              </button>
             </div>
 
             <div>
+              {/* eğer ki isEmailAvaible da olduğu gibi o kısım için tekrar api isteği attıracak isen isValid kullanmamalısın */}
               <button
-                disabled={!isDirty || !isValid}
+                // disabled={!isDirty || !isValid || isSubmitting}
+                disabled={!isDirty || isSubmitting}
                 type="submit"
                 className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:shadow-lg transition-colors duration-200 ${
-                  !isDirty || !isValid ? "opacity-50 cursor-not-allowed" : ""
+                  !isDirty || isSubmitting
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
                 }`}
               >
                 Submit
               </button>
             </div>
+
+            <hr />
 
             <div className="flex flex-col gap-1">
               <code>
@@ -380,6 +428,26 @@ export const TemplateHookForm: React.FC = () => {
               <code>
                 <span className="text-blue-500">Is Dirty:</span>
                 {JSON.stringify(isDirty, null, 2)}
+              </code>
+              <code>
+                <span className="text-blue-500">Is Valid:</span>
+                {JSON.stringify(isValid, null, 2)}
+              </code>
+              <code>
+                <span className="text-blue-500">Is Submitting:</span>
+                {JSON.stringify(isSubmitting, null, 2)}
+              </code>
+              <code>
+                <span className="text-blue-500">Is Submitted:</span>
+                {JSON.stringify(isSubmitted, null, 2)}
+              </code>
+              <code>
+                <span className="text-blue-500">Is Submit Successful:</span>
+                {JSON.stringify(isSubmitSuccessful, null, 2)}{" "}
+              </code>
+              <code>
+                <span className="text-blue-500">Submit Count:</span>
+                {JSON.stringify(submitCount, null, 2)}{" "}
               </code>
             </div>
           </form>
