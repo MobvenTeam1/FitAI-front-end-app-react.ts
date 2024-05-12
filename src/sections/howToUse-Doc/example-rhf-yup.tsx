@@ -3,6 +3,7 @@ import { DevTool } from "@hookform/devtools";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { RHFTextfield } from "../../components/hook-form/RHFTextfield";
+import { RHFSubmitButton } from "../../components/hook-form/RHFSubmitButton";
 
 type FormValues = {
   email: string;
@@ -60,16 +61,7 @@ export const TemplateRHFYup: React.FC = () => {
                 />
               </div>
 
-              <div>
-                <button
-                  type="submit"
-                  className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:shadow-lg transition-colors duration-200}`}
-                >
-                  Submit
-                </button>
-              </div>
-
-              <hr />
+              <RHFSubmitButton />
 
               <div className="flex flex-col gap-1">
                 <code>
