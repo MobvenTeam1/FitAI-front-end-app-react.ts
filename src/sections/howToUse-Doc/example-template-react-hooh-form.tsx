@@ -1,4 +1,4 @@
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, FieldErrors } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 type FormValues = {
@@ -51,7 +51,7 @@ export const TemplateHookForm: React.FC = () => {
     getValues,
     setValue,
   } = form;
-  const { errors } = formState;
+  const { errors, touchedFields, dirtyFields, isDirty, isValid } = formState;
 
   const values = watch();
 
@@ -77,6 +77,10 @@ export const TemplateHookForm: React.FC = () => {
     // console.log("getValues", getValues("social.facebook"));
   };
 
+  const onError = (errors: FieldErrors<FormValues>) => {
+    console.log("errors", errors);
+  };
+
   const onSubmit = (data: FormValues) => {
     console.log("data", data);
   };
@@ -92,7 +96,7 @@ export const TemplateHookForm: React.FC = () => {
           </div>
           <form
             className="mt-8 space-y-6"
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onSubmit, onError)}
             noValidate
           >
             <div className="flex flex-col gap-3 rounded-md shadow-sm -space-y-px">
@@ -177,6 +181,8 @@ export const TemplateHookForm: React.FC = () => {
                   id="twitter"
                   type="text"
                   {...register("social.twitter", {
+                    // disabled: true,
+                    // disabled: watch("social.facebook") === "",
                     required: {
                       value: true,
                       message: "This is required",
@@ -303,7 +309,15 @@ export const TemplateHookForm: React.FC = () => {
               </div>
             </div>
 
-            <div>
+            {/* her click attığın zaman o anki tıkladığında oluşan values değerlerini almaya yarar */}
+            <div className="flex gap-1 items-center">
+              <button
+                type="button"
+                onClick={handleGetValues}
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 hover:shadow-lg transition-colors duration-200"
+              >
+                Get Values
+              </button>
               <button
                 type="button"
                 onClick={() => handleSetValue("email", "Set Value Updated")}
@@ -313,14 +327,15 @@ export const TemplateHookForm: React.FC = () => {
               </button>
             </div>
 
-            {/* her click attığın zaman o anki tıkladığında oluşan values değerlerini almaya yarar */}
             <div>
               <button
-                type="button"
-                onClick={handleGetValues}
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 hover:shadow-lg transition-colors duration-200"
+                disabled={!isDirty || !isValid}
+                type="submit"
+                className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:shadow-lg transition-colors duration-200 ${
+                  !isDirty || !isValid ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               >
-                Get Values
+                Submit
               </button>
             </div>
 
@@ -348,6 +363,23 @@ export const TemplateHookForm: React.FC = () => {
               <code>
                 <span className="text-blue-500">Date:</span>
                 {JSON.stringify(values.date, null, 2)}
+              </code>
+            </div>
+
+            <hr />
+
+            <div className="flex flex-col gap-1">
+              <code>
+                <span className="text-blue-500">Touched Fields:</span>
+                {JSON.stringify(touchedFields, null, 2)}
+              </code>
+              <code>
+                <span className="text-blue-500">Dirty Fields:</span>
+                {JSON.stringify(dirtyFields, null, 2)}
+              </code>
+              <code>
+                <span className="text-blue-500">Is Dirty:</span>
+                {JSON.stringify(isDirty, null, 2)}
               </code>
             </div>
           </form>
