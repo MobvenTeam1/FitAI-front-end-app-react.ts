@@ -15,11 +15,11 @@ const initialAuthState: AuthState = {
 };
 
 export const AuthContext = createContext<{
-    isAuth: AuthState;
+  isAuth: AuthState;
   login: (data: FormValues) => void;
   logout: () => void;
 }>({
-    isAuth: initialAuthState,
+  isAuth: initialAuthState,
   login: () => {},
   logout: () => {},
 });
@@ -30,7 +30,7 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
-        setIsAuth({ token });
+      setIsAuth({ token });
     }
   }, []);
 
@@ -44,7 +44,7 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json.token);
+        // console.log(json.token);
         setIsAuth({ token: json.token });
         setTokenLocalStorage(json.token);
       });
