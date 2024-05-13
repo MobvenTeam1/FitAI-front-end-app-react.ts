@@ -1,38 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../auth/AuthContext";
 
 export const Account: React.FC = () => {
-  const [audio] = useState(new Audio("/pedro.mp3"));
-  const [playing, setPlaying] = useState(false);
-  const [active, setActive] = useState(false); // Add this line
-
-  const toggle = () => {
-    setPlaying(!playing);
-    setActive(!active);
-  };
-
-  useEffect(() => {
-    if (playing) {
-      audio.currentTime = 0;
-      audio.play();
-    } else {
-      audio.pause();
-    }
-  }, [audio, playing]);
+  const { logout } = useContext(AuthContext);
 
   return (
-    <div
-      onClick={toggle}
-      className={`overflow-hidden rounded-full cursor-pointer hover:shadow-lg ${
-        active ? "animate-spin" : ""
-      } bg-[#efdeda]`}
-    >
-      <img
-        src="/pedro.jpg"
-        className={`transform scale-105 w-10 h-10 object-cover ${
-          active ? "animate-bounce" : ""
-        } bg-[#efdeda]`}
-        alt=""
-      />
+    <div>
+      <button
+        className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-700 hover:to-blue-500 text-white text-xs font-bold py-2 px-4 rounded shadow-lg transition-colors duration-200"
+        onClick={logout}
+      >
+        Logout
+      </button>
     </div>
   );
 };

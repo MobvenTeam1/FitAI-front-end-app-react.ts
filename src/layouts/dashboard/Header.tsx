@@ -4,6 +4,7 @@ import { DashboardNavigation } from "../../routes/dashboard-navigation";
 import { ChangeLng } from "../../locales/change-lng";
 import { useTranslation } from "react-i18next";
 import { Account } from "./Account";
+import { Racoon } from "./Racoon";
 
 export const Header: React.FC = () => {
   const location = useLocation();
@@ -33,6 +34,7 @@ export const Header: React.FC = () => {
         </div>
 
         <div className="flex gap-3 items-center max-sm:justify-end">
+          <Racoon />
           <Account />
           <ChangeLng />
         </div>

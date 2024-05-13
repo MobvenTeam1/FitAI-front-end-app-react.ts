@@ -16,7 +16,7 @@ const schema = yup.object().shape({
     .string()
     .email("Email format is required")
     .required("Email is required"),
-  password: yup.string().min(6).required("Password is required"),
+  password: yup.string().min(6,"Must contain a minimum of 6 characters").required("Password is required"),
 });
 
 const defaultValues: FormValues = {

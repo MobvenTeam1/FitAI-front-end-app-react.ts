@@ -1,15 +1,16 @@
 import { Outlet, createBrowserRouter } from "react-router-dom";
 import { NotFound404 } from "../pages/NotFound404";
-import { DashboardLayoutMain } from "../layouts/dashboard/DashboardLayoutMain";
 import { Home } from "../pages/dashboard/Home";
 import { Users } from "../pages/dashboard/Users";
 import { Login } from "../pages/auth/Login";
 import { Register } from "../pages/auth/Register";
+import { AuthGuard } from "../auth/guard/AuthGuard";
+import { GuestGuard } from "../auth/guard/GuestGuard";
 
 const routes = createBrowserRouter([
   {
     path: "auth",
-    // element: <AuthGuard />,
+    element: <AuthGuard />,
     children: [
       {
         path: "login",
@@ -31,8 +32,8 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        // element: <GuestGuard />,
-        element: <DashboardLayoutMain />,
+        element: <GuestGuard />,
+        // element: <DashboardLayoutMain />,
         children: [
           {
             index: true,
@@ -44,8 +45,6 @@ const routes = createBrowserRouter([
           },
         ],
       },
-
-  
     ],
   },
   {
