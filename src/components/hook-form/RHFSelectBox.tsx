@@ -1,5 +1,6 @@
 import { FC, SelectHTMLAttributes } from "react";
 import { useFormContext, FieldError } from "react-hook-form";
+import { ErrorMessage } from "./RHFErrorMessage";
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   name: string;
@@ -37,7 +38,7 @@ export const RHFSelectBox: FC<SelectProps> = ({
           </option>
         ))}
       </select>
-      {error && <p className="text-red-500">{error.message}</p>}
+      <ErrorMessage error={error} />
     </div>
   );
 };

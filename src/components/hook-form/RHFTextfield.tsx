@@ -1,5 +1,6 @@
 import { FC, InputHTMLAttributes } from "react";
 import { useFormContext, FieldError } from "react-hook-form";
+import { ErrorMessage } from "./RHFErrorMessage";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -33,7 +34,7 @@ export const RHFTextfield: FC<InputProps> = ({
         {...register(name)}
         {...props}
       />
-      {error && <p className="text-red-500">{error.message}</p>}
+      <ErrorMessage error={error} />
     </div>
   );
 };
