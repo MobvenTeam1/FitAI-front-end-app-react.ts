@@ -5,10 +5,12 @@ import * as yup from "yup";
 import { RHFTextfield } from "../../components/hook-form/RHFTextfield";
 import { RHFSubmitButton } from "../../components/hook-form/RHFSubmitButton";
 import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
+import { RHFSelectBox } from "../../components/hook-form/RHFSelectBox";
 
 type FormValues = {
   email: string;
   password: string;
+  gender: string;
 };
 
 const schema = yup.object().shape({
@@ -16,12 +18,17 @@ const schema = yup.object().shape({
     .string()
     .email("Email format is required")
     .required("Email is required"),
-  password: yup.string().min(6,"Must contain a minimum of 6 characters").required("Password is required"),
+  password: yup
+    .string()
+    .min(6, "Must contain a minimum of 6 characters")
+    .required("Password is required"),
+  gender: yup.string().required("Gender is required"),
 });
 
 const defaultValues: FormValues = {
   email: "",
   password: "",
+  gender: "",
 };
 
 export const TemplateRHFYup: React.FC = () => {
@@ -57,6 +64,15 @@ export const TemplateRHFYup: React.FC = () => {
                   name="password"
                   type="password"
                   label="Password"
+                />
+                <RHFSelectBox
+                  name="gender"
+                  label="Gender"
+                  options={[
+                    { value: "", label: "Select Gender" },
+                    { value: "male", label: "Male" },
+                    { value: "female", label: "Female" },
+                  ]}
                 />
               </div>
 

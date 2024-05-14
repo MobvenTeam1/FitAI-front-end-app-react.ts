@@ -1,4 +1,4 @@
-import { TemplateRHFYup } from "../../sections/howToUse-Doc/example-rhf-yup";
+import { TemplateRHFYup } from "../../sections/howToUse-Doc/example-rhf-component";
 
 export const Users: React.FC = () => {
   return (
