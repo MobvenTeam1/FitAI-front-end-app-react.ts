@@ -6,7 +6,7 @@ export const AuthGuard: React.FC = () => {
   const { isAuth } = useContext(AuthContext);
   const accessToken = isAuth.token;
 
-  if (accessToken === undefined || "" || null) {
+  if (accessToken === undefined || accessToken === "" || accessToken === null) {
     return null;
   }
 

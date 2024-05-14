@@ -26,13 +26,13 @@ export const AuthContext = createContext<{
 
 export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   const [isAuth, setIsAuth] = useState(initialAuthState);
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
     if (token) {
       setIsAuth({ token });
     }
-  }, []);
+  }, [token]);
 
   const login = (data: FormValues) => {
     fetch("https://fakestoreapi.com/auth/login", {
