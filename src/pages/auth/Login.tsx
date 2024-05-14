@@ -64,7 +64,7 @@ export const Login: React.FC = () => {
                 />
               </div>
 
-              <RHFSubmitButton color="yellow" />
+              <RHFSubmitButton color="red" />
 
               <RHFFormValues />
             </form>

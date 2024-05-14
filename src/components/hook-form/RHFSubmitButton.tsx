@@ -1,15 +1,23 @@
-import { FC } from "react";
 import { useFormContext } from "react-hook-form";
-import CustomButton from "../customs/custom-button";
+import {
+  ButtonColor,
+  ButtonSize,
+  ButtonVariant,
+  CustomButton,
+} from "../customs/custom-button";
 
-type ButtonProps = {
+type RHFSubmitButtonProps = {
   label?: string;
-  color?: "indigo" | "red" | "green" | "yellow" | "blue";
+  color?: ButtonColor;
+  size?: ButtonSize;
+  variant?: ButtonVariant;
 };
 
-export const RHFSubmitButton: FC<ButtonProps> = ({
+export const RHFSubmitButton: React.FC<RHFSubmitButtonProps> = ({
   label = "Submit",
   color = "indigo",
+  size = "md",
+  variant = "contained",
   ...props
 }) => {
   const {
@@ -19,8 +27,9 @@ export const RHFSubmitButton: FC<ButtonProps> = ({
   return (
     <CustomButton
       type="submit"
-      variant="contained"
+      variant={variant}
       color={color}
+      size={size}
       label={isSubmitting ? "Loading..." : label}
       disabled={isSubmitting}
       {...props}

@@ -1,28 +1,35 @@
-import { ButtonHTMLAttributes } from "react";
+import { FC, ButtonHTMLAttributes } from "react";
+
+// Define the button colors as a type for better type checking
+export type ButtonColor = "indigo" | "red" | "green" | "yellow" | "blue";
+
+// Define the button variants as a type for better type checking
+export type ButtonVariant = "outlined" | "contained" | "link";
+
+// Define the button types as a type for better type checking
+type ButtonType = "button" | "submit" | "reset";
+
+// Define the button sizes as a type for better type checking
+export type ButtonSize = "sm" | "md" | "lg";
 
 interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  type?: "button" | "submit" | "reset";
+  type?: ButtonType;
   isSubmitting?: boolean;
   label?: string;
-  variant: "outlined" | "contained" | "link";
-  color?:
-    | "indigo"
-    | "red"
-    | "green"
-    | "yellow"
-    | "blue"
+  variant: ButtonVariant;
+  color?: ButtonColor;
+  size?: ButtonSize;
 }
-
-// const color = "indigo";
 
 const baseClassName =
   "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white transition-colors duration-200";
 
-const CustomButton: React.FC<CustomButtonProps> = ({
+export const CustomButton: FC<CustomButtonProps> = ({
   type = "button",
   label = "",
   variant = "contained",
   color = "indigo",
+  size = "md",
   ...props
 }) => {
   const variantClassNames = {
@@ -31,7 +38,13 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     link: `bg-transparent text-${color}-500 hover:text-${color}-600`,
   };
 
-  const className = `${baseClassName} ${variantClassNames[variant]}`;
+  const sizeClassNames = {
+    sm: "py-1 px-2 text-xs",
+    md: "py-2 px-4 text-sm",
+    lg: "py-3 px-6 text-lg",
+  };
+
+  const className = `${baseClassName} ${variantClassNames[variant]} ${sizeClassNames[size]}`;
 
   return (
     <button type={type} className={className} {...props}>
@@ -39,5 +52,3 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     </button>
   );
 };
-
-export default CustomButton;
