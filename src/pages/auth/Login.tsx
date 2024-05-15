@@ -7,6 +7,8 @@ import { RHFSubmitButton } from "../../components/hook-form/RHFSubmitButton";
 import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 import { AuthContext } from "../../auth/AuthContext";
 import { useContext } from "react";
+import { useRouter } from "../../hooks/useRouter";
+import { paths } from "../../routes/paths";
 
 export type FormValues = {
   username: string;
@@ -27,6 +29,7 @@ const defaultValues: FormValues = {
 };
 
 export const Login: React.FC = () => {
+  const router = useRouter();
   const { login } = useContext(AuthContext);
 
   const form = useForm<FormValues>({
@@ -64,11 +67,25 @@ export const Login: React.FC = () => {
                 />
               </div>
 
-              <RHFSubmitButton color="red" />
+              <RHFSubmitButton color="green" />
 
               <RHFFormValues />
             </form>
           </FormProvider>
+
+          <div
+            className="mt-4 text-center"
+            onClick={() =>
+              router.push(`/${paths.auth.root}/${paths.auth.register}`)
+            }
+          >
+            <p className="text-sm text-gray-600">
+              Don't have an account?{" "}
+              <span className="font-medium text-red-600 hover:text-red-500 cursor-pointer">
+                Create one
+              </span>
+            </p>
+          </div>
         </div>
       </div>
 
