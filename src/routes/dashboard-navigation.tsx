@@ -14,4 +14,9 @@ export const DashboardNavigation = [
     path: paths.dashboard.users.root,
     icon: ICONS.home,
   },
+  {
+    title: "programs",
+    path: paths.dashboard.programs,
+    icon: ICONS.home,
+  },
 ];

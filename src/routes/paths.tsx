@@ -3,9 +3,11 @@ interface DashboardPaths {
   users: {
     root: string;
   };
+  programs: string;
 }
 
 interface AuthPaths {
+  root: string;
   login: string;
   register: string;
   forgotPassword: string;
@@ -23,11 +25,13 @@ export const paths: Paths = {
     users: {
       root: "/users",
     },
+    programs: "/programs",
   },
   auth: {
-    login: "/login",
-    register: "/register",
-    forgotPassword: "/forgot-password",
-    resetPassword: "/reset-password",
+    root: "auth",
+    login: "login",
+    register: "register",
+    forgotPassword: "forgot-password",
+    resetPassword: "reset-password",
   },
 };

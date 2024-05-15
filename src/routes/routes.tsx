@@ -6,24 +6,26 @@ import { Login } from "../pages/auth/Login";
 import { Register } from "../pages/auth/Register";
 import { AuthGuard } from "../auth/guard/AuthGuard";
 import { GuestGuard } from "../auth/guard/GuestGuard";
+import { Programs } from "../pages/dashboard/Programs";
+import { paths } from "./paths";
 
 const routes = createBrowserRouter([
   {
-    path: "auth",
+    path: paths.auth.root,
     element: <AuthGuard />,
     children: [
       {
-        path: "login",
+        path: paths.auth.login,
         element: <Login />,
       },
       {
-        path: "register",
+        path: paths.auth.register,
         element: <Register />,
       },
     ],
   },
   {
-    path: "/",
+    path: paths.dashboard.root,
     element: (
       <>
         <Outlet />
@@ -31,7 +33,7 @@ const routes = createBrowserRouter([
     ),
     children: [
       {
-        path: "/",
+        path: paths.dashboard.root,
         element: <GuestGuard />,
         // element: <DashboardLayoutMain />,
         children: [
@@ -40,8 +42,12 @@ const routes = createBrowserRouter([
             element: <Home />,
           },
           {
-            path: "/users",
+            path: paths.dashboard.users.root,
             element: <Users />,
+          },
+          {
+            path: paths.dashboard.programs,
+            element: <Programs />,
           },
         ],
       },
