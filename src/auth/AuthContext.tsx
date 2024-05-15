@@ -15,27 +15,24 @@ const initialAuthState: AuthState = {
 };
 
 export const AuthContext = createContext<{
-  isAuth: AuthState;
+  authState: AuthState;
   login: (data: FormValues) => void;
   logout: () => void;
 }>({
-  isAuth: initialAuthState,
+  authState: initialAuthState,
   login: () => {},
   logout: () => {},
 });
 
 export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
-  const [isAuth, setIsAuth] = useState(initialAuthState);
-  const token = localStorage.getItem("accessToken");
-
-  // console.log("token", token);
-  
+  const [authState, setAuthState] = useState(() => {
+    const token = localStorage.getItem("accessToken");
+    return { token };
+  });
 
   useEffect(() => {
-    if (token) {
-      setIsAuth({ token });
-    }
-  }, [token]);
+    setTokenLocalStorage(authState.token || "");
+  }, [authState.token]);
 
   const login = (data: FormValues) => {
     fetch("https://fakestoreapi.com/auth/login", {
@@ -48,18 +45,18 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
       .then((res) => res.json())
       .then((json) => {
         // console.log(json.token);
-        setIsAuth({ token: json.token });
+        setAuthState({ token: json.token });
         setTokenLocalStorage(json.token);
       });
   };
 
   const logout = () => {
-    setIsAuth({ token: null });
+    setAuthState({ token: null });
     setTokenLocalStorage("");
   };
 
   return (
-    <AuthContext.Provider value={{ isAuth, login, logout }}>
+    <AuthContext.Provider value={{ authState, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

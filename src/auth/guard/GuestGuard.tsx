@@ -4,12 +4,18 @@ import { DashboardLayoutMain } from "../../layouts/dashboard/DashboardLayoutMain
 import { AuthContext } from "../AuthContext";
 
 export const GuestGuard: React.FC = () => {
-  const { isAuth } = useContext(AuthContext);
-  const accessToken = isAuth.token;
-
-  // if (accessToken === undefined || accessToken === "" || accessToken === null) {
-  //   return null;
-  // }
+  const { authState } = useContext(AuthContext);
+  const accessToken = authState.token;
 
   return accessToken ? <DashboardLayoutMain /> : <Navigate to="/auth/login" />;
 };
+
+
+  // const [isAuth, setIsAuth] = useState(initialAuthState);
+  // const token = localStorage.getItem("accessToken");
+
+  // useEffect(() => {
+  //   if (token) {
+  //     setIsAuth({ token });
+  //   }
+  // }, [token]);
