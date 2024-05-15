@@ -9,13 +9,3 @@ export const GuestGuard: React.FC = () => {
 
   return accessToken ? <DashboardLayoutMain /> : <Navigate to="/auth/login" />;
 };
-
-
-  // const [isAuth, setIsAuth] = useState(initialAuthState);
-  // const token = localStorage.getItem("accessToken");
-
-  // useEffect(() => {
-  //   if (token) {
-  //     setIsAuth({ token });
-  //   }
-  // }, [token]);
