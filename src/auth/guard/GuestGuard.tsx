@@ -7,9 +7,9 @@ export const GuestGuard: React.FC = () => {
   const { isAuth } = useContext(AuthContext);
   const accessToken = isAuth.token;
 
-  if (accessToken === undefined || accessToken === "" || accessToken === null) {
-    return <Navigate to="/auth/login" />;
-  }
+  // if (accessToken === undefined || accessToken === "" || accessToken === null) {
+  //   return null;
+  // }
 
-  return <DashboardLayoutMain />;
+  return accessToken ? <DashboardLayoutMain /> : <Navigate to="/auth/login" />;
 };

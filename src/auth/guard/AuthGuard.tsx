@@ -6,9 +6,9 @@ export const AuthGuard: React.FC = () => {
   const { isAuth } = useContext(AuthContext);
   const accessToken = isAuth.token;
 
-  if (accessToken !== undefined || accessToken !== "" || accessToken !== null) {
-    return <Navigate to="/" />;
-  }
+  // if (accessToken === undefined || accessToken === "" || accessToken === null) {
+  //   return null;
+  // }
 
-  return <Outlet />;
+  return !accessToken ? <Outlet /> : <Navigate to="/" />;
 };

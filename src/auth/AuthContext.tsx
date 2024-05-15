@@ -28,6 +28,9 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   const [isAuth, setIsAuth] = useState(initialAuthState);
   const token = localStorage.getItem("accessToken");
 
+  // console.log("token", token);
+  
+
   useEffect(() => {
     if (token) {
       setIsAuth({ token });
