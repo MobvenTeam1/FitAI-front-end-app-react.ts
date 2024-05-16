@@ -12,7 +12,7 @@ import { RHFMultiSelect } from "./rhf-components/RHFMultiSelect";
 type PersonalFormValues = {
   gender: string;
   size: string;
-  currenWeight: string;
+  currentWeight: string;
   targetWeight: string;
   birthDate: string;
   goal: string;
@@ -22,7 +22,7 @@ type PersonalFormValues = {
 const schema = yup.object().shape({
   gender: yup.string().required("Gender is required"),
   size: yup.string().required("Size is required"),
-  currenWeight: yup.string().required("Current Weight is required"),
+  currentWeight: yup.string().required("Current Weight is required"),
   targetWeight: yup.string().required("Target Weight is required"),
   birthDate: yup.string().required("Birth Date is required"),
   goal: yup.string().required("Goal is required"),
@@ -35,7 +35,7 @@ const schema = yup.object().shape({
 const defaultValues: PersonalFormValues = {
   gender: "",
   size: "",
-  currenWeight: "",
+  currentWeight: "",
   targetWeight: "",
   birthDate: "",
   goal: "",
