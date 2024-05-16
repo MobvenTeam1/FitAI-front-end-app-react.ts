@@ -1,7 +1,12 @@
+import { PersonalInformations } from "../../sections/personal-inforations";
+import { PersonalInformationsContextProvider } from "../../sections/personal-inforations/context/PersonalInformationsContext";
+
 export const Programs: React.FC = () => {
   return (
     <div>
-      <h1>Program</h1>
+      <PersonalInformationsContextProvider>
+        <PersonalInformations />
+      </PersonalInformationsContextProvider>
     </div>
   );
 };
