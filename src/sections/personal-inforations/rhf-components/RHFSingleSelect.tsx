@@ -20,7 +20,7 @@ export const RHFSingleSelect: FC<SelectProps> = ({ name, options }) => {
 
   return (
     <div>
-      <div className="flex flex-col gap-4 mt-24">
+      <div className="flex flex-col gap-4">
         {options.map((option) => (
           <div
             className={`flex items-center justify-between border rounded-lg p-4 cursor-pointer hover:bg-gray-100 ${

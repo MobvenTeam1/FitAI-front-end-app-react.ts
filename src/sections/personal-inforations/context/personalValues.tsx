@@ -41,26 +41,34 @@ const size: PersonalValue = {
   type: "number",
 };
 
-const weight: PersonalValue = {
+const currentWeight: PersonalValue = {
   step: 2,
-  name: "weight",
+  name: "currentWeight",
   label: "Mevcut kilonuz kaç?",
   selectType: 2,
-  placeholder: "Lütfen kilonuzu giriniz",
+  placeholder: "Lütfen mevcut kilonuzu giriniz",
   type: "number",
 };
 
-const age: PersonalValue = {
+const targetWeight: PersonalValue = {
   step: 3,
-  name: "age",
-  label: "Yaş",
+  name: "targetWeight",
+  label: "Hedef kilonuz kaç?",
   selectType: 2,
-  placeholder: "Lütfen yaşınızı giriniz",
+  placeholder: "Lütfen hedef kilonuzu giriniz",
   type: "number",
+};
+
+const birthDate: PersonalValue = {
+  step: 4,
+  name: "birthDate",
+  label: "Doğum gününüz nedir?",
+  selectType: 2,
+  placeholder: "Lütfen doğum gününüzü giriniz",
 };
 
 const goal: PersonalValue = {
-  step: 4,
+  step: 5,
   name: "goal",
   label: "Hedefleriniz nelerdir?",
   selectType: 0,
@@ -73,7 +81,7 @@ const goal: PersonalValue = {
 };
 
 const activity: PersonalValue = {
-  step: 5,
+  step: 6,
   name: "activity",
   label: "Bu uygulamada hangi planları uygulamak istersiniz?",
   selectType: 1,
@@ -90,8 +98,9 @@ const activity: PersonalValue = {
 export const PersonalValues: PersonalValue[] = [
   gender,
   size,
-  weight,
-  age,
+  currentWeight,
+  targetWeight,
+  birthDate,
   goal,
   activity,
 ];

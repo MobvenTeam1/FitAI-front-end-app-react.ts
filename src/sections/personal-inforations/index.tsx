@@ -58,7 +58,6 @@ export const PersonalInformations: React.FC = () => {
         return (
           <RHFMultiSelect
             name={showStep.name}
-            label={showStep.label}
             options={showStep.options || []}
           />
         );
@@ -66,6 +65,7 @@ export const PersonalInformations: React.FC = () => {
         return (
           <RHFTextfield
             name={showStep.name}
+            type={showStep.type || "text"}
             label={showStep.label}
             placeholder={showStep.placeholder}
           />
@@ -77,7 +77,7 @@ export const PersonalInformations: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 m-4 bg-white rounded shadow-md">
+      <div className="w-full max-w-4xl p-8 m-4 bg-white rounded-lg shadow-md">
         <FormProvider {...form}>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -92,7 +92,7 @@ export const PersonalInformations: React.FC = () => {
               {"<"}
             </button>
             {/* <div className="text-center">{showStep?.step}</div> */}
-            <div className="text-2xl font-bold">{showStep?.label}</div>
+            <div className="text-2xl font-bold pb-24">{showStep?.label}</div>
             {renderFormElement()}
             <button
               type="button"
@@ -101,7 +101,7 @@ export const PersonalInformations: React.FC = () => {
             >
               Sonraki
             </button>
-            <hr className="mt-5" />
+            <hr />
             <RHFFormValues />
           </form>
         </FormProvider>
