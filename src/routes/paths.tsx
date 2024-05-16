@@ -10,6 +10,7 @@ interface AuthPaths {
   root: string;
   login: string;
   register: string;
+  registration: string;
   forgotPassword: string;
   resetPassword: string;
 }
@@ -31,6 +32,7 @@ export const paths: Paths = {
     root: "auth",
     login: "login",
     register: "register",
+    registration: "registration", 
     forgotPassword: "forgot-password",
     resetPassword: "reset-password",
   },

@@ -8,6 +8,8 @@ import { RHFTextfield } from "../../components/hook-form/RHFTextfield";
 import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 import { RHFSingleSelect } from "./rhf-components/RHFSingleSelect";
 import { RHFMultiSelect } from "./rhf-components/RHFMultiSelect";
+import { useRouter } from "../../hooks/useRouter";
+import { paths } from "../../routes/paths";
 
 type PersonalFormValues = {
   gender: string;
@@ -43,6 +45,7 @@ const defaultValues: PersonalFormValues = {
 };
 
 export const PersonalInformations: React.FC = () => {
+  const router = useRouter();
   const { step, forwardStep, backwardStep } = useContext(
     PersonalInformationsContext
   );
@@ -108,7 +111,13 @@ export const PersonalInformations: React.FC = () => {
           >
             <button
               type="button"
-              onClick={() => step !== 0 && backwardStep()}
+              onClick={() =>
+                step === 0
+                  ? router.push(
+                      `/${paths.auth.root}/${paths.auth.register}`
+                    )
+                  : backwardStep()
+              }
               className="border rounded-xl p-2 hover:bg-gray-200"
             >
               {"<"}
