@@ -82,7 +82,7 @@ const goal: PersonalValue = {
 
 const activity: PersonalValue = {
   step: 6,
-  name: "activity",
+  name: "activities",
   label: "Bu uygulamada hangi planları uygulamak istersiniz?",
   selectType: 1,
   options: [

@@ -10,24 +10,36 @@ import { RHFSingleSelect } from "./rhf-components/RHFSingleSelect";
 import { RHFMultiSelect } from "./rhf-components/RHFMultiSelect";
 
 type PersonalFormValues = {
-  weight: string;
-  age: string;
+  gender: string;
+  size: string;
+  currenWeight: string;
+  targetWeight: string;
+  birthDate: string;
   goal: string;
-  activity: string[];
+  activities: string[];
 };
 
 const schema = yup.object().shape({
-  weight: yup.string().required("Weight is required"),
-  age: yup.string().required("Age is required"),
+  gender: yup.string().required("Gender is required"),
+  size: yup.string().required("Size is required"),
+  currenWeight: yup.string().required("Current Weight is required"),
+  targetWeight: yup.string().required("Target Weight is required"),
+  birthDate: yup.string().required("Birth Date is required"),
   goal: yup.string().required("Goal is required"),
-  activity: yup.array().required("Activity is required"),
+  activities: yup
+    .array()
+    .of(yup.string().required("Activity is required"))
+    .required("At least one activity is required"),
 });
 
 const defaultValues: PersonalFormValues = {
-  weight: "",
-  age: "",
+  gender: "",
+  size: "",
+  currenWeight: "",
+  targetWeight: "",
+  birthDate: "",
   goal: "",
-  activity: [],
+  activities: [""],
 };
 
 export const PersonalInformations: React.FC = () => {
@@ -38,8 +50,18 @@ export const PersonalInformations: React.FC = () => {
     defaultValues,
     resolver: yupResolver(schema),
   });
-  const { handleSubmit } = form;
+  const { handleSubmit, trigger } = form;
   const showStep = PersonalValues.find((value) => value.step === step);
+
+  const handleNext = async () => {
+    if (showStep) {
+      const isValid = await trigger(showStep.name as keyof PersonalFormValues);
+      console.log(isValid);
+      if (isValid) {
+        forwardStep();
+      }
+    }
+  };
 
   const onSubmit = (data: PersonalFormValues) => {
     console.log(data);
@@ -96,7 +118,7 @@ export const PersonalInformations: React.FC = () => {
             {renderFormElement()}
             <button
               type="button"
-              onClick={forwardStep}
+              onClick={handleNext}
               className="w-full px-4 py-2 text-white bg-black rounded-lg hover:bg-gray-700"
             >
               Sonraki
