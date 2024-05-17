@@ -81,6 +81,18 @@ export const Register: React.FC = () => {
 
               <RHFFormValues />
             </form>
+
+            <div className="mt-8 flex justify-center text-sm text-gray-600">
+              Zaten bir hesabınız var mı?
+              <span
+                onClick={() =>
+                  router.push(`/${paths.auth.root}/${paths.auth.login}`)
+                }
+                className="font-medium text-indigo-600 ml-1 hover:text-indigo-500"
+              >
+                Giriş yapın
+              </span>
+            </div>
           </FormProvider>
         </div>
       </div>
