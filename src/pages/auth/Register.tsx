@@ -26,10 +26,10 @@ const schema = yup.object().shape({
 });
 
 const defaultValues: FormValues = {
-  username: "",
-  email: "",
-  password: "",
-  checkPassword: "",
+  username: "tempUser",
+  email: "temp@gmail.com",
+  password: "123456",
+  checkPassword: "123456",
 };
 
 export const Register: React.FC = () => {
