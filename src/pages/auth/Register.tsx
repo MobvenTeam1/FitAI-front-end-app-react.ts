@@ -43,7 +43,7 @@ export const Register: React.FC = () => {
   const { control, handleSubmit } = form;
 
   const onSubmit = () => {
-    router.push(`/${paths.auth.root}/${paths.auth.registration}`);
+    router.push(paths.registration);
   };
 
   return (
