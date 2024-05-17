@@ -88,7 +88,7 @@ export const Register: React.FC = () => {
                 onClick={() =>
                   router.push(`/${paths.auth.root}/${paths.auth.login}`)
                 }
-                className="font-medium text-indigo-600 ml-1 hover:text-indigo-500"
+                className="cursor-pointer font-medium text-indigo-600 ml-1 hover:text-indigo-500"
               >
                 Giriş yapın
               </span>
