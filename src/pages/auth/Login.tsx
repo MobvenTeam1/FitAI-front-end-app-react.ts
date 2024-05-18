@@ -107,43 +107,43 @@ export const Login: React.FC = () => {
                   Şifremi Unuttum
                 </p>
               </div>
+            </div>
 
-              <div className="flex flex-col items-center justify-center gap-4">
-                <RHFSubmitButton color="black" />
-                <p
-                  className="text-base text-black-500"
-                  onClick={() =>
-                    handlePush(`/${paths.auth.root}/${paths.auth.register}`)
-                  }
+            <div className="flex flex-col items-center justify-center gap-4">
+              <RHFSubmitButton color="black" />
+              <p
+                className="text-base text-black-500"
+                onClick={() =>
+                  handlePush(`/${paths.auth.root}/${paths.auth.register}`)
+                }
+              >
+                Hesabın yok mu?{" "}
+                <span className="font-bold cursor-pointer">Kayıt ol</span>
+              </p>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="w-full h-0.125 bg-gray-500" />
+              <p className="text-base text-gray-500 font-semibold text-nowrap mx-4">
+                Veya Şununla Giriş Yapın
+              </p>
+              <div className="w-full h-0.125 bg-gray-500" />
+              <div />
+            </div>
+
+            <div className="flex items-center gap-4 w-full">
+              {loginOptions.map((option) => (
+                <div
+                  key={`${option.id}${option.name}`}
+                  className="flex items-center justify-center py-4 w-full cursor-pointer border border-gray-200 rounded-lg "
                 >
-                  Hesabın yok mu?{" "}
-                  <span className="font-bold cursor-pointer">Kayıt ol</span>
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div className="w-full h-0.125 bg-gray-500" />
-                <p className="text-base text-gray-500 font-semibold text-nowrap mx-4">
-                  Veya Şununla Giriş Yapın
-                </p>
-                <div className="w-full h-0.125 bg-gray-500" />
-                <div />
-              </div>
-
-              <div className="flex items-center gap-4 w-full">
-                {loginOptions.map((option) => (
-                  <div
-                    key={`${option.id}${option.name}`}
-                    className="flex items-center justify-center py-4 w-full cursor-pointer border border-gray-200 rounded-lg "
-                  >
-                    <img
-                      className="w-6 h-6 select-none"
-                      src={option.icon}
-                      alt={option.name}
-                    />
-                  </div>
-                ))}
-              </div>
+                  <img
+                    className="w-6 h-6 select-none"
+                    src={option.icon}
+                    alt={option.name}
+                  />
+                </div>
+              ))}
             </div>
 
             {/* <RHFFormValues /> */}
