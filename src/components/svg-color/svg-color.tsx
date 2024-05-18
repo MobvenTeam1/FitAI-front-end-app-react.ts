@@ -4,15 +4,17 @@ interface SvgColorProps extends HTMLAttributes<HTMLSpanElement> {
   src?: string;
   style?: React.CSSProperties;
   children?: ReactNode;
+  width?: number;
+  height?: number;
 }
 
 const SvgColor = forwardRef<HTMLSpanElement, SvgColorProps>(
-  ({ src, style, ...other }, ref) => (
+  ({ src, style, width = 12, height = 12, ...other }, ref) => (
     <span
       ref={ref}
       style={{
-        width: 12,
-        height: 12,
+        width,
+        height,
         display: "inline-block",
         backgroundColor: "currentColor",
         mask: `url(${src}) no-repeat center / contain`,

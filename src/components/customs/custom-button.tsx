@@ -1,7 +1,13 @@
 import { FC, ButtonHTMLAttributes } from "react";
 
 // Define the button colors as a type for better type checking
-export type ButtonColor = "indigo" | "red" | "green" | "yellow" | "blue";
+export type ButtonColor =
+  | "indigo"
+  | "red"
+  | "green"
+  | "yellow"
+  | "blue"
+  | "black";
 
 // Define the button variants as a type for better type checking
 export type ButtonVariant = "outlined" | "contained" | "link";
@@ -22,7 +28,7 @@ interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const baseClassName =
-  "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white transition-colors duration-200";
+  "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-lg text-white transition-colors duration-200";
 
 export const CustomButton: FC<CustomButtonProps> = ({
   type = "button",

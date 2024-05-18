@@ -23,10 +23,6 @@ const routes = createBrowserRouter([
         path: paths.auth.register,
         element: <Register />,
       },
-      // {
-      //   path: paths.auth.registration,
-      //   element: <Registration />,
-      // },
     ],
   },
   {
