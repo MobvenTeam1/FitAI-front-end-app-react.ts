@@ -3,7 +3,6 @@ import { TemplateHookForm } from "../../sections/howToUse-Doc/example-template-r
 export const Home: React.FC = () => {
   return (
     <div>
-      <h1>test</h1>
       <TemplateHookForm />
     </div>
   );
