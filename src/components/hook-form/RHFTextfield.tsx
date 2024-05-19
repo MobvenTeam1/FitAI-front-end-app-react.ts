@@ -35,7 +35,7 @@ export const RHFTextfield: FC<InputProps> = ({
           id={name}
           type={inputType}
           placeholder={label}
-          className="border border-gray-200 rounded-lg p-4 w-full bg-gray-300"
+          className="border border-gray-200 rounded-lg px-4 py-5 w-full bg-gray-300"
           {...register(name)}
           {...props}
         />

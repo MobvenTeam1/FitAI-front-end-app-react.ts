@@ -45,9 +45,9 @@ export const CustomButton: FC<CustomButtonProps> = ({
   };
 
   const sizeClassNames = {
-    sm: "py-1 px-2 text-xs",
-    md: "py-2 px-4 text-sm",
-    lg: "py-3 px-6 text-lg",
+    sm: "px-3 py-4 text-xs",
+    md: "px-4 py-5 text-sm",
+    lg: "px-5 py-6 text-lg",
   };
 
   const className = `${baseClassName} ${variantClassNames[variant]} ${sizeClassNames[size]}`;
