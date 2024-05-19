@@ -9,6 +9,7 @@ import { paths } from "../../routes/paths";
 import { AuthHeader } from "../../sections/auth/AuthHeader";
 import { AuthSocial } from "../../sections/auth/AuthSocial";
 import { AuthLink } from "../../sections/auth/AuthLink";
+import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/RHFCheckbox";
 
 export type FormValues = {
   username: string;
@@ -44,17 +45,44 @@ export const Register: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="py-10">
         <FormProvider {...form}>
           <form
-            className="w-full px-20 flex flex-col gap-9"
+            className="w-full px-20 flex flex-col gap-9 max-sm:px-6"
             onSubmit={handleSubmit(onSubmit)}
             noValidate
           >
             <AuthHeader title="Kayıt Ol" />
 
-            <div className="flex flex-col gap-6">
-              <RHFTextfield name="username" label="Email" />
+            <div className="grid grid-cols-12 gap-6">
+              <div className="col-span-6">
+                <RHFTextfield name="name" label="Ad" />
+              </div>
+              <div className="col-span-6">
+                <RHFTextfield name="surname" label="Soyad" />
+              </div>
+              <div className="col-span-12">
+                <RHFTextfield name="email" label="Email" />
+              </div>
+              <div className="col-span-12">
+                <RHFTextfield name="phone" label="Telefon" />
+              </div>
+              <div className="col-span-12">
+                <RHFTextfield name="password" label="Parola" type="password" />
+              </div>
+              <div className="col-span-12">
+                <RHFTextfield
+                  name="checkPassword"
+                  label="Parola Tekrar"
+                  type="password"
+                />
+              </div>
+              <div className="col-span-12">
+                <RHFCheckBox
+                  name="isCheck"
+                  label="Şartları ve gizlilik politikasını kabul ediyorum."
+                />
+              </div>
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
