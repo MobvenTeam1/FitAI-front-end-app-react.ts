@@ -17,7 +17,7 @@ const schema = yup.object().shape({
 });
 
 const defaultValues: FormValues = {
-  username: "",
+  username: "temp@gmail.com",
 };
 
 type LoginOption = {
