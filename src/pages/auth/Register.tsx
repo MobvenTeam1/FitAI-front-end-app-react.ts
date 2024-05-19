@@ -4,33 +4,45 @@ import { DevTool } from "@hookform/devtools";
 import * as yup from "yup";
 import { RHFTextfield } from "../../components/hook-form/RHFTextfield";
 import { RHFSubmitButton } from "../../components/hook-form/RHFSubmitButton";
-import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 import { useRouter } from "../../hooks/useRouter";
 import { paths } from "../../routes/paths";
+import { AuthHeader } from "../../sections/auth/AuthHeader";
 
 export type FormValues = {
   username: string;
-  email: string;
-  password: string;
-  checkPassword: string;
 };
 
 const schema = yup.object().shape({
-  username: yup.string().required("username is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  password: yup
-    .string()
-    .min(6, "Must contain a minimum of 6 characters")
-    .required("Password is required"),
-  checkPassword: yup.string().required("Check password is required"),
+  username: yup.string().required("Email is required"),
 });
 
 const defaultValues: FormValues = {
-  username: "tempUser",
-  email: "temp@gmail.com",
-  password: "123456",
-  checkPassword: "123456",
+  username: "",
 };
+
+type LoginOption = {
+  id: number;
+  name: string;
+  icon: string;
+};
+
+const loginOptions: LoginOption[] = [
+  {
+    id: 1,
+    name: "Facebook",
+    icon: "/icons/ic_facebook.svg",
+  },
+  {
+    id: 2,
+    name: "Google",
+    icon: "/icons/ic_google.svg",
+  },
+  {
+    id: 3,
+    name: "Apple",
+    icon: "/icons/ic_apple.svg",
+  },
+];
 
 export const Register: React.FC = () => {
   const router = useRouter();
@@ -42,59 +54,71 @@ export const Register: React.FC = () => {
 
   const { control, handleSubmit } = form;
 
-  const onSubmit = () => {
-    router.push(paths.registration);
+  const onSubmit = (data: FormValues) => {
+    console.log(data);
+
+    handlePush(`/${paths.auth.root}/${paths.auth.verificationPassword}`);
+  };
+
+  const handlePush = (path: string) => {
+    router.push(path);
   };
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl w-full space-y-8 p-6 bg-white rounded-lg shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-          <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-800">
-              Merhaba! Başlamak için kaydolun
-            </h2>
-          </div>
-          <FormProvider {...form}>
-            <form
-              className="mt-8 space-y-6"
-              onSubmit={handleSubmit(onSubmit)}
-              noValidate
-            >
-              <div className="flex flex-col gap-3 rounded-md shadow-sm -space-y-px">
-                <RHFTextfield name="username" label="User Name" />
-                <RHFTextfield name="email" label="Email" />
-                <RHFTextfield
-                  name="password"
-                  type="password"
-                  label="Password"
-                />
+      <div className="min-h-screen flex items-center justify-center">
+        <FormProvider {...form}>
+          <form
+            className="w-full px-20 flex flex-col gap-9"
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
+          >
+            <AuthHeader title="Kayıt Ol" />
 
-                <RHFTextfield
-                  name="checkPassword"
-                  type="password"
-                  label="Check Password"
-                />
-              </div>
-
-              <RHFSubmitButton color="green" />
-
-              <RHFFormValues />
-            </form>
-
-            <div className="mt-8 flex justify-center text-sm text-gray-600">
-              Zaten bir hesabınız var mı?
-              <span
-                onClick={() =>
-                  router.push(`/${paths.auth.root}/${paths.auth.login}`)
-                }
-                className="cursor-pointer font-medium text-indigo-600 ml-1 hover:text-indigo-500"
-              >
-                Giriş yapın
-              </span>
+            <div className="flex flex-col gap-6">
+              <RHFTextfield name="username" label="Email" />
             </div>
-          </FormProvider>
-        </div>
+
+            <div className="flex flex-col items-center justify-center gap-4">
+              <RHFSubmitButton color="black" />
+              <p
+                className="text-base text-black-500"
+                onClick={() =>
+                  handlePush(`/${paths.auth.root}/${paths.auth.register}`)
+                }
+              >
+                Zaten hesabınız var mı?{" "}
+                <span className="font-bold cursor-pointer">Giriş Yap</span>
+              </p>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="w-full h-0.125 bg-gray-500" />
+              <p className="text-base text-gray-500 font-semibold text-nowrap mx-4">
+                Veya Şununla Giriş Yapın
+              </p>
+              <div className="w-full h-0.125 bg-gray-500" />
+              <div />
+            </div>
+
+            <div className="flex items-center gap-4 w-full">
+              {loginOptions.map((option) => (
+                <div
+                  key={`${option.id}${option.name}`}
+                  className="flex items-center justify-center py-4 w-full cursor-pointer border border-gray-200 rounded-lg "
+                >
+                  <img
+                    className="w-6 h-6 select-none"
+                    src={option.icon}
+                    alt={option.name}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* <RHFFormValues /> */}
+          </form>
+        </FormProvider>
       </div>
 
       <DevTool control={control} />
