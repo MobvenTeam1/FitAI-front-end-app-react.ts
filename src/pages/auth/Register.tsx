@@ -84,7 +84,7 @@ export const Register: React.FC = () => {
               <p
                 className="text-base text-black-500"
                 onClick={() =>
-                  handlePush(`/${paths.auth.root}/${paths.auth.register}`)
+                  handlePush(`/${paths.auth.root}/${paths.auth.login}`)
                 }
               >
                 Zaten hesabınız var mı?{" "}
