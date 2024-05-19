@@ -12,6 +12,7 @@ import { paths } from "../../routes/paths";
 import { AuthHeader } from "../../sections/auth/AuthHeader";
 import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/RHFCheckbox";
 import { AuthSocial } from "../../sections/auth/AuthSocial";
+import { AuthLink } from "../../sections/auth/AuthLink";
 
 export type FormValues = {
   username: string;
@@ -73,6 +74,7 @@ export const Login: React.FC = () => {
 
               <div className="flex justify-between items-center">
                 <RHFCheckBox name="isCheck" label="Beni Hatırla" />
+
                 <p
                   className="text-sm text-gray-500 font-semibold cursor-pointer"
                   onClick={() =>
@@ -88,15 +90,11 @@ export const Login: React.FC = () => {
 
             <div className="flex flex-col items-center justify-center gap-4">
               <RHFSubmitButton color="black" />
-              <p
-                className="text-base text-black-500"
-                onClick={() =>
-                  handlePush(`/${paths.auth.root}/${paths.auth.register}`)
-                }
-              >
-                Hesabın yok mu?{" "}
-                <span className="font-bold cursor-pointer">Kayıt ol</span>
-              </p>
+              <AuthLink
+                title="Hesabın yok mu?"
+                rootText="Kayıt ol"
+                path={`/${paths.auth.root}/${paths.auth.register}`}
+              />
             </div>
 
             <AuthSocial />

@@ -8,6 +8,7 @@ import { useRouter } from "../../hooks/useRouter";
 import { paths } from "../../routes/paths";
 import { AuthHeader } from "../../sections/auth/AuthHeader";
 import { AuthSocial } from "../../sections/auth/AuthSocial";
+import { AuthLink } from "../../sections/auth/AuthLink";
 
 export type FormValues = {
   username: string;
@@ -58,15 +59,11 @@ export const Register: React.FC = () => {
 
             <div className="flex flex-col items-center justify-center gap-4">
               <RHFSubmitButton color="black" />
-              <p
-                className="text-base text-black-500"
-                onClick={() =>
-                  handlePush(`/${paths.auth.root}/${paths.auth.login}`)
-                }
-              >
-                Zaten hesabınız var mı?{" "}
-                <span className="font-bold cursor-pointer">Giriş Yap</span>
-              </p>
+              <AuthLink
+                title="Zaten hesabınız var mı?"
+                rootText="Giriş Yap"
+                path={`/${paths.auth.root}/${paths.auth.login}`}
+              />
             </div>
 
             <AuthSocial />
