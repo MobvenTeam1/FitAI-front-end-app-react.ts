@@ -58,7 +58,7 @@ export const Register: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <RHFSubmitButton color="black" />
+              <RHFSubmitButton label="Kayıt Ol" color="black" />
               <AuthLink
                 title="Zaten hesabınız var mı?"
                 rootText="Giriş Yap"

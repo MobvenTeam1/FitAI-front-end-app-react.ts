@@ -89,7 +89,7 @@ export const Login: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <RHFSubmitButton color="black" />
+              <RHFSubmitButton label="Giriş Yap" color="black" />
               <AuthLink
                 title="Hesabın yok mu?"
                 rootText="Kayıt ol"
