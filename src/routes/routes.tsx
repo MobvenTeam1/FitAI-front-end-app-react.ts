@@ -9,6 +9,10 @@ import { GuestGuard } from "../auth/guard/GuestGuard";
 import { Programs } from "../pages/dashboard/Programs";
 import { Registration } from "../pages/auth/Registration";
 import { paths } from "./paths";
+import { ForgotPassword } from "../pages/auth/ForgotPassword";
+import { NewPassword } from "../pages/auth/NewPassword";
+import { SuccessPassword } from "../pages/auth/SuccessPassword";
+import { VerificationPassword } from "../pages/auth/VerificationPassword";
 
 const routes = createBrowserRouter([
   {
@@ -22,6 +26,22 @@ const routes = createBrowserRouter([
       {
         path: paths.auth.register,
         element: <Register />,
+      },
+      {
+        path: paths.auth.forgotPassword,
+        element: <ForgotPassword />,
+      },
+      {
+        path: paths.auth.newPassword,
+        element: <NewPassword />,
+      },
+      {
+        path: paths.auth.successPassword,
+        element: <SuccessPassword />,
+      },
+      {
+        path: paths.auth.verificationPassword,
+        element: <VerificationPassword />,
       },
     ],
   },

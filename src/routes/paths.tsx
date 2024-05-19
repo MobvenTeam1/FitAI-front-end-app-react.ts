@@ -11,7 +11,9 @@ interface AuthPaths {
   login: string;
   register: string;
   forgotPassword: string;
-  resetPassword: string;
+  newPassword: string;
+  successPassword: string;
+  verificationPassword: string;
 }
 
 export interface Paths {
@@ -34,6 +36,8 @@ export const paths: Paths = {
     login: "login",
     register: "register",
     forgotPassword: "forgot-password",
-    resetPassword: "reset-password",
+    newPassword: "new-password",
+    successPassword: "success-password",
+    verificationPassword: "verification-password",
   },
 };
