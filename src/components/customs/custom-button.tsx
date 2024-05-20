@@ -28,7 +28,7 @@ interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const baseClassName =
-  "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-lg text-white transition-colors duration-200";
+  "group relative w-full flex justify-center py-2 px-4 border border-transparent font-semibold rounded-lg text-white transition-colors duration-200";
 
 export const CustomButton: FC<CustomButtonProps> = ({
   type = "button",
@@ -45,8 +45,8 @@ export const CustomButton: FC<CustomButtonProps> = ({
   };
 
   const sizeClassNames = {
-    sm: "px-3 py-4 text-xs",
-    md: "px-4 py-5 text-sm",
+    sm: "px-3 py-4 text-sm",
+    md: "px-4 py-5 text-base",
     lg: "px-5 py-6 text-lg",
   };
 
