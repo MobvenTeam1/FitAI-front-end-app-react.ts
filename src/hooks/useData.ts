@@ -10,7 +10,7 @@ import DeleteClient from "../api/models/DeleteClients";
 
 export const MultiFormData = "multipart/form-data";
 export const ApplicationJson = "application/json";
-export const withClicked = {
+export const withHandleControl = {
   revalidateOnMount: false,
   revalidateOnFocus: false,
 };
@@ -56,7 +56,7 @@ export const useData = <T>(
   url: string,
   method: string = "GET",
   data?: any,
-  contentType?: string,
+  contentType: string = ApplicationJson,
   config?: SWRConfiguration<T, any>
 ): SWRResponse<T, any> => {
   return useSWR<T>([url, method, data, contentType], fetcher, config);

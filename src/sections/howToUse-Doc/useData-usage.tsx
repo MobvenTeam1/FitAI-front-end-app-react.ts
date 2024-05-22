@@ -1,5 +1,5 @@
 import { requests } from "../../api/requests";
-import { ApplicationJson, useData } from "../../hooks/useData";
+import { ApplicationJson, useData, withHandleControl } from "../../hooks/useData";
 
 const jsonData = {
   username: "mor_2314",
@@ -8,7 +8,7 @@ const jsonData = {
 
 export const UseDataUsage: React.FC = () => {
   const { data: getData, error: getError } = useData<unknown>(
-    requests.getCart.url,
+    requests.getCart,
     "GET",
     {
       limit: 5,
@@ -21,11 +21,11 @@ export const UseDataUsage: React.FC = () => {
     isLoading: loading,
     mutate,
   } = useData<unknown>(
-    requests.login.url,
+    requests.login,
     "POST",
     jsonData,
     ApplicationJson,
-    requests.login.control
+    withHandleControl
   );
 
   // // Create FormData object for multipart/form-data request
@@ -46,7 +46,7 @@ export const UseDataUsage: React.FC = () => {
 
   return (
     <div>
-      <button onClick={handleLogin}>login</button>
+      <button onClick={handleLogin}>clicked</button>
     </div>
   );
 };
