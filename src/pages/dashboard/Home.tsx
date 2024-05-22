@@ -1,9 +1,9 @@
 import { TemplateHookForm } from "../../sections/howToUse-Doc/example-template-react-hooh-form";
-import { UseSwrUsage } from "../../sections/howToUse-Doc/useSwrUsage";
+import { UseDataUsage } from "../../sections/howToUse-Doc/useData-usage";
 export const Home: React.FC = () => {
   return (
     <div>
-      <UseSwrUsage />
+      <UseDataUsage />
       <TemplateHookForm />
     </div>
   );
