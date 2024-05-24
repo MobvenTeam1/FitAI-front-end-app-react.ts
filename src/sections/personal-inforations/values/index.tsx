@@ -95,6 +95,14 @@ const activity: PersonalValue = {
   ],
 };
 
+export const FirstLoginFormValues: PersonalValue[] = [
+  gender,
+  size,
+  currentWeight,
+  targetWeight,
+  birthDate,
+];
+
 export const PersonalValues: PersonalValue[] = [
   gender,
   size,
