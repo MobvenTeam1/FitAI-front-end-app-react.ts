@@ -3,12 +3,11 @@ import React, { useContext } from "react";
 import * as yup from "yup";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useRouter } from "../../../hooks/useRouter";
 import { PersonalInformationsContext } from "../context/PersonalInformationsContext";
-import { PersonalValues } from "../values";
-import { paths } from "../../../routes/paths";
+import { FirstLoginFormValues } from "../values";
 import { RHFFormValues } from "../../../components/hook-form/RHFFormValues";
 import { renderFormElement } from "../rhf-components/renderFormElement";
+import { Stepper } from "../components/Stepper";
 
 type PersonalFormValues = {
   gender: string;
@@ -35,22 +34,19 @@ const defaultValues: PersonalFormValues = {
 };
 
 export const FirstLoginForm: React.FC = () => {
-  const router = useRouter();
-  const { step, forwardStep, backwardStep } = useContext(
-    PersonalInformationsContext
-  );
+  const { step, forwardStep } = useContext(PersonalInformationsContext);
   const form = useForm<PersonalFormValues>({
     defaultValues,
     resolver: yupResolver(schema),
   });
   const { handleSubmit, trigger } = form;
-  const showStep = PersonalValues.find((value) => value.step === step);
+  const showStep = FirstLoginFormValues.find((value) => value.step === step);
 
   const handleNext = async () => {
     if (showStep) {
       const isValid = await trigger(showStep.name as keyof PersonalFormValues);
       console.log(isValid);
-      if (isValid) {
+      if (isValid && showStep.step !== FirstLoginFormValues.length - 1) {
         forwardStep();
       }
     }
@@ -63,22 +59,12 @@ export const FirstLoginForm: React.FC = () => {
   return (
     <FormProvider {...form}>
       <form
-        className="w-full px-20 flex flex-col gap-9"
+        className="w-full px-20 flex flex-col gap-9 min-h-screen mt-24 max-sm:px-8 max-sm:mt-16"
         onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
-        <button
-          type="button"
-          onClick={() =>
-            step === 0
-              ? router.push(`/${paths.auth.root}/${paths.auth.register}`)
-              : backwardStep()
-          }
-          className="w-12 border rounded-xl p-2 hover:bg-gray-200"
-        >
-          {"<"}
-        </button>
-        {/* <div className="text-center">{showStep?.step}</div> */}
+        <Stepper values={FirstLoginFormValues} />
+
         <div className="text-4xl font-bold pb-7">{showStep?.label}</div>
         {showStep && renderFormElement(showStep)}
         <button
