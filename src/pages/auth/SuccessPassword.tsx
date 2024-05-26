@@ -5,9 +5,9 @@ import { paths } from "../../routes/paths";
 export const SuccessPassword: React.FC = () => {
   const router = useRouter();
   return (
-    <div className="flex flex-col items-center justify-center gap-6 text-center">
-      <img src="/icons/ic_double-star.svg" className="mb-4" alt="" />
-      <div className="flex flex-col gap-2">
+    <div className="flex flex-col items-center justify-center gap-8 text-center">
+      <img src="/icons/ic_double-star.svg" alt="" />
+      <div className="flex flex-col gap-3">
         <p className="font-bold text-3xl">Parola Değiştirildi!</p>
         <p className="text-gray-600">
           Parolanız başarıyla değiştirildi. Yeni paralonızla hesabınıza giriş
