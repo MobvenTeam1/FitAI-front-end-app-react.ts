@@ -1,7 +1,7 @@
-import { RHFTextfield } from "../../../components/hook-form/RHFTextfield";
 import { PersonalValue } from "../values";
 import { RHFMultiSelect } from "./RHFMultiSelect";
 import { RHFSingleSelect } from "./RHFSingleSelect";
+import { RHFTextfield } from "./RHFTextfield";
 
 export const renderFormElement = (showStep: PersonalValue) => {
   switch (showStep?.selectType) {
