@@ -1,6 +1,6 @@
 ## Live Preview
 
-You can see the live preview [here](https://react-template-ruddy-rho.vercel.app/)
+You can see the live preview [here](https://sage-mandazi-ed6615.netlify.app/)
 
 # React + TypeScript + Vite
 

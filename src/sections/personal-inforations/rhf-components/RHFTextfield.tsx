@@ -1,7 +1,7 @@
 import { FC, InputHTMLAttributes, useState } from "react";
 import { useFormContext, FieldError } from "react-hook-form";
-import { ErrorMessage } from "./RHFErrorMessage";
-import SvgColor from "../svg-color";
+import { ErrorMessage } from "../../../components/hook-form/RHFErrorMessage";
+import SvgColor from "../../../components/svg-color";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -35,10 +35,6 @@ export const RHFTextfield: FC<InputProps> = ({
   const togglePasswordVisibility = () =>
     setInputType((prevType) => (prevType === "password" ? "text" : "password"));
 
-  const inputClass = `font-medium text-base border border-gray-200 rounded-lg px-4 py-5 w-full bg-gray-300 ${
-    inputType === "password" ? "font-black tracking-widest" : ""
-  }`;
-
   return (
     <div>
       <div className="relative">
@@ -46,7 +42,10 @@ export const RHFTextfield: FC<InputProps> = ({
           id={name}
           type={inputType}
           placeholder={label}
-          className={inputClass}
+          className={`w-full text-4xl font-bold text-center py-3 px-4 border-b appearance-none ${
+            inputType === "password" ? "font-black tracking-widest" : ""
+          } active:outline-none focus:outline-none placeholder:font-medium [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]
+          `}
           {...register(name)}
           {...props}
         />
