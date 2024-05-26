@@ -63,7 +63,7 @@ const birthDate: PersonalValue = {
   step: 4,
   name: "birthDate",
   label: "Doğum gününüz nedir? (gg.aa.yyyy)",
-  selectType: 2,
+  selectType: 3,
   placeholder: "Lütfen doğum gününüzü giriniz",
 };
 
