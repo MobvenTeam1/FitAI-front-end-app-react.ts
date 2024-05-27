@@ -1,6 +1,6 @@
 ## Live Preview
 
-You can see the live preview [here](https://sage-mandazi-ed6615.netlify.app/)
+You can see the live preview [here](https://fit-ai-app-mobven.netlify.app/)
 
 # React + TypeScript + Vite
 
