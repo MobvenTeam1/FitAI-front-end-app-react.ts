@@ -3,12 +3,14 @@ import { paths } from "../../routes/paths";
 import { AuthHeader } from "../../sections/auth/AuthHeader";
 import { AuthLink } from "../../sections/auth/AuthLink";
 import { useRouter } from "../../hooks/useRouter";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CustomButton } from "../../components/customs/custom-button";
 
 export const VerificationPassword: React.FC = () => {
   const router = useRouter();
   const [values, setValues] = useState(["", "", "", ""]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isErrorFull, setIsErrorFull] = useState(false);
   const inputRefs = [
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
@@ -16,13 +18,37 @@ export const VerificationPassword: React.FC = () => {
     useRef<HTMLInputElement>(null),
   ];
 
-  const onSubmit = () => {
-    handlePush(`/${paths.auth.root}/${paths.auth.createNewPassword}`);
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    // Check if all values are filled
+    const allValuesFilled = Object.values(values).every(
+      (value) => value !== ""
+    );
+
+    if (allValuesFilled) {
+      handlePush(`/${paths.auth.root}/${paths.auth.createNewPassword}`);
+    } else {
+      setIsErrorFull(true);
+    }
   };
 
   const handlePush = (path: string) => {
     router.push(path);
   };
+
+  useEffect(() => {
+    // Check if all values are filled
+    const allValuesFilled = values.every(
+      (value) => value !== null && value !== ""
+    );
+
+    // If all values are filled, set isErrorFull to false
+    if (allValuesFilled) {
+      setIsErrorFull(false);
+    }
+  }, [values]);
 
   const handleInputChange = (
     index: number,
@@ -76,14 +102,22 @@ export const VerificationPassword: React.FC = () => {
                 onChange={(e) => handleInputChange(index, e)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 className={`w-full p-12 border rounded-lg text-center text-lg font-bold focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-transparent focus:placeholder-transparent max-sm:p-1 ${
-                  values[index] ? "border-green-600" : "border-black-300"
+                  values[index] !== ""
+                    ? "border-green-600"
+                    : values[index] === "" && isSubmitting
+                    ? "border-red"
+                    : "border-black-300"
                 }`}
               />
             ))}
           </div>
 
+          {isErrorFull && (
+            <p className="text-red text-sm">Lütfen kodu giriniz.</p>
+          )}
+
           <div className="flex flex-col items-center justify-center gap-4">
-            <CustomButton label="Doğrula" />
+            <CustomButton label="Doğrula" type="submit" />
             <AuthLink
               title="Kod almadınız mı?"
               rootText="Tekrar gönder"
