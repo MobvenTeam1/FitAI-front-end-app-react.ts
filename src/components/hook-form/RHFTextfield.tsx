@@ -53,7 +53,7 @@ export const RHFTextfield: FC<InputProps> = ({
           placeholder={label}
           className={`font-medium text-base border ${
             error ? "border-red" : "border-black-100"
-          } rounded-lg px-4 py-5 w-full bg-brown-50 ${
+          } rounded-lg px-4 py-5 w-full bg-gray-50 ${
             inputType === "password" ? "font-black tracking-widest" : ""
           } focus:outline-none focus:ring-1 ${
             error ? "focus:ring-red-500" : "focus:ring-green-500"
@@ -69,7 +69,7 @@ export const RHFTextfield: FC<InputProps> = ({
           />
         )}
       </div>
-      {helperText && <p className="ml-2.5 mt-1 text-brown-300">{helperText}</p>}
+      {helperText && <p className="ml-2.5 mt-1 text-gray-300">{helperText}</p>}
       <ErrorMessage error={error} />
     </div>
   );
