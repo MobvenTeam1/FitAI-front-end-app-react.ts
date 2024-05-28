@@ -10,6 +10,8 @@ import { AuthHeader } from "../../sections/auth/AuthHeader";
 import { AuthSocial } from "../../sections/auth/AuthSocial";
 import { AuthLink } from "../../sections/auth/AuthLink";
 import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/RHFCheckbox";
+import { RHFInputMask } from "../../components/hook-form/RHFInputMask";
+import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 
 export type FormValues = {
   name: string;
@@ -43,7 +45,7 @@ const defaultValues: FormValues = {
   name: "İlber",
   surname: "Ortaylı",
   email: "ilber@gmail.com",
-  phone: "5555555555",
+  phone: "",
   password: "123456",
   confirmPassword: "123456",
   isRead: true,
@@ -91,7 +93,7 @@ export const Register: React.FC = () => {
                 <RHFTextfield name="email" label="Email" />
               </div>
               <div className="col-span-12">
-                <RHFTextfield name="phone" label="Telefon" />
+                <RHFInputMask name="phone" label="Telefon" />
               </div>
               <div className="col-span-12">
                 <RHFTextfield
@@ -127,7 +129,7 @@ export const Register: React.FC = () => {
 
             <AuthSocial />
 
-            {/* <RHFFormValues /> */}
+            <RHFFormValues />
           </form>
         </FormProvider>
       </div>
