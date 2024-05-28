@@ -7,15 +7,23 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label?: string;
   type?: string;
+  helperText?: string;
 }
 
-const PasswordToggleButton: FC<{ onClick: () => void }> = ({ onClick }) => (
+const PasswordToggleButton: FC<{
+  onClick: () => void;
+  isPasswordVisible: boolean;
+}> = ({ onClick, isPasswordVisible }) => (
   <button
     className="text-gray-500 absolute top-1/2 right-2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
     type="button"
     onClick={onClick}
   >
-    <SvgColor width={24} height={24} src={`/icons/ic_password_eye.svg`} />
+    <SvgColor
+      width={24}
+      height={24}
+      src={`/icons/ic_password_${isPasswordVisible ? "eye-close" : "eye"}.svg`}
+    />
   </button>
 );
 
@@ -23,6 +31,7 @@ export const RHFTextfield: FC<InputProps> = ({
   name,
   label,
   type = "text",
+  helperText,
   ...props
 }) => {
   const {
@@ -35,10 +44,6 @@ export const RHFTextfield: FC<InputProps> = ({
   const togglePasswordVisibility = () =>
     setInputType((prevType) => (prevType === "password" ? "text" : "password"));
 
-  const inputClass = `font-medium text-base border border-gray-200 rounded-lg px-4 py-5 w-full bg-gray-300 ${
-    inputType === "password" ? "font-black tracking-widest" : ""
-  }`;
-
   return (
     <div>
       <div className="relative">
@@ -46,14 +51,25 @@ export const RHFTextfield: FC<InputProps> = ({
           id={name}
           type={inputType}
           placeholder={label}
-          className={inputClass}
+          className={`font-medium text-base border ${
+            error ? "border-red" : "border-black-100"
+          } rounded-lg px-4 py-5 w-full bg-brown-50 ${
+            inputType === "password" ? "font-black tracking-widest" : ""
+          } focus:outline-none focus:ring-1 ${
+            error ? "focus:ring-red-500" : "focus:ring-green-500"
+          } focus:border-transparent focus:placeholder-transparent`}
           {...register(name)}
           {...props}
         />
+
         {type === "password" && (
-          <PasswordToggleButton onClick={togglePasswordVisibility} />
+          <PasswordToggleButton
+            onClick={togglePasswordVisibility}
+            isPasswordVisible={inputType === "password"}
+          />
         )}
       </div>
+      {helperText && <p className="ml-2.5 mt-1 text-brown-300">{helperText}</p>}
       <ErrorMessage error={error} />
     </div>
   );

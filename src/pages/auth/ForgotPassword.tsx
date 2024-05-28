@@ -10,15 +10,18 @@ import { AuthHeader } from "../../sections/auth/AuthHeader";
 import { AuthSocial } from "../../sections/auth/AuthSocial";
 
 export type FormValues = {
-  username: string;
+  email: string;
 };
 
 const schema = yup.object().shape({
-  username: yup.string().required("Email is required"),
+  email: yup
+    .string()
+    .email("Email format zorunlu")
+    .required("Email adresi zorunlu"),
 });
 
 const defaultValues: FormValues = {
-  username: "temp@gmail.com",
+  email: "temp@gmail.com",
 };
 
 export const ForgotPassword: React.FC = () => {
@@ -56,11 +59,11 @@ export const ForgotPassword: React.FC = () => {
             />
 
             <div className="flex flex-col gap-6">
-              <RHFTextfield name="username" label="Email" />
+              <RHFTextfield name="email" label="Email" />
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <RHFSubmitButton label="Kod Gönder" color="black" />
+              <RHFSubmitButton label="Kod Gönder" />
             </div>
 
             <AuthSocial />

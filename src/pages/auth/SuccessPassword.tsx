@@ -17,8 +17,6 @@ export const SuccessPassword: React.FC = () => {
       <div className="w-3/4">
         <CustomButton
           label="Giriş Yap"
-          variant="contained"
-          color="black"
           onClick={() => router.push(`/${paths.auth.root}/${paths.auth.login}`)}
         />
       </div>

@@ -22,19 +22,19 @@ interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
   isSubmitting?: boolean;
   label?: string;
-  variant: ButtonVariant;
+  variant?: ButtonVariant;
   color?: ButtonColor;
   size?: ButtonSize;
 }
 
 const baseClassName =
-  "group relative w-full flex justify-center py-2 px-4 border border-transparent font-semibold rounded-lg text-white transition-colors duration-200";
+  "group relative w-full text-black font-semibold flex justify-center py-2 px-4 border border-transparent font-semibold rounded-lg text-white transition-colors duration-200";
 
 export const CustomButton: FC<CustomButtonProps> = ({
   type = "button",
   label = "",
   variant = "contained",
-  color = "indigo",
+  color = "green",
   size = "md",
   ...props
 }) => {

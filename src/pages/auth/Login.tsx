@@ -21,11 +21,11 @@ export type FormValues = {
 };
 
 const schema = yup.object().shape({
-  username: yup.string().required("Email is required"),
-  password: yup
+  username: yup
     .string()
-    .min(6, "Must contain a minimum of 6 characters")
-    .required("Password is required"),
+    // .email("Email format zorunlu")
+    .required("Email adresi zorunlu"),
+  password: yup.string().required("Parola zorunlu"),
   isCheck: yup.boolean().required("Check is required"),
 });
 
@@ -74,9 +74,8 @@ export const Login: React.FC = () => {
 
               <div className="flex justify-between items-center">
                 <RHFCheckBox name="isCheck" label="Beni Hatırla" />
-
                 <p
-                  className="text-sm text-gray-500 font-semibold cursor-pointer"
+                  className="text-sm text-black-300 font-semibold cursor-pointer"
                   onClick={() =>
                     handlePush(
                       `/${paths.auth.root}/${paths.auth.forgotPassword}`
@@ -89,7 +88,7 @@ export const Login: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <RHFSubmitButton label="Giriş Yap" color="black" />
+              <RHFSubmitButton label="Giriş Yap" />
               <AuthLink
                 title="Hesabın yok mu?"
                 rootText="Kayıt ol"

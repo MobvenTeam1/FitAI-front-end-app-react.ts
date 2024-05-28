@@ -15,7 +15,7 @@ export type FormValues = {
 };
 
 const schema = yup.object().shape({
-  verificationCode: yup.string().required("Verification Code is required"),
+  verificationCode: yup.string().required("Doğrulama kodu zorunlu"),
 });
 
 const defaultValues: FormValues = {
@@ -59,7 +59,7 @@ export const VerificationPassword: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <RHFSubmitButton label="Onayla" color="black" />
+              <RHFSubmitButton label="Onayla" />
               <AuthLink
                 title="Kod almadınız mı?"
                 rootText="Tekrar gönder"

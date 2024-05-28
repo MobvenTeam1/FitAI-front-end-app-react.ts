@@ -11,19 +11,15 @@ import { paths } from "../../routes/paths";
 
 type FormValues = {
   password: string;
-  confirmPassword: string | null;
+  confirmPassword: string;
 };
 
 const schema = yup.object().shape({
-  password: yup
-    .string()
-    .min(6, "Şifre en az 6 karakter olmalıdır")
-    .required("Şifre gereklidir"),
+  password: yup.string().required("Parola zorunlu"),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password")], "Şifreler eşleşmiyor")
-    .required("Şifre tekrarı gereklidir")
-    .nullable(),
+    .oneOf([yup.ref("password")], "Paralolar eşleşmiyor")
+    .required("Paraola tekrarı zorunlu"),
 });
 
 const defaultValues: FormValues = {
@@ -69,7 +65,7 @@ export const CreateNewPassword: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <RHFSubmitButton label="Parolayı Sıfırla" color="black" />
+              <RHFSubmitButton label="Parolayı Sıfırla" />
             </div>
 
             {/* <RHFFormValues /> */}

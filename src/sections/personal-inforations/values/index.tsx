@@ -18,6 +18,7 @@ export interface PersonalValue {
 export type PersonalValueOptions = {
   value: string;
   label: string;
+  icon?: string;
 };
 
 const gender: PersonalValue = {
@@ -26,9 +27,9 @@ const gender: PersonalValue = {
   label: "Cinsiyetiniz nedir?",
   selectType: 0,
   options: [
-    { value: "1", label: "Erkek" },
-    { value: "2", label: "Kadın" },
-    { value: "3", label: "Belirtmek istemiyorum" },
+    { value: "1", label: "Erkek", icon: "gender-men" },
+    { value: "2", label: "Kadın", icon: "gender-women" },
+    { value: "3", label: "Belirtmek istemiyorum", icon: "gender-other" },
   ],
 };
 
@@ -73,10 +74,10 @@ const goal: PersonalValue = {
   label: "Hedefleriniz nelerdir?",
   selectType: 0,
   options: [
-    { value: "1", label: "Kilo Kaybı" },
-    { value: "2", label: "Kas Alma" },
-    { value: "3", label: "Kas Yapma" },
-    { value: "4", label: "Kalori Kontrolü" },
+    { value: "1", label: "Kilo Kaybı", icon: "goal-up_weight" },
+    { value: "2", label: "Kilo Alma", icon: "goal-down_weight" },
+    { value: "3", label: "Kas Yapma", icon: "goal-body-building" },
+    { value: "4", label: "Sağlıklı Yaşam", icon: "goal-fit-life" },
   ],
 };
 
@@ -87,11 +88,10 @@ const activity: PersonalValue = {
   selectType: 1,
   options: [
     { value: "1", label: "Hepsi" },
-    { value: "2", label: "Beslenme Planı Oluşturma" },
-    { value: "3", label: "Antreman Planı Oluşturma" },
-    { value: "4", label: "Kalori Kontrolü" },
-    { value: "5", label: "Aralıklı Oruç" },
-    { value: "6", label: "Su Takibi" },
+    { value: "2", label: "Kilo Kaybı", icon: "goal-up_weight" },
+    { value: "3", label: "Kilo Alma", icon: "goal-down_weight" },
+    { value: "4", label: "Kas Yapma", icon: "goal-body-building" },
+    { value: "5", label: "Sağlıklı Yaşam", icon: "goal-fit-life" },
   ],
 };
 
@@ -101,6 +101,7 @@ export const FirstLoginFormValues: PersonalValue[] = [
   currentWeight,
   targetWeight,
   birthDate,
+  goal
 ];
 
 export const PersonalValues: PersonalValue[] = [

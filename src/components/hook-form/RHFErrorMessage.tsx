@@ -4,5 +4,5 @@ export const ErrorMessage: React.FC<{ error: FieldError | undefined }> = ({
   error,
 }) =>
   error ? (
-    <p className="text-red-500 text-center mt-2">{error.message}</p>
+    <p className="text-xs ml-2.5 text-red-500 mt-2">{error.message}</p>
   ) : null;

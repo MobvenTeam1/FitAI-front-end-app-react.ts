@@ -17,18 +17,26 @@ export type FormValues = {
   email: string;
   phone: string;
   password: string;
-  checkPassword: string;
+  confirmPassword: string;
   isRead?: boolean;
 };
 
 const schema = yup.object().shape({
-  name: yup.string().required("Email is required"),
-  surname: yup.string().required("Email is required"),
-  email: yup.string().email().required("Email is required"),
-  phone: yup.string().required("Phone is required"),
-  password: yup.string().required("Password is required"),
-  checkPassword: yup.string().required("Check Password is required"),
-  isRead: yup.boolean().oneOf([true], "You must accept the terms"),
+  name: yup.string().required("Ad zorunlu"),
+  surname: yup.string().required("Soyad zorunlu"),
+  email: yup
+    .string()
+    .email("Email format zorunlu")
+    .required("Email adresi zorunlu"),
+  phone: yup.string().required("Telefon zorunlu"),
+  password: yup.string().required("Parola zorunlu"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "Paralolar eşleşmiyor")
+    .required("Paraola tekrarı zorunlu"),
+  isRead: yup
+    .boolean()
+    .oneOf([true], "Şartları ve gizlilik sözleşmesini kabul etmelisiniz"),
 });
 
 const defaultValues: FormValues = {
@@ -37,7 +45,7 @@ const defaultValues: FormValues = {
   email: "ilber@gmail.com",
   phone: "5555555555",
   password: "123456",
-  checkPassword: "123456",
+  confirmPassword: "123456",
   isRead: true,
 };
 
@@ -86,11 +94,16 @@ export const Register: React.FC = () => {
                 <RHFTextfield name="phone" label="Telefon" />
               </div>
               <div className="col-span-12">
-                <RHFTextfield name="password" label="Parola" type="password" />
+                <RHFTextfield
+                  name="password"
+                  label="Parola"
+                  type="password"
+                  helperText="Min 8 karakter, bir büyük, bir küçük harften oluşmalıdır."
+                />
               </div>
               <div className="col-span-12">
                 <RHFTextfield
-                  name="checkPassword"
+                  name="confirmPassword"
                   label="Parola Tekrar"
                   type="password"
                 />
@@ -104,7 +117,7 @@ export const Register: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <RHFSubmitButton label="Kayıt Ol" color="black" />
+              <RHFSubmitButton label="Kayıt Ol" />
               <AuthLink
                 title="Zaten hesabınız var mı?"
                 rootText="Giriş Yap"

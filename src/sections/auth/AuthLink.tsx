@@ -19,7 +19,7 @@ export const AuthLink: React.FC<LinkComponentProps> = ({
   };
 
   return (
-    <p className="text-base text-black-500" onClick={() => handlePush(path)}>
+    <p className="text-base text-black-500 font-medium" onClick={() => handlePush(path)}>
       {title} <span className="font-bold cursor-pointer">{rootText}</span>
     </p>
   );

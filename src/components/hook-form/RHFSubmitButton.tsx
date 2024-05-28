@@ -15,7 +15,7 @@ type RHFSubmitButtonProps = {
 
 export const RHFSubmitButton: React.FC<RHFSubmitButtonProps> = ({
   label = "Submit",
-  color = "indigo",
+  color = "green",
   size = "md",
   variant = "contained",
   ...props

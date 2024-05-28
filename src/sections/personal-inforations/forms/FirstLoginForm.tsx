@@ -5,9 +5,10 @@ import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { PersonalInformationsContext } from "../context/PersonalInformationsContext";
 import { FirstLoginFormValues } from "../values";
-import { RHFFormValues } from "../../../components/hook-form/RHFFormValues";
+// import { RHFFormValues } from "../../../components/hook-form/RHFFormValues";
 import { renderFormElement } from "../rhf-components/renderFormElement";
 import { Stepper } from "../components/Stepper";
+import { CustomButton } from "../../../components/customs/custom-button";
 
 type PersonalFormValues = {
   gender: string;
@@ -15,14 +16,16 @@ type PersonalFormValues = {
   currentWeight: string;
   targetWeight: string;
   birthDate: string;
+  goal: string;
 };
 
 const schema = yup.object().shape({
-  gender: yup.string().required("Gender is required"),
-  size: yup.string().required("Size is required"),
-  currentWeight: yup.string().required("Current Weight is required"),
-  targetWeight: yup.string().required("Target Weight is required"),
-  birthDate: yup.string().required("Birth Date is required"),
+  gender: yup.string().required("Cinsiyet zorunlu"),
+  size: yup.string().required("Boy zorunlu"),
+  currentWeight: yup.string().required("Kilo zorunlu"),
+  targetWeight: yup.string().required("Hedef kilo zorunlu"),
+  birthDate: yup.string().required("Doğum tarihi zorunlu"),
+  goal: yup.string().required("Hedef zorunlu"),
 });
 
 const defaultValues: PersonalFormValues = {
@@ -31,6 +34,7 @@ const defaultValues: PersonalFormValues = {
   currentWeight: "",
   targetWeight: "",
   birthDate: "",
+  goal: "",
 };
 
 export const FirstLoginForm: React.FC = () => {
@@ -67,15 +71,10 @@ export const FirstLoginForm: React.FC = () => {
 
         <div className="text-4xl font-bold pb-7">{showStep?.label}</div>
         {showStep && renderFormElement(showStep)}
-        <button
-          type="button"
-          onClick={handleNext}
-          className="w-full px-4 py-2 text-white bg-black rounded-lg hover:bg-gray-700"
-        >
-          Sonraki
-        </button>
-        <hr />
-        <RHFFormValues />
+        <CustomButton onClick={handleNext} type="button" label="Sonraki" />
+
+        {/* <hr />
+        <RHFFormValues /> */}
       </form>
     </FormProvider>
   );
