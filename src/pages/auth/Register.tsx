@@ -11,7 +11,7 @@ import { AuthSocial } from "../../sections/auth/AuthSocial";
 import { AuthLink } from "../../sections/auth/AuthLink";
 import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/RHFCheckbox";
 import { RHFInputMask } from "../../components/hook-form/RHFInputMask";
-import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
+// import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 
 export type FormValues = {
   name: string;
@@ -129,7 +129,7 @@ export const Register: React.FC = () => {
 
             <AuthSocial />
 
-            <RHFFormValues />
+            {/* <RHFFormValues /> */}
           </form>
         </FormProvider>
       </div>

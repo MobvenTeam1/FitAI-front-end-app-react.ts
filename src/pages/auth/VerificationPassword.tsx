@@ -92,29 +92,30 @@ export const VerificationPassword: React.FC = () => {
             subtitle="E-posta adresinize gönderdiğimiz doğrulama kodunu girin."
           />
 
-          <div className="flex justify-between gap-6">
-            {inputRefs.map((ref, index) => (
-              <input
-                key={index}
-                ref={ref}
-                value={values[index]}
-                maxLength={1}
-                onChange={(e) => handleInputChange(index, e)}
-                onKeyDown={(e) => handleKeyDown(index, e)}
-                className={`w-full p-12 border rounded-lg text-center text-lg font-bold focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-transparent focus:placeholder-transparent max-sm:p-1 ${
-                  values[index] !== ""
-                    ? "border-green-600"
-                    : values[index] === "" && isSubmitting
-                    ? "border-red"
-                    : "border-black-300"
-                }`}
-              />
-            ))}
+          <div className="flex flex-col gap-2">
+            <div className="flex justify-between gap-6">
+              {inputRefs.map((ref, index) => (
+                <input
+                  key={index}
+                  ref={ref}
+                  value={values[index]}
+                  maxLength={1}
+                  onChange={(e) => handleInputChange(index, e)}
+                  onKeyDown={(e) => handleKeyDown(index, e)}
+                  className={`w-full p-12 border rounded-lg text-center text-lg font-bold focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-transparent focus:placeholder-transparent max-sm:p-1 ${
+                    values[index] !== ""
+                      ? "border-green-600"
+                      : values[index] === "" && isSubmitting
+                      ? "border-red"
+                      : "border-black-300"
+                  }`}
+                />
+              ))}
+            </div>
+            {isErrorFull && (
+              <p className="text-red text-sm">Lütfen kodu giriniz.</p>
+            )}
           </div>
-
-          {isErrorFull && (
-            <p className="text-red text-sm">Lütfen kodu giriniz.</p>
-          )}
 
           <div className="flex flex-col items-center justify-center gap-4">
             <CustomButton label="Doğrula" type="submit" />
