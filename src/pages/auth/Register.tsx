@@ -11,6 +11,8 @@ import { AuthSocial } from "../../sections/auth/AuthSocial";
 import { AuthLink } from "../../sections/auth/AuthLink";
 import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/RHFCheckbox";
 import { RHFInputMask } from "../../components/hook-form/RHFInputMask";
+import { useState } from "react";
+import { CustomModal } from "../../components/customs/custom-modal";
 // import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 
 export type FormValues = {
@@ -53,6 +55,17 @@ const defaultValues: FormValues = {
 
 export const Register: React.FC = () => {
   const router = useRouter();
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const handleOpenModal = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setIsOpenModal(false);
+  };
 
   const form = useForm<FormValues>({
     defaultValues,
@@ -115,11 +128,17 @@ export const Register: React.FC = () => {
                   name="isRead"
                   content={
                     <p className="text-sm text-gray-300">
-                      <span className="font-bold underline cursor-pointer">
+                      <span
+                        className="font-bold underline cursor-pointer"
+                        onClick={handleOpenModal}
+                      >
                         Şartları
                       </span>{" "}
                       ve{" "}
-                      <span className="font-bold underline cursor-pointer">
+                      <span
+                        className="font-bold underline cursor-pointer"
+                        onClick={handleOpenModal}
+                      >
                         gizlilik politikasını
                       </span>{" "}
                       kabul ediyorum.
@@ -144,6 +163,10 @@ export const Register: React.FC = () => {
           </form>
         </FormProvider>
       </div>
+
+      <CustomModal isOpen={isOpenModal} onClose={handleClose}>
+        <p>Gizlilik Sözleşmesi ve gizlilik politikasını</p>
+      </CustomModal>
 
       <DevTool control={control} />
     </>
