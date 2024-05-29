@@ -32,7 +32,7 @@ export const ChangeLng: FC = () => {
   }, [i18n, language]);
 
   return (
-    <div className="flex justify-center items-center bg-gray-800 rounded-md">
+    <div className="flex justify-center items-center rounded-md w-full">
       <div className="relative inline-flex">
         <svg
           className="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"

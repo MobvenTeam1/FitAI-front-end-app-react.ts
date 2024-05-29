@@ -8,15 +8,25 @@ export const ICONS = {
 };
 
 export const DashboardNavigation = [
-  { title: "home", path: paths.dashboard.root, icon: ICONS.home },
   {
-    title: "users",
-    path: paths.dashboard.users.root,
-    icon: ICONS.home,
+    subheader: "Genel",
+    navs: [
+      { title: "home", path: paths.dashboard.root, icon: ICONS.home },
+      {
+        title: "users",
+        path: paths.dashboard.users.root,
+        icon: ICONS.home,
+      },
+    ],
   },
   {
-    title: "programs",
-    path: paths.dashboard.programs,
-    icon: ICONS.home,
+    subheader: "Ayarlar",
+    navs: [
+      {
+        title: "programs",
+        path: paths.dashboard.programs,
+        icon: ICONS.home,
+      },
+    ],
   },
 ];

@@ -1,12 +1,16 @@
 import { Outlet } from "react-router-dom";
-import { Header } from "./Header";
+import { Sidebar } from "./Sidebar";
 
 export const DashboardLayoutMain: React.FC = () => {
   return (
-    <>
-      <Header />
+    <div className="grid grid-cols-12 h-screen">
+      <div className="col-span-2">
+        <Sidebar />
+      </div>
 
-      <Outlet />
-    </>
+      <div className="col-span-10 overflow-auto">
+        <Outlet />
+      </div>
+    </div>
   );
 };
