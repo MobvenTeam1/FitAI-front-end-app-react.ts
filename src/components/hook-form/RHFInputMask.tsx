@@ -32,7 +32,7 @@ export const RHFInputMask: FC<InputProps> = ({
           alwaysShowMask
           placeholder={label}
           className={`font-medium text-base border ${
-            error ? "border-red" : "border-black-100"
+            error ? "border-red" : "border-gray-50"
           } rounded-lg px-4 py-5 w-full bg-gray-150 focus:outline-none focus:ring-1 ${
             error ? "focus:ring-red-500" : "focus:ring-green-500"
           } focus:border-transparent focus:placeholder-transparent`}

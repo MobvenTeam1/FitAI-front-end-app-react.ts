@@ -84,7 +84,7 @@ export const VerificationPassword: React.FC = () => {
     <>
       <div className="min-h-screen flex items-center justify-center">
         <form
-          className="w-full px-20 flex flex-col gap-9"
+          className="w-full pr-20 pl-28 flex flex-col gap-9"
           onSubmit={onSubmit}
           noValidate
         >

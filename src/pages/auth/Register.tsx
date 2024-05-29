@@ -76,7 +76,7 @@ export const Register: React.FC = () => {
       <div className="py-10">
         <FormProvider {...form}>
           <form
-            className="w-full px-20 flex flex-col gap-9 max-sm:px-6"
+            className="w-full pr-20 pl-28 flex flex-col gap-9 max-sm:px-6"
             onSubmit={handleSubmit(onSubmit)}
             noValidate
           >

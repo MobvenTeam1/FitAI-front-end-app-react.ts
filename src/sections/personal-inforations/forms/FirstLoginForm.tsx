@@ -63,7 +63,7 @@ export const FirstLoginForm: React.FC = () => {
   return (
     <FormProvider {...form}>
       <form
-        className="w-full px-20 flex flex-col gap-9 min-h-screen mt-24 max-sm:px-8 max-sm:mt-16"
+        className="w-full pr-20 pl-28 flex flex-col gap-9 min-h-screen mt-24 max-sm:px-8 max-sm:mt-16"
         onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
