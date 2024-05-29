@@ -113,7 +113,18 @@ export const Register: React.FC = () => {
               <div className="col-span-12">
                 <RHFCheckBox
                   name="isRead"
-                  label="Şartları ve gizlilik politikasını kabul ediyorum."
+                  content={
+                    <p className="text-sm text-gray-300">
+                      <span className="font-bold underline cursor-pointer">
+                        Şartları
+                      </span>{" "}
+                      ve{" "}
+                      <span className="font-bold underline cursor-pointer">
+                        gizlilik politikasını
+                      </span>{" "}
+                      kabul ediyorum.
+                    </p>
+                  }
                 />
               </div>
             </div>

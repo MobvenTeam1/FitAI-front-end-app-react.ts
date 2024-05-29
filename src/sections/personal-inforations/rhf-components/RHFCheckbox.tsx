@@ -7,12 +7,14 @@ interface CheckBoxProps {
   name: string;
   label?: string;
   direction?: "left" | "right";
+  content?: React.ReactNode;
 }
 
 export const RHFCheckBox: FC<CheckBoxProps> = ({
   name,
-  label = "Beni Hatırla",
+  label,
   direction = "left",
+  content,
 }) => {
   const {
     watch,
@@ -37,9 +39,13 @@ export const RHFCheckBox: FC<CheckBoxProps> = ({
         <div className="w-5 h-5 p-1 text-sm rounded-full bg-black-500 text-white flex items-center justify-center cursor-pointer">
           {isChecked && <SvgColor src={`/icons/ic_check.svg`} />}
         </div>
-        <p className="text-sm text-black-300 font-semibold cursor-pointer select-none">
-          {label}
-        </p>
+        {label ? (
+          <p className="text-sm text-gray-300 font-semibold cursor-pointer select-none">
+            {label}
+          </p>
+        ) : (
+          content
+        )}
       </div>
       <ErrorMessage error={error} />
     </>
