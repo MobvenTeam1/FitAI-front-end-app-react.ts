@@ -8,7 +8,7 @@ export const DashboardLayoutMain: React.FC = () => {
         <Sidebar />
       </div>
 
-      <div className="col-span-10 overflow-auto">
+      <div className="col-span-10">
         <Outlet />
       </div>
     </div>

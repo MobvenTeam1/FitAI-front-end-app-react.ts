@@ -1,5 +1,12 @@
 {
-    "home": "Ana Sayfa",
-    "users": "Kullanıcılar",
-    "programs": "Programlar"
+  "general": "Genel",
+  "dashboard": "Dashboard",
+  "development": "Geliştirme",
+  "explore": "Keşfet",
+  "plans": "Planlar",
+  "nutrition_plan": "Beslenme Planı",
+  "training_plan": "Eğitim Planı",
+  "calorie_tracking": "Kalori Takibi",
+  "water_tracking": "Su Takibi",
+  "profile": "Profil"
 }

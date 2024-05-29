@@ -16,7 +16,7 @@ export const Sidebar: React.FC = () => {
   };
 
   return (
-    <aside className="flex flex-col gap-4">
+    <aside className="flex flex-col gap-4 max-h-screen overflow-auto">
       <div className="flex items-center justify-center gap-3 p-6">
         <SvgColor src="/logo/logo.svg" width={40} height={40} />
         <h1 className="text-4xl font-medium">
@@ -38,9 +38,9 @@ export const Sidebar: React.FC = () => {
       <nav className="flex flex-col gap-4">
         {DashboardNavigation.map((item, index) => (
           <>
-            <div key={index} className="flex flex-col gap-4 px-6">
+            <div key={index} className="flex flex-col gap-4 pl-6 pr-11">
               <p className="font-bold text-sm text-gray-200 ml-4">
-                {item.subheader}
+                {t(item.subheader)}
               </p>
               <div className="flex flex-col gap-1">
                 {item.navs.map((nav, index) => (
@@ -57,7 +57,7 @@ export const Sidebar: React.FC = () => {
                 ))}
               </div>
             </div>
-            <div className="h-px bg-gray-50 w-full" />
+            <div className="h-0.125 bg-gray-50 w-full" />
           </>
         ))}
 

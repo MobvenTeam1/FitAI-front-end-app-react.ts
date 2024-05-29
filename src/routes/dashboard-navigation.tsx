@@ -1,32 +1,67 @@
 import SvgColor from "../components/svg-color";
 import { paths } from "./paths";
 
-const icon = (name: string) => <SvgColor src={`/icons/${name}.svg`} width={20} height={20} />;
+const icon = (name: string) => (
+  <SvgColor src={`/icons/ic_${name}.svg`} width={20} height={20} />
+);
 
 export const ICONS = {
-  home: icon("ic_mail"),
+  dashboard: icon("dashboard"),
+  development: icon("development"),
+  explore: icon("heart"),
+  nutrition_plan: icon("nutrition-plan"),
+  training_plan: icon("training-plan"),
+  calorie_tracking: icon("calorie-tracking"),
+  water_tracking: icon("water-tracking"),
+  profile: icon("profile"),
 };
 
 export const DashboardNavigation = [
   {
-    subheader: "Genel",
+    subheader: "general",
     navs: [
-      { title: "home", path: paths.dashboard.root, icon: ICONS.home },
+      { title: "dashboard", path: paths.dashboard.root, icon: ICONS.dashboard },
       {
-        title: "users",
+        title: "development",
         path: paths.dashboard.users.root,
-        icon: ICONS.home,
+        icon: ICONS.development,
+      },
+      {
+        title: "explore",
+        path: paths.dashboard.users.root,
+        icon: ICONS.explore,
       },
     ],
   },
   {
-    subheader: "Planlar",
+    subheader: "plans",
     navs: [
       {
-        title: "programs",
+        title: "nutrition_plan",
         path: paths.dashboard.programs,
-        icon: ICONS.home,
+        icon: ICONS.nutrition_plan,
       },
+      {
+        title: "training_plan",
+        path: paths.dashboard.programs,
+        icon: ICONS.training_plan,
+      },
+      {
+        title: "calorie_tracking",
+        path: paths.dashboard.programs,
+        icon: ICONS.calorie_tracking,
+      },
+      {
+        title: "water_tracking",
+        path: paths.dashboard.programs,
+        icon: ICONS.water_tracking,
+      },
+    ],
+  },
+  {
+    subheader: "Extra",
+    navs: [
+      { title: "profile", path: paths.dashboard.root, icon: ICONS.profile },
     ],
   },
 ];

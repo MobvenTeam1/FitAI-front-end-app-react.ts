@@ -1,5 +1,12 @@
 {
-  "home": "Home",
-  "users": "Users",
-  "programs": "Programs"
+  "general": "General",
+  "dashboard": "Dashboard",
+  "development": "Development",
+  "explore": "Explore",
+  "plans": "Plans",
+  "nutrition_plan": "Nutrition Plan",
+  "training_plan": "Training Plan",
+  "calorie_tracking": "Calorie Tracking",
+  "water_tracking": "Water Tracking",
+  "profile": "Profile"
 }
