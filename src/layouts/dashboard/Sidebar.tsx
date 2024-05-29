@@ -23,22 +23,32 @@ export const Sidebar: React.FC = () => {
           Fit<span className="font-black">AI</span>
         </h1>
       </div>
+      {/* account */}
+      <div className="flex items-center px-8">
+        <div className="flex items-center gap-2 bg-gray-50 w-full rounded-xl p-4">
+          <img src="/frames/user.png" className="w-10 h-10" alt="" />
+          <div className="flex flex-col">
+            <p className="font-semibold text-sm">John Doe</p>
+            <p className="text-sm text-gray-400">Admin</p>
+          </div>
+        </div>
+      </div>
       {/* <Racoon /> */}
 
-      <nav className="flex flex-col gap-1">
+      <nav className="flex flex-col gap-4">
         {DashboardNavigation.map((item, index) => (
           <>
             <div key={index} className="flex flex-col gap-4 px-6">
-              <p className="font-bold text-sm text-gray-400">{item.subheader}</p>
-              <div className="flex flex-col">
+              <p className="font-bold text-sm text-gray-200 ml-4">
+                {item.subheader}
+              </p>
+              <div className="flex flex-col gap-1">
                 {item.navs.map((nav, index) => (
                   <Link
                     key={index}
                     to={nav.path}
-                    className={`flex items-center gap-3 p-2 rounded-md ${
-                      isCurrentPath(nav.path)
-                        ? "bg-gray-200 text-gray-400"
-                        : "text-black"
+                    className={`flex items-center gap-4 p-4 rounded-md text-sm font-semibold text-gray-900  transition-all duration-200 ease-in-out ${
+                      isCurrentPath(nav.path) ? "bg-green-500 " : "text-black"
                     }`}
                   >
                     {nav.icon}
@@ -47,12 +57,13 @@ export const Sidebar: React.FC = () => {
                 ))}
               </div>
             </div>
-            <hr />
+            <div className="h-px bg-gray-50 w-full" />
           </>
         ))}
+
+        <Logout />
       </nav>
       <ChangeLng />
-      <Logout />
     </aside>
   );
 };
