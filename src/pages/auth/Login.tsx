@@ -75,7 +75,7 @@ export const Login: React.FC = () => {
               <div className="flex justify-between items-center">
                 <RHFCheckBox name="isCheck" label="Beni Hatırla" />
                 <p
-                  className="text-sm text-black-300 font-semibold cursor-pointer"
+                  className="text-sm text-gray-300 font-semibold cursor-pointer"
                   onClick={() =>
                     handlePush(
                       `/${paths.auth.root}/${paths.auth.forgotPassword}`

@@ -52,7 +52,7 @@ export const RHFTextfield: FC<InputProps> = ({
           type={inputType}
           placeholder={label}
           className={`font-medium text-base border ${
-            error ? "border-red" : "border-black-100"
+            error ? "border-red" : "border-gray-50"
           } rounded-lg px-4 py-5 w-full bg-gray-150 ${
             inputType === "password" ? "font-black tracking-widest" : ""
           } focus:outline-none focus:ring-1 ${

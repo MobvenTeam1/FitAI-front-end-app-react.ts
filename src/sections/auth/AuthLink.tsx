@@ -4,13 +4,15 @@ import { useRouter } from "../../hooks/useRouter";
 interface LinkComponentProps {
   title: string;
   rootText: string;
-  path: string;
+  path?: string;
+  onClick?: () => void;
 }
 
 export const AuthLink: React.FC<LinkComponentProps> = ({
   title,
   rootText,
   path,
+  onClick,
 }) => {
   const router = useRouter();
 
@@ -19,7 +21,16 @@ export const AuthLink: React.FC<LinkComponentProps> = ({
   };
 
   return (
-    <p className="text-base text-black-500 font-medium" onClick={() => handlePush(path)}>
+    <p
+      className="text-base font-medium text-gray-500"
+      onClick={() => {
+        if (path) {
+          handlePush(path);
+        } else {
+          onClick && onClick();
+        }
+      }}
+    >
       {title} <span className="font-bold cursor-pointer">{rootText}</span>
     </p>
   );

@@ -11,6 +11,7 @@ export const VerificationPassword: React.FC = () => {
   const [values, setValues] = useState(["", "", "", ""]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isErrorFull, setIsErrorFull] = useState(false);
+  const [isVerificationCodeAgain, setIsVerificationCodeAgain] = useState(false);
   const inputRefs = [
     useRef<HTMLInputElement>(null),
     useRef<HTMLInputElement>(null),
@@ -115,6 +116,9 @@ export const VerificationPassword: React.FC = () => {
             {isErrorFull && (
               <p className="text-red text-sm">Lütfen kodu giriniz.</p>
             )}
+            {isVerificationCodeAgain && (
+              <p className="text-green text-sm">Kod tekrar gönderildi.</p>
+            )}
           </div>
 
           <div className="flex flex-col items-center justify-center gap-4">
@@ -122,7 +126,9 @@ export const VerificationPassword: React.FC = () => {
             <AuthLink
               title="Kod almadınız mı?"
               rootText="Tekrar gönder"
-              path={`/${paths.auth.root}/${paths.auth.register}`}
+              onClick={() => {
+                setIsVerificationCodeAgain(true);
+              }}
             />
           </div>
 
