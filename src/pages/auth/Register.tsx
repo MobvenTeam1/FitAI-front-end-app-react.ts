@@ -47,7 +47,7 @@ const defaultValues: FormValues = {
   name: "İlber",
   surname: "Ortaylı",
   email: "ilber@gmail.com",
-  phone: "",
+  phone: "555-555-5555",
   password: "123456",
   confirmPassword: "123456",
   isRead: true,
