@@ -44,7 +44,7 @@ export const RadialChart: React.FC<IRadialChartProps> = ({
         },
         track: {
           dropShadow: {
-            enabled: true,
+            enabled: false,
             top: 2,
             left: 0,
             blur: 4,

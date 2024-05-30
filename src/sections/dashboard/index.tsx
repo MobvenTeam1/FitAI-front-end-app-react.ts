@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import { HomeContext, HomeContextProvider } from "./home/context/HomeContext";
 
-import { CreatePlan } from "./home/components/CreatePlan";
 import { DailyGoalsView } from "./home/views/DailyGoalsView";
 import { GoalCompletionView } from "./home/views/GoalCompletionView";
-import { Categories } from "./home/views/Categories";
+import { CategoriesViews } from "./home/views/CategoriesViews";
+import { CalendarView } from "./home/views/CalendarView";
+import { CreatePlanView } from "./home/views/CreatePlanView";
 
 export const HomeView: React.FC = () => {
-  const { createPlanValues, trainingCategoryValues, nutritionCategoryValues } = useContext(HomeContext);
+  const { trainingCategoryValues, nutritionCategoryValues } =
+    useContext(HomeContext);
 
   return (
     <HomeContextProvider>
@@ -15,17 +17,21 @@ export const HomeView: React.FC = () => {
         <div className="col-span-7 flex flex-col gap-3">
           <DailyGoalsView />
           <GoalCompletionView />
-          <Categories header="Antrenman" values={trainingCategoryValues} col="col-span-3" />
-          <Categories header="Öğün" values={nutritionCategoryValues} col="col-span-6" />
-          
+          <CategoriesViews
+            header="Antrenman"
+            values={trainingCategoryValues}
+            col="col-span-3"
+          />
+          <CategoriesViews
+            header="Öğün"
+            values={nutritionCategoryValues}
+            col="col-span-6"
+          />
         </div>
 
-        <div className="col-span-5">
-          {createPlanValues.map((plan, index) => (
-            <div key={index} className="col-span-6">
-              <CreatePlan {...plan} />
-            </div>
-          ))}
+        <div className="col-span-5 flex flex-col gap-3 pt-6">
+          <CalendarView />
+          <CreatePlanView />
         </div>
       </div>
     </HomeContextProvider>

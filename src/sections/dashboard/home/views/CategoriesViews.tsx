@@ -11,7 +11,7 @@ type Props = {
   col: string;
 };
 
-export const Categories: React.FC<Props> = ({ header, values, col }) => {
+export const CategoriesViews: React.FC<Props> = ({ header, values, col }) => {
   return (
     <div className="flex flex-col gap-3">
       <p className="font-bold text-lg">{header} Kategorileri</p>
