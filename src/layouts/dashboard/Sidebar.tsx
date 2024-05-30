@@ -34,7 +34,7 @@ export const Sidebar: React.FC = () => {
             </p>
             <div className="flex flex-col gap-1">
               {item.navs.map((nav, index) => (
-                <div className="flex gap-2 w-full">
+                <div key={index+"a"} className="flex gap-2 w-full">
                   <div
                     className={`h-14 rounded-e-full w-2 ${
                       isCurrentPath(nav.path) && "bg-green-500"
