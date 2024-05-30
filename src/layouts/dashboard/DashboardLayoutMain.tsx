@@ -9,7 +9,7 @@ export const DashboardLayoutMain: React.FC = () => {
         <Sidebar />
       </div>
 
-      <div className="col-span-10 max-md:col-span-12">
+      <div className="col-span-10 max-md:col-span-12 h-screen overflow-auto">
         <div className="container mx-auto flex flex-col gap-14 mt-28 pr-32">
           <Header />
           <Outlet />
