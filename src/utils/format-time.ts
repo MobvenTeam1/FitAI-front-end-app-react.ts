@@ -2,6 +2,8 @@ import { format, getTime, formatDistanceToNow } from "date-fns";
 
 // ----------------------------------------------------------------------
 
+export const TodayDate = new Date();
+
 export function fDate(date: Date | string, newFormat?: string): string {
   const fm = newFormat || "dd MMM yyyy";
 
