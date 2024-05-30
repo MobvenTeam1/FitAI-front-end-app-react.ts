@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
   return (
     <div className="flex justify-between">
       <div>
-        <p className="text-gray-900 text-3xl font-bold">Merhaba Simge</p>
+        <p className="text-gray-900 text-3xl font-bold">Merhaba! Göktuğ Murat Demir</p>
         <p className="text-gray-400 text-base">{fDate(today)}</p>
       </div>
       <div className="flex items-center gap-5">
