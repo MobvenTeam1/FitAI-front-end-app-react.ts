@@ -33,17 +33,6 @@ steps:
 #     sonar-scanner.bat -D"sonar.projectKey=MenuMaster-FrontEnd--T3-" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.token=sqa_302c8afa9b9b6410b5de145de201da1cd9ed75ba"
 #   displayName: 'SonarQube'
 
-- task: SSH@0
-  inputs:
-    sshEndpoint: 'mobven-ssh'
-    runOptions: 'commands'
-    commands: |
-      systemctl stop apache2
-
-    readyTimeout: '20000'
-  displayName: 'Service-Stop'
-
-
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'mobven-ssh'
@@ -52,13 +41,3 @@ steps:
     targetFolder: '/var/www/FitAI/html'
     readyTimeout: '20000'
   displayName: 'CopyFilesOverSSH'
-  
-- task: SSH@0
-  inputs:
-    sshEndpoint: 'mobven-ssh'
-    runOptions: 'commands'
-    commands: |
-      systemctl start apache2
-
-    readyTimeout: '20000'
-  displayName: 'Service-Start'
