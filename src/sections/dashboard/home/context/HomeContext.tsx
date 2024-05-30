@@ -8,6 +8,7 @@ interface HomeContextValues {
   goalValues: GoalValue[];
   createPlanValues: CreatePlanValue[];
   addPlanValues: CreatePlanValue[];
+  goalCompletionInfoValues: GoalCompletionInfoValue[];
 }
 
 // Define the shape of the goalValues
@@ -24,11 +25,17 @@ interface CreatePlanValue {
   form: JSX.Element;
 }
 
+interface GoalCompletionInfoValue {
+  title: string;
+  value: string;
+}
+
 // Create the context with default values
 export const HomeContext = createContext<HomeContextValues>({
   goalValues: [],
   createPlanValues: [],
   addPlanValues: [],
+  goalCompletionInfoValues: [],
 });
 
 // Define the properties for the provider component
@@ -90,9 +97,24 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     },
   ];
 
+  const goalCompletionInfoValues: GoalCompletionInfoValue[] = [
+    {
+      title: "Mevcut Kilo",
+      value: "50 kg",
+    },
+    {
+      title: "Hedef Kilo",
+      value: "45 kg",
+    },
+    {
+      title: "Hedeflenen Tarih",
+      value: "18 Temmuz",
+    },
+  ]
+
   return (
     <HomeContext.Provider
-      value={{ goalValues, createPlanValues, addPlanValues }}
+      value={{ goalValues, createPlanValues, addPlanValues,goalCompletionInfoValues }}
     >
       {children}
     </HomeContext.Provider>

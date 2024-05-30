@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { RadialChart } from "../../components/charts/RadialChart";
 import { HomeContext, HomeContextProvider } from "./home/context/HomeContext";
 
 import { CreatePlan } from "./home/components/CreatePlan";
@@ -18,7 +17,6 @@ export const HomeView: React.FC = () => {
         </div>
 
         <div className="col-span-5">
-          <RadialChart size="md" />
           {createPlanValues.map((plan, index) => (
             <div key={index} className="col-span-6">
               <CreatePlan {...plan} />
