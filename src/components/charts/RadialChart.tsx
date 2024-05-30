@@ -8,7 +8,7 @@ interface IRadialChartProps {
 }
 
 const sizeToDimensions = {
-  xs: { width: 100, height: 100},
+  xs: { width: 100, height: 100 },
   sm: { width: 200, height: 200 },
   md: { width: 300, height: 300 },
   lg: { width: 400, height: 400 },
@@ -38,7 +38,7 @@ export const RadialChart: React.FC<IRadialChartProps> = ({
     plotOptions: {
       radialBar: {
         hollow: {
-          margin: 0,
+          margin: 10,
           size: "70%",
           background: "#fff",
         },

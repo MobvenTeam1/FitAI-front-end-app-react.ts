@@ -29,7 +29,11 @@ export const RHFTextfield: FC<InputProps> = ({
           id={name}
           type={type}
           placeholder={label}
-          className={`w-full text-4xl font-bold text-center py-3 px-4 border-b active:outline-none focus:placeholder-transparent focus:outline-none placeholder:font-medium [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]
+          className={`w-full ${
+            type === "number"
+              ? "text-4xl font-bold text-center py-3 px-4 border-b"
+              : "border border-gray-50 rounded-xl p-4"
+          }   active:outline-none focus:placeholder-transparent focus:outline-none placeholder:font-medium [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]
           `}
           {...register(name)}
           {...props}
