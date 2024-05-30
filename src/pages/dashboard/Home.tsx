@@ -46,7 +46,7 @@ export const Home: React.FC = () => {
   ];
 
   return (
-    <div className="px-24 flex flex-col gap-8">
+    <div className="flex flex-col gap-8">
       Home
       {/* charts */}
       <RadialChart size="md" />

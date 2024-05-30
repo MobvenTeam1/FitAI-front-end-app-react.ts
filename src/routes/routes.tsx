@@ -15,6 +15,7 @@ import { CreateNewPassword } from "../pages/auth/CreateNewPassword";
 import { VerificationPassword } from "../pages/auth/VerificationPassword";
 import { SuccessPassword } from "../pages/auth/SuccessPassword";
 import { ForgotPassword } from "../pages/auth/ForgotPassword";
+import { Profile } from "../pages/dashboard/Profile";
 
 const routes = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const routes = createBrowserRouter([
           {
             path: paths.dashboard.programs,
             element: <Programs />,
+          },
+          {
+            path: paths.dashboard.profile,
+            element: <Profile />,
           },
         ],
       },

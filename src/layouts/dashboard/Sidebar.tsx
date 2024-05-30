@@ -18,7 +18,7 @@ export const Sidebar: React.FC = () => {
 
   return (
     <aside className="flex flex-col gap-4 max-h-screen overflow-auto">
-      <div className="flex items-center justify-start gap-3 p-6">
+      <div className="flex items-center justify-start gap-3 py-6 px-8">
         <SvgColor src="/logo/logo.svg" width={40} height={40} />
         <h1 className="text-4xl font-medium">
           Fit<span className="font-black">AI</span>
@@ -44,7 +44,7 @@ export const Sidebar: React.FC = () => {
                   <Link
                     key={index}
                     to={nav.path}
-                    className={`flex w-full items-center gap-4 mr-5 px-5 py-4 rounded-md text-sm font-semibold text-gray-900  transition-all duration-200 ease-in-out ${
+                    className={`flex w-full items-center gap-4 px-5 py-4 rounded-md text-sm font-semibold text-gray-900  transition-all duration-200 ease-in-out ${
                       isCurrentPath(nav.path) ? "bg-green-500 " : "text-black"
                     }`}
                     onClick={() => nav.title === "logout" && logout()}

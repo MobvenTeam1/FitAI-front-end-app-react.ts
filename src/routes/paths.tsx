@@ -4,6 +4,7 @@ interface DashboardPaths {
     root: string;
   };
   programs: string;
+  profile: string;
 }
 
 interface AuthPaths {
@@ -30,6 +31,7 @@ export const paths: Paths = {
       root: "/users",
     },
     programs: "/programs",
+    profile: "/profile",
   },
   registration: "/registration",
   auth: {

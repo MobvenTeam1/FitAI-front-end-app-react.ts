@@ -62,7 +62,7 @@ export const DashboardNavigation = [
   {
     subheader: "Extra",
     navs: [
-      { title: "profile", path: paths.dashboard.root, icon: ICONS.profile },
+      { title: "profile", path: paths.dashboard.profile, icon: ICONS.profile },
       { title: "logout", path: `/${paths.auth.root}/${paths.auth.login}`, icon: ICONS.logout },
     ],
   },
