@@ -18,7 +18,7 @@ export const Home: React.FC = () => {
       value: "1300",
     },
     {
-      icon: "carbs",
+      icon: "dart",
       title: "Günlük Hedef",
       value: "-2500",
     },
@@ -48,7 +48,9 @@ export const Home: React.FC = () => {
   return (
     <div className="px-24 flex flex-col gap-8">
       Home
+      {/* charts */}
       <RadialChart size="md" />
+      {/* goal values */}
       <div className="grid grid-cols-12 gap-2">
         {goalValues.map((goal, index) => (
           <div key={index} className="col-span-4">
@@ -56,6 +58,7 @@ export const Home: React.FC = () => {
           </div>
         ))}
       </div>
+      {/* create plans */}
       <div className="grid grid-cols-12 gap-2">
         {createPlanValues.map((plan, index) => (
           <div key={index} className="col-span-6">

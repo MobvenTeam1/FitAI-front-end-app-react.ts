@@ -8,12 +8,13 @@ const icon = (name: string) => (
 export const ICONS = {
   dashboard: icon("dashboard"),
   development: icon("development"),
-  explore: icon("heart"),
+  explore: icon("discovery"),
   nutrition_plan: icon("nutrition-plan"),
   training_plan: icon("training-plan"),
-  calorie_tracking: icon("calorie-tracking"),
+  calorie_tracking: icon("kcal-empty"),
   water_tracking: icon("water-tracking"),
   profile: icon("profile"),
+  logout: icon("logout"),
 };
 
 export const DashboardNavigation = [
@@ -62,6 +63,7 @@ export const DashboardNavigation = [
     subheader: "Extra",
     navs: [
       { title: "profile", path: paths.dashboard.root, icon: ICONS.profile },
+      { title: "logout", path: `/${paths.auth.root}/${paths.auth.login}`, icon: ICONS.logout },
     ],
   },
 ];

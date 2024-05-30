@@ -30,7 +30,7 @@ export const CreatePlan: React.FC<GoalInfoProps> = ({ icon, title, form }) => {
       <div className="relative w-full h-full rounded-e-xl overflow-hidden">
         <div className="absolute left-0 top-0 bg-green-500 w-8 h-full rounded-e-full" />
 
-        <p className="bg-green-700 w-full h-full p-4 ps-12 flex justify-center items-center text-base font-semibold text-white">
+        <p className="bg-green-700 w-full h-full p-4 ps-12 flex justify-center gap-1 items-center text-base font-semibold text-white">
           {title} Planı Oluştur <SvgColor src={`/icons/ic_arrow-right.svg`} />
         </p>
       </div>
