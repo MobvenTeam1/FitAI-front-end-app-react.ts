@@ -20,7 +20,7 @@ export const CreatePlan: React.FC<GoalInfoProps> = ({ icon, title, form }) => {
   };
   return (
     <div
-      className="flex cursor-pointer items-center rounded-xl overflow-hidden w-full h-16"
+      className="flex items-center rounded-xl overflow-hidden w-full h-16"
       onClick={handleOpen}
     >
       <div className="bg-green-500 p-4 h-full text-gray-900 flex items-center justify-center">

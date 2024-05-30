@@ -5,7 +5,7 @@ import SvgColor from "../../../components/svg-color";
 
 interface SelectProps {
   name: string;
-  options: { value: string; label: string }[];
+  options: { value: string; label: string; icon?: string }[];
 }
 
 export const RHFMultiSelect: FC<SelectProps> = ({ name, options }) => {
@@ -40,23 +40,38 @@ export const RHFMultiSelect: FC<SelectProps> = ({ name, options }) => {
       <div className="flex flex-col gap-4">
         {options.map((option) => (
           <div
-            className={`flex items-center justify-between border rounded-lg p-4 cursor-pointer hover:bg-gray-100 ${
-              isSelected(option.label) ? "bg-gray-100" : ""
+            className={`flex items-center justify-between border rounded-xl p-4 cursor-pointer ${
+              isSelected(option.label) ? "border-green-500" : "border-black-50"
             }`}
             key={option.value}
             onClick={() => handleOptionClick(option.label)}
           >
             <div className="flex items-center gap-3">
-              <div
-                className={`rounded-full w-9 h-9${
-                  isSelected(option.label) ? " bg-white" : " bg-gray-100"
-                }`}
-              ></div>
+              {option?.icon ? (
+                <div
+                  className={`${
+                    isSelected(option.label) ? "bg-green-500" : "bg-black-50"
+                  } rounded-full p-2.5`}
+                >
+                  <img
+                    className="w-5 h-5"
+                    src={`/icons/ic_${option.icon}.svg`}
+                    alt=""
+                  />
+                </div>
+              ) : (
+                <div
+                  className={`rounded-full w-9 h-9${
+                    isSelected(option.label) ? " bg-green-200" : " bg-green-50"
+                  }`}
+                ></div>
+              )}
+
               <div>{option.label}</div>
             </div>
             {isSelected(option.label) && (
               <div
-                className={`rounded-full p-1 w-6 h-6 bg-black text-white flex items-center justify-center`}
+                className={`rounded-full p-1 w-6 h-6 bg-green-500 text-white flex items-center justify-center`}
               >
                 <SvgColor src="/icons/ic_check.svg" />
               </div>

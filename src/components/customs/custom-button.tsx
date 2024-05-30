@@ -39,7 +39,7 @@ export const CustomButton: FC<CustomButtonProps> = ({
   ...props
 }) => {
   const variantClassNames = {
-    outlined: `bg-transparent border-${color}-500 text-${color}-500 hover:bg-${color}-500 hover:text-white`,
+    outlined: `bg-transparent border-gray-900 text-gray-900`,
     contained: `bg-${color}-500 hover:bg-${color}-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${color}-500 hover:shadow-lg`,
     link: `bg-transparent text-${color}-500 hover:text-${color}-600`,
   };

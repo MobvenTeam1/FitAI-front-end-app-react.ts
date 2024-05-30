@@ -1,6 +1,8 @@
 import { RadialChart } from "../../components/charts/RadialChart";
 import { CreatePlan } from "../../sections/dashboard/CreatePlan";
 import { GoalInfo } from "../../sections/dashboard/GoalInfo";
+import { PersonalInformationsContextProvider } from "../../sections/personal-inforations/context/PersonalInformationsContext";
+import { CreateNutritionProgramForm } from "../../sections/personal-inforations/forms/CreateNutritionProgramForm";
 import { CreateTrainingProgramForm } from "../../sections/personal-inforations/forms/CreateTrainingProgram";
 
 export const Home: React.FC = () => {
@@ -26,18 +28,26 @@ export const Home: React.FC = () => {
     {
       icon: "kcal",
       title: "Kişiselleştirilmiş Antrenman",
-      form: <CreateTrainingProgramForm />,
+      form: (
+        <PersonalInformationsContextProvider>
+          <CreateTrainingProgramForm />
+        </PersonalInformationsContextProvider>
+      ),
     },
     {
       icon: "food-plan",
       title: "Kişiselleştirilmiş Beslenme",
+      form: (
+        <PersonalInformationsContextProvider>
+          <CreateNutritionProgramForm />
+        </PersonalInformationsContextProvider>
+      ),
     },
   ];
 
   return (
     <div className="px-24 flex flex-col gap-8">
       Home
-      <CreateTrainingProgramForm />
       <RadialChart size="md" />
       <div className="grid grid-cols-12 gap-2">
         {goalValues.map((goal, index) => (

@@ -36,19 +36,30 @@ export const RHFSingleSelect: FC<SelectProps> = ({ name, options }) => {
             }}
           >
             <div className="flex items-center gap-3">
-              <div
-                className={`${
-                  selectedValue === option.value
-                    ? "bg-green-500"
-                    : "bg-black-50"
-                } rounded-full p-2.5`}
-              >
-                <img
-                  className="w-5 h-5 object-cover"
-                  src={`/icons/ic_${option.icon}.svg`}
-                  alt=""
-                />
-              </div>
+              {option?.icon ? (
+                <div
+                  className={`${
+                    selectedValue === option.value
+                      ? "bg-green-500"
+                      : "bg-black-50"
+                  } rounded-full p-2.5`}
+                >
+                  <img
+                    className="w-5 h-5"
+                    src={`/icons/ic_${option.icon}.svg`}
+                    alt=""
+                  />
+                </div>
+              ) : (
+                <div
+                  className={`rounded-full w-9 h-9${
+                    selectedValue === option.value
+                      ? " bg-green-200"
+                      : " bg-green-50"
+                  }`}
+                ></div>
+              )}
+
               <div>{option.label}</div>
             </div>
             {selectedValue === option.value && (

@@ -22,6 +22,7 @@ export type PersonalValueOptions = {
   icon?: string;
 };
 
+// ** first login form values
 const gender: PersonalValue = {
   step: 0,
   name: "gender",
@@ -96,9 +97,11 @@ const activity: PersonalValue = {
   ],
 };
 
-const healtIssue: PersonalValue = {
+// ** create training program values
+
+const trainingHealtIssue: PersonalValue = {
   step: 0,
-  name: "healtIssue",
+  name: "trainingHealtIssue",
   label: "Bilinen sağlık sorununuz var mı?",
   placeholder: "Hamilelik,hamilelik sonrası, minüsküs yırtığı...",
   selectType: 2,
@@ -149,6 +152,48 @@ const targetArea: PersonalValue = {
   ],
 };
 
+// ** create nutrition program values
+
+const nutritionHealtIssue: PersonalValue = {
+  step: 0,
+  name: "nutritionHealtIssue",
+  label: "Bilinen sağlık sorununuz var mı?",
+  selectType: 0,
+  options: [
+    { value: "1", label: "Çölyak" },
+    { value: "2", label: "Diyabet Tip 2" },
+    { value: "3", label: "Diyabet Tip 1" },
+    { value: "4", label: "Tansiyon" },
+    { value: "4", label: "Alerji / İntölerans" },
+  ],
+};
+
+const nutritionAllergies: PersonalValue = {
+  step: 1,
+  name: "nutritionAllergies",
+  label: "Hangi yiyeceklere alerjiniz var?",
+  placeholder: "Gluten, laktoz...",
+  selectType: 2,
+  type: "text",
+  isOptinal: true,
+};
+
+const nutritionDietType: PersonalValue = {
+  step: 2,
+  name: "nutritionDietType",
+  label: "Hangi tip diyet yapmak istersiniz?",
+  selectType: 0,
+  options: [
+    { value: "1", label: "Geleneksel" },
+    { value: "2", label: "Vejetaryen" },
+    { value: "3", label: "Vegan" },
+    { value: "4", label: "Pesketeryan" },
+    { value: "5", label: "Ketojenik" },
+  ],
+};
+
+// ** personal values
+
 export const FirstLoginFormValues: PersonalValue[] = [
   gender,
   size,
@@ -159,10 +204,16 @@ export const FirstLoginFormValues: PersonalValue[] = [
 ];
 
 export const CreateTrainingProgramValues: PersonalValue[] = [
-  healtIssue,
+  trainingHealtIssue,
   trainingType,
   trainingRange,
   targetArea,
+];
+
+export const CreateNutritionProgramValues: PersonalValue[] = [
+  nutritionHealtIssue,
+  nutritionAllergies,
+  nutritionDietType,
 ];
 
 export const PersonalValues: PersonalValue[] = [
