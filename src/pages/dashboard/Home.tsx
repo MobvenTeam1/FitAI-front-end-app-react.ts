@@ -46,20 +46,20 @@ export const Home: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-8">
-      Home
-      {/* charts */}
-      <RadialChart size="md" />
-      {/* goal values */}
-      <div className="grid grid-cols-12 gap-2">
-        {goalValues.map((goal, index) => (
-          <div key={index} className="col-span-4">
-            <GoalInfo {...goal} />
-          </div>
-        ))}
+    <div className="grid grid-cols-12 gap-5">
+      <div className="col-span-7 flex flex-col gap-3">
+        <p className="text-lg font-bold">Günlük Hedefler</p>
+        <div className="grid grid-cols-12 gap-5">
+          {goalValues.map((goal, index) => (
+            <div key={index} className="col-span-4">
+              <GoalInfo {...goal} />
+            </div>
+          ))}
+        </div>
       </div>
-      {/* create plans */}
-      <div className="grid grid-cols-12 gap-2">
+
+      <div className="col-span-5">
+        <RadialChart size="md" />
         {createPlanValues.map((plan, index) => (
           <div key={index} className="col-span-6">
             <CreatePlan {...plan} />
