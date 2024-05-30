@@ -22,7 +22,7 @@ export const Racoon: React.FC = () => {
   return (
     <div
       onClick={toggle}
-      className={`overflow-hidden rounded-full cursor-pointer hover:shadow-lg ${
+      className={`overflow-hidden outline-dotted outline-gray-100  outline-offset-4 rounded-full cursor-pointer hover:shadow-lg ${
         active ? "animate-spin" : ""
       } bg-[#efdeda]`}
     >
