@@ -1,27 +1,20 @@
 import { useContext } from "react";
 import { RadialChart } from "../../components/charts/RadialChart";
-import { HomeContext, HomeContextProvider } from "../../context/HomeContext";
-import { CreatePlan } from "../../sections/dashboard/CreatePlan";
-import { GoalInfo } from "../../sections/dashboard/GoalInfo";
+import { HomeContext, HomeContextProvider } from "./home/context/HomeContext";
+
+import { CreatePlan } from "./home/components/CreatePlan";
+import { DailyGoalsView } from "./home/views/DailyGoalsView";
+import { GoalCompletionView } from "./home/views/GoalCompletionView";
 
 export const HomeView: React.FC = () => {
-  const { goalValues, createPlanValues } = useContext(HomeContext);
-
-  console.log(goalValues, createPlanValues);
+  const { createPlanValues } = useContext(HomeContext);
 
   return (
     <HomeContextProvider>
       <div className="grid grid-cols-12 gap-5">
         <div className="col-span-7 flex flex-col gap-3">
-          {/* Daily Goals */}
-          <p className="text-lg font-bold">Günlük Hedefler</p>
-          <div className="grid grid-cols-12 gap-5">
-            {goalValues.map((goal, index) => (
-              <div key={index} className="col-span-4">
-                <GoalInfo {...goal} />
-              </div>
-            ))}
-          </div>
+          <DailyGoalsView />
+          <GoalCompletionView />
         </div>
 
         <div className="col-span-5">

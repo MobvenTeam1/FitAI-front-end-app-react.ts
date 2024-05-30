@@ -1,12 +1,13 @@
 import React, { createContext } from "react";
-import { PersonalInformationsContextProvider } from "../sections/personal-inforations/context/PersonalInformationsContext";
-import { CreateTrainingProgramForm } from "../sections/personal-inforations/forms/CreateTrainingProgram";
-import { CreateNutritionProgramForm } from "../sections/personal-inforations/forms/CreateNutritionProgramForm";
+import { PersonalInformationsContextProvider } from "../../../personal-inforations/context/PersonalInformationsContext";
+import { CreateTrainingProgramForm } from "../../../personal-inforations/forms/CreateTrainingProgram";
+import { CreateNutritionProgramForm } from "../../../personal-inforations/forms/CreateNutritionProgramForm";
 
 // Define the shape of the context
 interface HomeContextValues {
   goalValues: GoalValue[];
   createPlanValues: CreatePlanValue[];
+  addPlanValues: CreatePlanValue[];
 }
 
 // Define the shape of the goalValues
@@ -27,6 +28,7 @@ interface CreatePlanValue {
 export const HomeContext = createContext<HomeContextValues>({
   goalValues: [],
   createPlanValues: [],
+  addPlanValues: [],
 });
 
 // Define the properties for the provider component
@@ -74,8 +76,24 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
       ),
     },
   ];
+
+  const addPlanValues: CreatePlanValue[] = [
+    {
+      icon: "running",
+      title: "Egzersiz Ekle",
+      form: <h1>Egzersiz</h1>,
+    },
+    {
+      icon: "fork",
+      title: "Besin Ekle",
+      form: <h1>Besin</h1>,
+    },
+  ];
+
   return (
-    <HomeContext.Provider value={{ goalValues, createPlanValues }}>
+    <HomeContext.Provider
+      value={{ goalValues, createPlanValues, addPlanValues }}
+    >
       {children}
     </HomeContext.Provider>
   );

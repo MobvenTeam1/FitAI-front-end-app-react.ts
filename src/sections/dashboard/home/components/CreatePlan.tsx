@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { CustomModal } from "../../components/customs/custom-modal";
-import SvgColor from "../../components/svg-color";
+import SvgColor from "../../../../components/svg-color";
+import { CustomModal } from "../../../../components/customs/custom-modal";
+
 
 type GoalInfoProps = {
   icon: string;
