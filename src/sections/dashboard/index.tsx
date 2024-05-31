@@ -6,6 +6,7 @@ import { GoalCompletionView } from "./home/views/GoalCompletionView";
 import { CategoriesViews } from "./home/views/CategoriesViews";
 import { CalendarView } from "./home/views/CalendarView";
 import { CreatePlanView } from "./home/views/CreatePlanView";
+import { CreateAiPlanView } from "./home/views/CreateAiPlanView";
 
 export const HomeView: React.FC = () => {
   const { trainingCategoryValues, nutritionCategoryValues } =
@@ -29,7 +30,8 @@ export const HomeView: React.FC = () => {
           />
         </div>
 
-        <div className="col-span-4 flex flex-col gap-3 pt-6">
+        <div className="col-span-4 flex flex-col gap-3">
+          <CreateAiPlanView />
           <CalendarView />
           <CreatePlanView />
         </div>

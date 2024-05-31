@@ -11,6 +11,7 @@ interface HomeContextValues {
   goalCompletionInfoValues: GoalCompletionInfoValue[];
   trainingCategoryValues: HomeCategoryValue[];
   nutritionCategoryValues: HomeCategoryValue[];
+  aiSupportPlanValues: CreateAiSupportPlanValue[];
 }
 
 // Define the shape of the goalValues
@@ -37,6 +38,14 @@ interface HomeCategoryValue {
   title: string;
 }
 
+export interface CreateAiSupportPlanValue {
+  id: number;
+  img: string;
+  title: string;
+  subtitle: string;
+  form: JSX.Element;
+}
+
 // Create the context with default values
 export const HomeContext = createContext<HomeContextValues>({
   goalValues: [],
@@ -45,6 +54,7 @@ export const HomeContext = createContext<HomeContextValues>({
   goalCompletionInfoValues: [],
   trainingCategoryValues: [],
   nutritionCategoryValues: [],
+  aiSupportPlanValues: [],
 });
 
 // Define the properties for the provider component
@@ -54,7 +64,6 @@ interface ChildrenProps {
 
 // Create the provider component
 export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
-
   const goalValues: GoalValue[] = [
     {
       icon: "kcal",
@@ -152,6 +161,30 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     },
   ];
 
+  const aiSupportPlanValues: CreateAiSupportPlanValue[] = [
+    {
+      id: 1,
+      img: "training",
+      title: "Antrenman Planı",
+      subtitle: "AI size özel plan oluştursun.",
+      form: <p>Antrenman Planı</p>,
+    },
+    {
+      id: 2,
+      img: "nutrition",
+      title: "Beslenme Planı",
+      subtitle: "AI size özel plan oluştursun.",
+      form: <p>Beslenme Planı</p>,
+    },
+    {
+      id: 3,
+      img: "water-track",
+      title: "Su Takibi",
+      subtitle: "AI size özel plan oluştursun.",
+      form: <p>Su Takibi</p>,
+    },
+  ];
+
   return (
     <HomeContext.Provider
       value={{
@@ -161,6 +194,7 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
         goalCompletionInfoValues,
         trainingCategoryValues,
         nutritionCategoryValues,
+        aiSupportPlanValues,
       }}
     >
       {children}
