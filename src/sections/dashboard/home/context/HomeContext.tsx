@@ -12,6 +12,8 @@ interface HomeContextValues {
   trainingCategoryValues: HomeCategoryValue[];
   nutritionCategoryValues: HomeCategoryValue[];
   aiSupportPlanValues: CreateAiSupportPlanValue[];
+  personalTrainingPrograms: PersonalPropram[];
+  personalNutritionPrograms: PersonalPropram[];
 }
 
 // Define the shape of the goalValues
@@ -46,6 +48,27 @@ export interface CreateAiSupportPlanValue {
   form: JSX.Element;
 }
 
+interface OptionDetail {
+  optionId: number;
+  optionImage: string;
+  optionTitle: string;
+  optionSubtitle: string;
+}
+
+export interface OptionsPersonalProgram {
+  optionTitle: string;
+  optionDetails: OptionDetail[];
+}
+
+export interface PersonalPropram {
+  programId: number;
+  programTitle: string;
+  img: string;
+  duration: string;
+  caloriesBurned: string;
+  options: OptionsPersonalProgram;
+}
+
 // Create the context with default values
 export const HomeContext = createContext<HomeContextValues>({
   goalValues: [],
@@ -55,6 +78,8 @@ export const HomeContext = createContext<HomeContextValues>({
   trainingCategoryValues: [],
   nutritionCategoryValues: [],
   aiSupportPlanValues: [],
+  personalTrainingPrograms: [],
+  personalNutritionPrograms: [],
 });
 
 // Define the properties for the provider component
@@ -185,6 +210,126 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     },
   ];
 
+  const personalTrainingPrograms: PersonalPropram[] = [
+    {
+      programId: 1,
+      programTitle: "Yoga",
+      img: "personal-training",
+      duration: "60 dakika",
+      caloriesBurned: "100 kcal",
+      options: {
+        optionTitle: "Poses",
+        optionDetails: [
+          {
+            optionId: 1,
+            optionImage: "walking",
+            optionTitle: "Sun Salutation",
+            optionSubtitle: "Mat",
+          },
+          {
+            optionId: 2,
+            optionImage: "walk",
+            optionTitle: "Tree Pose",
+            optionSubtitle: "Mat",
+          },
+          {
+            optionId: 3,
+            optionImage: "walk-reverse",
+            optionTitle: "Downward Dog",
+            optionSubtitle: "Mat",
+          },
+        ],
+      },
+    },
+    {
+      programId: 2,
+      programTitle: "Cardio",
+      img: "doing-yoga",
+      duration: "30 minutes",
+      caloriesBurned: "300 kcal",
+      options: {
+        optionTitle: "Exercises",
+        optionDetails: [
+          {
+            optionId: 1,
+            optionImage: "walking",
+            optionTitle: "Jumping Jacks",
+            optionSubtitle: "No equipment",
+          },
+          {
+            optionId: 2,
+            optionImage: "walk",
+            optionTitle: "Burpees",
+            optionSubtitle: "No equipment",
+          },
+          {
+            optionId: 3,
+            optionImage: "walk-reverse",
+            optionTitle: "Mountain Climbers",
+            optionSubtitle: "No equipment",
+          },
+        ],
+      },
+    },
+  ];
+
+  const personalNutritionPrograms: PersonalPropram[] = [
+    {
+      programId: 1,
+      programTitle: "Ara Öğün",
+      img: "personal-training",
+      duration: "Hemen",
+      caloriesBurned: "95 kcal",
+      options: {
+        optionTitle: "Besinler",
+        optionDetails: [
+          {
+            optionId: 1,
+            optionImage: "walking",
+            optionTitle: "Badem",
+            optionSubtitle: "5 tane, 75 kcal",
+          },
+          {
+            optionId: 2,
+            optionImage: "walk",
+            optionTitle: "Ceviz İçi",
+            optionSubtitle: "3 tane, 20 kcal",
+          },
+        ],
+      },
+    },
+    {
+      programId: 2,
+      programTitle: "Ana Öğün",
+      img: "doing-yoga",
+      duration: "Günde 3 kez",
+      caloriesBurned: "2600 kcal",
+      options: {
+        optionTitle: "Yemekler",
+        optionDetails: [
+          {
+            optionId: 1,
+            optionImage: "walking",
+            optionTitle: "Tavuk Pilav",
+            optionSubtitle: "her porsiyon, 500 kcal",
+          },
+          {
+            optionId: 2,
+            optionImage: "walk",
+            optionTitle: "Yumurta",
+            optionSubtitle: "her adet, 70 kcal",
+          },
+          {
+            optionId: 3,
+            optionImage: "walk-reverse",
+            optionTitle: "Salata",
+            optionSubtitle: "her porsiyon, 100 kcal",
+          },
+        ],
+      },
+    },
+  ];
+
   return (
     <HomeContext.Provider
       value={{
@@ -195,6 +340,8 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
         trainingCategoryValues,
         nutritionCategoryValues,
         aiSupportPlanValues,
+        personalTrainingPrograms,
+        personalNutritionPrograms,
       }}
     >
       {children}
