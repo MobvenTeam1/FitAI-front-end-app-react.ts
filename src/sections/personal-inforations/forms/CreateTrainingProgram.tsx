@@ -67,23 +67,27 @@ export const CreateTrainingProgramForm: React.FC = () => {
   return (
     <FormProvider {...form}>
       <form
-        className="px-4 w-full py-6 flex flex-col gap-9"
+        className="h-full flex flex-col gap-6 p-1"
         onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
         <Stepper values={CreateTrainingProgramValues} />
 
-        <div className="text-4xl font-bold pb-7">{showStep?.label}</div>
-        {showStep && renderFormElement(showStep)}
-        {showStep && showStep.isOptinal && (
-          <CustomButton
-            onClick={handleNext}
-            type="button"
-            label="Yok / Belirtmek İstemiyorum"
-            variant="outlined"
-          />
-        )}
-        <CustomButton onClick={handleNext} type="button" label="Sonraki" />
+        <div className="text-4xl font-bold mb-4">{showStep?.label}</div>
+        <div className="h-full flex flex-col justify-between gap-6">
+          {showStep && renderFormElement(showStep)}
+          <div className="flex flex-col gap-2">
+            {showStep && showStep.isOptinal && (
+              <CustomButton
+                onClick={handleNext}
+                type="button"
+                label="Yok / Belirtmek İstemiyorum"
+                variant="outlined"
+              />
+            )}
+            <CustomButton onClick={handleNext} type="button" label="Sonraki" />
+          </div>
+        </div>
 
         {/* <hr />
         <RHFFormValues /> */}
