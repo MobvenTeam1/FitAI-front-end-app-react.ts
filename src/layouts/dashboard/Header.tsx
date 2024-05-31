@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
           <img src="/icons/ic_calendar.svg" className="w-4 h-4" alt="" />
           <p className="font-semibold text-sm">{fDate(TodayDate)}</p>
         </div>
-        <div className="border border-gray-50 shadow rounded-xl p-2">
+        <div className="border border-gray-50 shadow rounded-xl p-2.5">
           <img className="w-6 h-6" src="/icons/ic_notification.svg" alt="" />
         </div>
         <Racoon />
