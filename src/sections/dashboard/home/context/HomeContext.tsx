@@ -54,6 +54,7 @@ interface ChildrenProps {
 
 // Create the provider component
 export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
+
   const goalValues: GoalValue[] = [
     {
       icon: "kcal",
