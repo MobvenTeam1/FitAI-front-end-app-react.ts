@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
         <Racoon />
         {/* <div className="w-10 h-10 rounded-full bg-gray-100"></div> */}
         <img src="/frames/user.png" className="w-10 h-10 rounded-xl" alt="" />
-        <div className="flex items-center justify-center gap-1 px-5 py-3 bg-black rounded-xl font-semibold text-green-500">
+        <div className="flex items-center justify-center gap-1 py-2 px-5 bg-black rounded-xl font-semibold text-green-500">
           <SvgColor src="/icons/ic_logo.svg" width={16} height={19} />
           <p>FitBot</p>
         </div>
