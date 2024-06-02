@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CustomButton } from "../../../../components/customs/custom-button";
 
 type Props = {
@@ -19,6 +19,8 @@ type StateTexts = {
 };
 
 export const AddPlanValues: React.FC<Props> = ({ values, texts }) => {
+  const [isSelected, setIsSelected] = useState<number | null>(null);
+
   return (
     <div className="flex flex-col gap-3 p-1">
       <div className="flex flex-col gap-1 absolute top-8 left-14">
@@ -28,7 +30,12 @@ export const AddPlanValues: React.FC<Props> = ({ values, texts }) => {
       <div className="grid grid-cols-12 gap-3 mt-9">
         {values.map((value, index) => (
           <div key={index + value.title} className="col-span-6">
-            <div className="flex flex-col px-6 py-4 gap-2 border border-gray-50 shadow rounded-xl">
+            <div
+              onClick={() => setIsSelected(index)}
+              className={`flex flex-col px-6 py-4 gap-2 border cursor-pointer ${
+                isSelected === index ? "border-green-500" : "border-gray-50"
+              } shadow rounded-xl`}
+            >
               <div className="w-full flex items-center justify-center rounded-xl bg-black-100 py-4">
                 <img
                   className="w-20 h-20"
