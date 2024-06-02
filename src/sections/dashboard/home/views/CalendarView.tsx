@@ -136,7 +136,7 @@ export const CalendarView: React.FC = () => {
           sx={{
             marginTop: "48px",
             marginBottom: "12px",
-            transform: "scale(1.25)",
+            transform: "scale(1.2)",
             "& .circular-chart .circle": {
               stroke: "#a1d604",
             },
