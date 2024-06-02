@@ -1,6 +1,7 @@
 import React from "react";
-import CustomBreadcrumbs from "../../components/customs/custom-breadcrumbs";
-import { paths } from "../../routes/paths";
+import CustomBreadcrumbs from "../../../components/customs/custom-breadcrumbs";
+import { paths } from "../../../routes/paths";
+
 
 export const Profile: React.FC = () => {
   return (
