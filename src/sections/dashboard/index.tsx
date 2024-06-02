@@ -8,6 +8,7 @@ import { CalendarView } from "./home/views/CalendarView";
 import { CreatePlanView } from "./home/views/CreatePlanView";
 import { CreateAiPlanView } from "./home/views/CreateAiPlanView";
 import { PersonalProgramView } from "./home/views/PersonalProgramView";
+import { PuroseGainView } from "./home/views/PuroseGainView";
 
 export const HomeView: React.FC = () => {
   const {
@@ -16,8 +17,6 @@ export const HomeView: React.FC = () => {
     personalTrainingPrograms,
     personalNutritionPrograms,
   } = useContext(HomeContext);
-
-  
 
   return (
     <HomeContextProvider>
@@ -49,6 +48,7 @@ export const HomeView: React.FC = () => {
             values={personalNutritionPrograms}
             header="Kişiselleştirilmiş Beslenme Planlanın"
           />
+          <PuroseGainView />
         </div>
       </div>
     </HomeContextProvider>

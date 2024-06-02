@@ -1,21 +1,22 @@
 import { Outlet, createBrowserRouter } from "react-router-dom";
-import { NotFound404 } from "../pages/NotFound404";
-import { Home } from "../pages/dashboard/Home";
-import { Users } from "../pages/dashboard/Users";
-import { Login } from "../pages/auth/Login";
-import { Register } from "../pages/auth/Register";
-import { AuthGuard } from "../auth/guard/AuthGuard";
-import { GuestGuard } from "../auth/guard/GuestGuard";
-import { Programs } from "../pages/dashboard/Programs";
-import { Registration } from "../pages/registration/Registration";
-import { paths } from "./paths";
-
-import { NewPassword } from "../pages/auth/NewPassword";
-import { CreateNewPassword } from "../pages/auth/CreateNewPassword";
-import { VerificationPassword } from "../pages/auth/VerificationPassword";
-import { SuccessPassword } from "../pages/auth/SuccessPassword";
-import { ForgotPassword } from "../pages/auth/ForgotPassword";
-import { Profile } from "../pages/dashboard/Profile";
+import {
+  AuthGuard,
+  CreateNewPassword,
+  ForgotPassword,
+  GuestGuard,
+  Home,
+  Login,
+  NewPassword,
+  NotFound404,
+  Profile,
+  Programs,
+  Register,
+  Registration,
+  SuccessPassword,
+  Users,
+  VerificationPassword,
+  paths,
+} from "./imports";
 
 const routes = createBrowserRouter([
   {
