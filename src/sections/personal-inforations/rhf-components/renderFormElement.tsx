@@ -22,8 +22,8 @@ export const renderFormElement = (showStep: PersonalValue) => {
         <RHFTextfield
           name={showStep.name}
           type={showStep.type || "text"}
-          label={showStep.label}
           placeholder={showStep.placeholder}
+          rowCount={showStep.rowCount || null}
         />
       );
     case 3: //Date

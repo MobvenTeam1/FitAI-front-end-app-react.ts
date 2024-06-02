@@ -13,6 +13,7 @@ export interface PersonalValue {
   type?: string;
   selectType: number;
   options?: PersonalValueOptions[];
+  rowCount?: number | null;
   isOptinal?: boolean;
 }
 
@@ -105,6 +106,7 @@ const trainingHealtIssue: PersonalValue = {
   label: "Bilinen sağlık sorununuz var mı?",
   placeholder: "Hamilelik,hamilelik sonrası, minüsküs yırtığı...",
   selectType: 2,
+  rowCount: 10,
   type: "text",
   isOptinal: true,
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { OptionsPersonalProgram } from "../context/HomeContext";
+import { CustomButton } from "../../../../components/customs/custom-button";
 
 type Props = {
   value: OptionsPersonalProgram;
@@ -29,6 +30,7 @@ export const PersonalPlanOptions: React.FC<Props> = ({ value }) => {
           </div>
         </div>
       ))}
+      <CustomButton label="Programı Görüntüle" />
     </div>
   );
 };
