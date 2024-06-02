@@ -7,7 +7,7 @@ type Props = {
 
 export const PersonalPlanOptions: React.FC<Props> = ({ value }) => {
   return (
-    <div className="flex flex-col gap-3 shadow px-6 py-5 pt-7 -mt-5 border border-gray-50 rounded-b-xl">
+    <div className="flex flex-col gap-3 shadow px-6 py-5 pt-7 -mt-5 border border-t-0 border-gray-50 rounded-b-xl">
       <p className="text-gray-500 font-bold text-lg">{value.optionTitle}</p>
       {value.optionDetails.map((option, index) => (
         <div key={index} className="flex items-center justify-between">

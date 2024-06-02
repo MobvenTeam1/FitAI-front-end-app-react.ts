@@ -50,7 +50,7 @@ export const CustomModal: React.FC<CustomModalProps> = ({
               <img src="/icons/ic_close.svg" alt="" />
             </button>
           </div>
-          <div className="bg-white h-[75vh] overflow-auto ">{children}</div>
+          <div className="bg-white h-[55h] overflow-auto ">{children}</div>
           {/* <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
             <button
               type="button"

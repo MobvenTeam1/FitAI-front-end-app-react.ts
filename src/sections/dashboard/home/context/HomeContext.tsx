@@ -276,8 +276,8 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   const personalNutritionPrograms: PersonalPropram[] = [
     {
       programId: 1,
-      programTitle: "Ara Öğün",
-      img: "personal-training",
+      programTitle: "Kahvaltı",
+      img: "breakfast",
       duration: "Hemen",
       caloriesBurned: "95 kcal",
       options: {
@@ -285,13 +285,13 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
         optionDetails: [
           {
             optionId: 1,
-            optionImage: "walking",
+            optionImage: "food4",
             optionTitle: "Badem",
             optionSubtitle: "5 tane, 75 kcal",
           },
           {
             optionId: 2,
-            optionImage: "walk",
+            optionImage: "food5",
             optionTitle: "Ceviz İçi",
             optionSubtitle: "3 tane, 20 kcal",
           },
@@ -300,8 +300,8 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     },
     {
       programId: 2,
-      programTitle: "Ana Öğün",
-      img: "doing-yoga",
+      programTitle: "Ara Öğün",
+      img: "snack",
       duration: "Günde 3 kez",
       caloriesBurned: "2600 kcal",
       options: {
@@ -309,19 +309,19 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
         optionDetails: [
           {
             optionId: 1,
-            optionImage: "walking",
+            optionImage: "food1",
             optionTitle: "Tavuk Pilav",
             optionSubtitle: "her porsiyon, 500 kcal",
           },
           {
             optionId: 2,
-            optionImage: "walk",
+            optionImage: "food2",
             optionTitle: "Yumurta",
             optionSubtitle: "her adet, 70 kcal",
           },
           {
             optionId: 3,
-            optionImage: "walk-reverse",
+            optionImage: "food3",
             optionTitle: "Salata",
             optionSubtitle: "her porsiyon, 100 kcal",
           },
