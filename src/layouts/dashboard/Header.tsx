@@ -4,15 +4,11 @@ import { Racoon } from "./Racoon";
 import SvgColor from "../../components/svg-color";
 
 export const Header: React.FC = () => {
-  const today = new Date();
   return (
     <div className="flex justify-between items-center">
-      <div>
-        <p className="text-gray-900 text-3xl font-bold">
-          Merhaba! Göktuğ Murat Demir
-        </p>
-        <p className="text-gray-400 text-base">{fDate(today)}</p>
-      </div>
+      <p className="text-gray-900 text-3xl font-bold">
+        Merhaba! Göktuğ Murat Demir
+      </p>
       <div className="flex items-center gap-5">
         <div className="flex items-center justify-center gap-2.5 p-3 border border-gray-50 shadow rounded-xl">
           <img src="/icons/ic_calendar.svg" className="w-4 h-4" alt="" />
