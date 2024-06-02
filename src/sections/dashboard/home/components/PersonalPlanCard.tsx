@@ -5,6 +5,7 @@ import { PersonalPlanOptions } from "./PersonalPlanOptions";
 
 type Props = {
   value: PersonalPropram;
+
 };
 
 export const PersonalPlanCard: React.FC<Props> = ({ value }) => {

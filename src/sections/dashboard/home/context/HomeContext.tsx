@@ -2,19 +2,20 @@ import React, { createContext } from "react";
 import { PersonalInformationsContextProvider } from "../../../personal-inforations/context/PersonalInformationsContext";
 import { CreateTrainingProgramForm } from "../../../personal-inforations/forms/CreateTrainingProgram";
 import { CreateNutritionProgramForm } from "../../../personal-inforations/forms/CreateNutritionProgramForm";
-import { AddPlanValues } from "../components/AddPlanValues";
 
 // Define the shape of the context
 interface HomeContextValues {
   goalValues: GoalValue[];
   createPlanValues: CreatePlanValue[];
-  addPlanValues: CreatePlanValue[];
+  addPlanValues: AddPlanValue[];
   goalCompletionInfoValues: GoalCompletionInfoValue[];
   trainingCategoryValues: HomeCategoryValue[];
   nutritionCategoryValues: HomeCategoryValue[];
   aiSupportPlanValues: CreateAiSupportPlanValue[];
   personalTrainingPrograms: PersonalPropram[];
   personalNutritionPrograms: PersonalPropram[];
+  aiNutritionSuggestions: aiSuggestionItem[];
+  suggestionRender: (type: string) => aiSuggestionItem[];
 }
 
 // Define the shape of the goalValues
@@ -29,6 +30,12 @@ interface CreatePlanValue {
   icon: string;
   title: string;
   form: JSX.Element;
+}
+
+interface AddPlanValue {
+  icon: string;
+  title: string;
+  path: string;
 }
 
 interface GoalCompletionInfoValue {
@@ -49,16 +56,17 @@ export interface CreateAiSupportPlanValue {
   form: JSX.Element;
 }
 
-interface OptionDetail {
+export interface OptionPersonalProgramDetail {
   optionId: number;
   optionImage: string;
   optionTitle: string;
   optionSubtitle: string;
+  type: string;
 }
 
 export interface OptionsPersonalProgram {
   optionTitle: string;
-  optionDetails: OptionDetail[];
+  optionDetails: OptionPersonalProgramDetail[];
 }
 
 export interface PersonalPropram {
@@ -87,6 +95,8 @@ export const HomeContext = createContext<HomeContextValues>({
   aiSupportPlanValues: [],
   personalTrainingPrograms: [],
   personalNutritionPrograms: [],
+  aiNutritionSuggestions: [],
+  suggestionRender: () => [],
 });
 
 // Define the properties for the provider component
@@ -166,36 +176,21 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     },
   ];
 
-  const addPlanValues: CreatePlanValue[] = [
+  const addPlanValues: AddPlanValue[] = [
     {
       icon: "running",
       title: "Egzersiz Ekle",
-      form: (
-        <AddPlanValues
-          values={aiTraningSuggestions}
-          texts={{
-            title: "AI Egzersiz Önerileri",
-            subtitle: "Aı size özel egzersiz önerileri sunar.",
-            buttonLabel: "Egzersiz Ekle",
-          }}
-        />
-      ),
+      path: "/add-xxx",
     },
     {
       icon: "fork",
       title: "Besin Ekle",
-      form: (
-        <AddPlanValues
-          values={aiNutritionSuggestions}
-          texts={{
-            title: "AI Besin Önerileri",
-            subtitle: "Aı size özel besin önerileri sunar.",
-            buttonLabel: "Besin Ekle",
-          }}
-        />
-      ),
+      path: "/add-xxx",
     },
   ];
+
+  const suggestionRender = (type: string) =>
+    type === "nutrition" ? aiNutritionSuggestions : aiTraningSuggestions;
 
   const goalCompletionInfoValues: GoalCompletionInfoValue[] = [
     {
@@ -281,18 +276,21 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
             optionImage: "walking",
             optionTitle: "Sun Salutation",
             optionSubtitle: "Mat",
+            type: "training",
           },
           {
             optionId: 2,
             optionImage: "walk",
             optionTitle: "Tree Pose",
             optionSubtitle: "Mat",
+            type: "training",
           },
           {
             optionId: 3,
             optionImage: "walk-reverse",
             optionTitle: "Downward Dog",
             optionSubtitle: "Mat",
+            type: "training",
           },
         ],
       },
@@ -311,18 +309,21 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
             optionImage: "walking",
             optionTitle: "Jumping Jacks",
             optionSubtitle: "No equipment",
+            type: "training",
           },
           {
             optionId: 2,
             optionImage: "walk",
             optionTitle: "Burpees",
             optionSubtitle: "No equipment",
+            type: "training",
           },
           {
             optionId: 3,
             optionImage: "walk-reverse",
             optionTitle: "Mountain Climbers",
             optionSubtitle: "No equipment",
+            type: "training",
           },
         ],
       },
@@ -344,12 +345,14 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
             optionImage: "food4",
             optionTitle: "Badem",
             optionSubtitle: "5 tane, 75 kcal",
+            type: "nutrition",
           },
           {
             optionId: 2,
             optionImage: "food5",
             optionTitle: "Ceviz İçi",
             optionSubtitle: "3 tane, 20 kcal",
+            type: "nutrition",
           },
         ],
       },
@@ -368,18 +371,21 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
             optionImage: "food1",
             optionTitle: "Tavuk Pilav",
             optionSubtitle: "her porsiyon, 500 kcal",
+            type: "nutrition",
           },
           {
             optionId: 2,
             optionImage: "food2",
             optionTitle: "Yumurta",
             optionSubtitle: "her adet, 70 kcal",
+            type: "nutrition",
           },
           {
             optionId: 3,
             optionImage: "food3",
             optionTitle: "Salata",
             optionSubtitle: "her porsiyon, 100 kcal",
+            type: "nutrition",
           },
         ],
       },
@@ -398,6 +404,8 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
         aiSupportPlanValues,
         personalTrainingPrograms,
         personalNutritionPrograms,
+        aiNutritionSuggestions,
+        suggestionRender
       }}
     >
       {children}

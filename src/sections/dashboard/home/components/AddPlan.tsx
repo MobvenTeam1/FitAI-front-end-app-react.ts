@@ -1,36 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import SvgColor from "../../../../components/svg-color";
-import { CustomModal } from "../../../../components/customs/custom-modal";
+import { useRouter } from "../../../../hooks/useRouter";
 
 type Props = {
   icon: string;
   title: string;
-  form?: JSX.Element;
+  path: string;
 };
 
-export const AddPlan: React.FC<Props> = ({ icon, title, form }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+export const AddPlan: React.FC<Props> = ({ icon, title, path }) => {
+  const router = useRouter();
 
   return (
     <>
       <button
-        onClick={handleOpen}
+        onClick={() => router.push(path)}
         className="py-3 border border-gray-50 shadow rounded-xl w-full flex items-center justify-center gap-2"
       >
         <SvgColor src={`/icons/ic_${icon}.svg`} width={20} height={20} />
         <p className="text-gray-500 text-base font-bold">{title}</p>
       </button>
-      <CustomModal isOpen={isOpen} onClose={handleClose}>
-        {form}
-      </CustomModal>
     </>
   );
 };
