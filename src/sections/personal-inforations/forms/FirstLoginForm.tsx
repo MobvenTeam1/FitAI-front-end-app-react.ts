@@ -5,7 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { PersonalInformationsContext } from "../context/PersonalInformationsContext";
 import { FirstLoginFormValues } from "../values";
-import { RHFFormValues } from "../../../components/hook-form/RHFFormValues";
+// import { RHFFormValues } from "../../../components/hook-form/RHFFormValues";
 import { renderFormElement } from "../rhf-components/renderFormElement";
 import { Stepper } from "../components/Stepper";
 import { CustomButton } from "../../../components/customs/custom-button";
@@ -73,8 +73,8 @@ export const FirstLoginForm: React.FC = () => {
         {showStep && renderFormElement(showStep)}
         <CustomButton onClick={handleNext} type="button" label="Sonraki" />
 
-        <hr />
-        <RHFFormValues />
+        {/* <hr />
+        <RHFFormValues /> */}
       </form>
     </FormProvider>
   );
