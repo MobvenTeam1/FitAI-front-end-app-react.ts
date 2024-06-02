@@ -10,10 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
     "@hookform/resolvers": "^3.3.4",
+    "@mui/material": "latest",
+    "@mui/x-date-pickers": "latest",
     "apexcharts": "^3.49.1",
     "axios": "^1.7.0",
     "date-fns": "^3.6.0",
+    "dayjs": "^1.11.11",
     "i18next": "^23.11.4",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",

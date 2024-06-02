@@ -55,3 +55,42 @@
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+
+/* mui calendar */
+
+/* .single-chart {
+  position: relative;
+}
+
+.circular-chart {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, -2px);
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #e8e8e7;
+  stroke-width: 1;
+} */
+
+/* .circle {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+} */
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+/* .circular-chart .circle {
+  stroke: #a1d604;
+} */
+
