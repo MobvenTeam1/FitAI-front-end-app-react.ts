@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 import { PersonalInformationsContextProvider } from "../../../personal-inforations/context/PersonalInformationsContext";
 import { CreateTrainingProgramForm } from "../../../personal-inforations/forms/CreateTrainingProgram";
 import { CreateNutritionProgramForm } from "../../../personal-inforations/forms/CreateNutritionProgramForm";
+import { AddPlanValues } from "../components/AddPlanValues";
 
 // Define the shape of the context
 interface HomeContextValues {
@@ -69,6 +70,12 @@ export interface PersonalPropram {
   options: OptionsPersonalProgram;
 }
 
+export interface aiSuggestionItem {
+  img: string;
+  title: string;
+  subtitle: string;
+}
+
 // Create the context with default values
 export const HomeContext = createContext<HomeContextValues>({
   goalValues: [],
@@ -128,16 +135,65 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     },
   ];
 
+  const aiTraningSuggestions: aiSuggestionItem[] = [
+    {
+      img: "running",
+      title: "Koşu",
+      subtitle: "30 dakika",
+    },
+    {
+      img: "fitness",
+      title: "Fitness",
+      subtitle: "45 dakika",
+    },
+    {
+      img: "yoga",
+      title: "Yoga",
+      subtitle: "60 dakika",
+    },
+  ];
+
+  const aiNutritionSuggestions: aiSuggestionItem[] = [
+    {
+      img: "food1",
+      title: "Kahvaltı",
+      subtitle: "Yumurta, 2 dilim ekmek",
+    },
+    {
+      img: "food2",
+      title: "Ara Öğün",
+      subtitle: "Meyve, 1 bardak süt",
+    },
+  ];
+
   const addPlanValues: CreatePlanValue[] = [
     {
       icon: "running",
       title: "Egzersiz Ekle",
-      form: <h1>Egzersiz</h1>,
+      form: (
+        <AddPlanValues
+          values={aiTraningSuggestions}
+          texts={{
+            title: "AI Egzersiz Önerileri",
+            subtitle: "Aı size özel egzersiz önerileri sunar.",
+            buttonLabel: "Egzersiz Ekle",
+          }}
+        />
+      ),
     },
     {
       icon: "fork",
       title: "Besin Ekle",
-      form: <h1>Besin</h1>,
+      form: (
+        <AddPlanValues
+          values={aiNutritionSuggestions}
+          texts={{
+            title: "AI Besin Önerileri",
+            subtitle: "Aı size özel besin önerileri sunar.",
+            buttonLabel: "Besin Ekle",
+          }}
+        />
+      ),
     },
   ];
 

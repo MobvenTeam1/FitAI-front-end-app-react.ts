@@ -39,7 +39,7 @@ export const CustomModal: React.FC<CustomModalProps> = ({
           &#8203;
         </span>
         <div
-          className="inline-block w-full align-bottom max-w-4xl px-14 pt-8 pb-14 bg-white rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle"
+          className="relative inline-block w-full align-bottom max-w-4xl px-14 pt-8 pb-14 bg-white rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle"
           onClick={stopPropagation}
         >
           <div className="flex justify-end mb-4">
@@ -50,7 +50,7 @@ export const CustomModal: React.FC<CustomModalProps> = ({
               <img src="/icons/ic_close.svg" alt="" />
             </button>
           </div>
-          <div className="bg-white h-[55h] overflow-auto ">{children}</div>
+          <div className="bg-white">{children}</div>
           {/* <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
             <button
               type="button"

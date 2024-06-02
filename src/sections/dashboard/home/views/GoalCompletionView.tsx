@@ -16,6 +16,7 @@ export const GoalCompletionView: React.FC = () => {
           </div>
         ))}
       </div>
+      
       <RadialChart size="md" labels={["Hedef Tamamlama"]} />
 
       <div className="flex items-center">
