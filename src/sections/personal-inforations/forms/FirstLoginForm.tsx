@@ -5,7 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { PersonalInformationsContext } from "../context/PersonalInformationsContext";
 import { FirstLoginFormValues } from "../values";
-// import { RHFFormValues } from "../../../components/hook-form/RHFFormValues";
+import { RHFFormValues } from "../../../components/hook-form/RHFFormValues";
 import { renderFormElement } from "../rhf-components/renderFormElement";
 import { Stepper } from "../components/Stepper";
 import { CustomButton } from "../../../components/customs/custom-button";
@@ -15,7 +15,7 @@ type PersonalFormValues = {
   size: string;
   currentWeight: string;
   targetWeight: string;
-  birthDate: string;
+  birthDate: Date;
   goal: string;
 };
 
@@ -24,7 +24,7 @@ const schema = yup.object().shape({
   size: yup.string().required("Boy zorunlu"),
   currentWeight: yup.string().required("Kilo zorunlu"),
   targetWeight: yup.string().required("Hedef kilo zorunlu"),
-  birthDate: yup.string().required("Doğum tarihi zorunlu"),
+  birthDate: yup.date().required("Doğum tarihi zorunlu"),
   goal: yup.string().required("Hedef zorunlu"),
 });
 
@@ -33,7 +33,7 @@ const defaultValues: PersonalFormValues = {
   size: "",
   currentWeight: "",
   targetWeight: "",
-  birthDate: "",
+  birthDate: new Date(),
   goal: "",
 };
 
@@ -73,8 +73,8 @@ export const FirstLoginForm: React.FC = () => {
         {showStep && renderFormElement(showStep)}
         <CustomButton onClick={handleNext} type="button" label="Sonraki" />
 
-        {/* <hr />
-        <RHFFormValues /> */}
+        <hr />
+        <RHFFormValues />
       </form>
     </FormProvider>
   );

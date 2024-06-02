@@ -7,6 +7,9 @@ import translationEnglish from "./langs/english/translation.json";
 import translationSpanish from "./langs/spanish/translation.json";
 import translationFrench from "./langs/french/translation.json";
 
+import 'dayjs/locale/tr';
+import 'dayjs/locale/en';
+
 //Import translation2 file
 // import translationEnglishSecondFile from "./langs/english/translation2.json";
 
