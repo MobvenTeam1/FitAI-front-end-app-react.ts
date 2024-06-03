@@ -134,10 +134,11 @@ export const CalendarView: React.FC = () => {
             } as any,
           }}
           sx={{
-            marginTop: "48px",
-            marginBottom: "12px",
+            // marginTop: "48px",
+            // marginBottom: "12px",
             // padding: "4px 0",
             // transform: "scale(1.1)",
+            height: "300px",
             "& .circular-chart .circle": {
               stroke: "#a1d604",
             },
