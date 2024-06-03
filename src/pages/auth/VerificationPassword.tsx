@@ -82,9 +82,9 @@ export const VerificationPassword: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="container mx-auto max-w-xs min-h-screen flex items-center justify-center">
         <form
-          className="w-full pr-20 pl-28 flex flex-col gap-9"
+          className="w-full flex flex-col gap-9"
           onSubmit={onSubmit}
           noValidate
         >
@@ -103,7 +103,7 @@ export const VerificationPassword: React.FC = () => {
                   maxLength={1}
                   onChange={(e) => handleInputChange(index, e)}
                   onKeyDown={(e) => handleKeyDown(index, e)}
-                  className={`w-full p-12 border rounded-lg text-center text-lg font-bold focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-transparent focus:placeholder-transparent max-sm:p-1 ${
+                  className={`h-16 w-16 border rounded-lg text-center text-lg font-bold focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-transparent focus:placeholder-transparent max-sm:p-1 ${
                     values[index] !== ""
                       ? "border-green-600"
                       : values[index] === "" && isSubmitting
