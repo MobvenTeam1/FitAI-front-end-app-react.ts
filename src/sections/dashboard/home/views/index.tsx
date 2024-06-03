@@ -1,14 +1,13 @@
 import { useContext } from "react";
-import { HomeContext, HomeContextProvider } from "./home/context/HomeContext";
-
-import { DailyGoalsView } from "./home/views/DailyGoalsView";
-import { GoalCompletionView } from "./home/views/GoalCompletionView";
-import { CategoriesViews } from "./home/views/CategoriesViews";
-import { CalendarView } from "./home/views/CalendarView";
-import { CreatePlanView } from "./home/views/CreatePlanView";
-import { CreateAiPlanView } from "./home/views/CreateAiPlanView";
-import { PersonalProgramView } from "./home/views/PersonalProgramView";
-import { PuroseGainView } from "./home/views/PuroseGainView";
+import { HomeContext, HomeContextProvider } from "../context/HomeContext";
+import { DailyGoalsView } from "./DailyGoalsView";
+import { CategoriesViews } from "./CategoriesViews";
+import { GoalCompletionView } from "./GoalCompletionView";
+import { CreateAiPlanView } from "./CreateAiPlanView";
+import { CalendarView } from "./CalendarView";
+import { CreatePlanView } from "./CreatePlanView";
+import { PersonalProgramView } from "./PersonalProgramView";
+import { PuroseGainView } from "./PuroseGainView";
 
 export const HomeView: React.FC = () => {
   const {
