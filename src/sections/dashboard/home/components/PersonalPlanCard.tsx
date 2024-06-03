@@ -6,7 +6,6 @@ import { PersonalPropram } from "../context/types";
 
 type Props = {
   value: PersonalPropram;
-
 };
 
 export const PersonalPlanCard: React.FC<Props> = ({ value }) => {
@@ -34,10 +33,22 @@ export const PersonalPlanCard: React.FC<Props> = ({ value }) => {
               </div>
             </div>
           </div>
-          <SvgColor src="/icons/ic_arrow-up.svg" width={24} height={24} />
+          <div
+            className={`transition duration-500 ${
+              isShow ? "transform rotate-180" : ""
+            }`}
+          >
+            <SvgColor src="/icons/ic_arrow-up.svg" width={24} height={24} />
+          </div>
         </div>
       </div>
-      {isShow && <PersonalPlanOptions value={value.options} />}
+      <div
+        className={`transition-all duration-500 overflow-hidden -mt-5 ${
+          isShow ? "max-h-full" : "max-h-0"
+        }`}
+      >
+        {isShow && <PersonalPlanOptions value={value.options} />}
+      </div>
     </>
   );
 };
