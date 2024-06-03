@@ -23,13 +23,13 @@ const schema = yup.object().shape({
     .array()
     .of(yup.string())
     .required()
-    .min(1, "trainingType array cannot be empty"),
-  trainingRange: yup.string().required(),
+    .min(1, "Antreman tipi seçiniz"),
+  trainingRange: yup.string().required("Antreman sıklığı seçiniz"),
   targetArea: yup
     .array()
     .of(yup.string())
     .required()
-    .min(1, "targetArea array cannot be empty"),
+    .min(1, "Antreman hedefi seçiniz"),
 });
 
 const defaultValues: PersonalFormValues = {

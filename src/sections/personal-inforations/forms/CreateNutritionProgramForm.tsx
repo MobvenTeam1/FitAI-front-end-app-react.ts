@@ -17,9 +17,9 @@ type PersonalFormValues = {
 };
 
 const schema = yup.object().shape({
-  nutritionHealtIssue: yup.string().required(),
+  nutritionHealtIssue: yup.string().required("Sağlık sorununuzu belirtiniz."),
   nutritionAllergies: yup.string().nullable(),
-  nutritionDietType: yup.string().required(),
+  nutritionDietType: yup.string().required("Diyet tipinizi belirtiniz."),
 });
 
 const defaultValues: PersonalFormValues = {
