@@ -39,14 +39,15 @@ export const CreateNutritionProgramForm: React.FC = () => {
     (value) => value.step === step
   );
 
+  const isLastValue =
+    showStep?.step === CreateNutritionProgramValues.length - 1;
+    
+
   const handleNext = async () => {
     if (showStep) {
       const isValid = await trigger(showStep.name as keyof PersonalFormValues);
       //   console.log(isValid);
-      if (
-        isValid &&
-        showStep.step !== CreateNutritionProgramValues.length - 1
-      ) {
+      if (isValid && !isLastValue) {
         forwardStep();
       }
     }
@@ -77,7 +78,11 @@ export const CreateNutritionProgramForm: React.FC = () => {
                 variant="outlined"
               />
             )}
-            <CustomButton onClick={handleNext} type="button" label="Sonraki" />
+            <CustomButton
+              onClick={handleNext}
+              type="button"
+              label={isLastValue ? "Oluştur" : "İlerle"}
+            />
           </div>
         </div>
 

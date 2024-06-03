@@ -46,11 +46,13 @@ export const FirstLoginForm: React.FC = () => {
   const { handleSubmit, trigger } = form;
   const showStep = FirstLoginFormValues.find((value) => value.step === step);
 
+  const isLastValue = showStep?.step === FirstLoginFormValues.length - 1;
+
   const handleNext = async () => {
     if (showStep) {
       const isValid = await trigger(showStep.name as keyof PersonalFormValues);
-      console.log(isValid);
-      if (isValid && showStep.step !== FirstLoginFormValues.length - 1) {
+      // console.log(isValid);
+      if (isValid && !isLastValue) {
         forwardStep();
       }
     }
@@ -71,7 +73,11 @@ export const FirstLoginForm: React.FC = () => {
 
         <div className="text-4xl font-bold pb-7">{showStep?.label}</div>
         {showStep && renderFormElement(showStep)}
-        <CustomButton onClick={handleNext} type="button" label="Sonraki" />
+        <CustomButton
+          onClick={handleNext}
+          type="button"
+          label={isLastValue ? "Oluştur" : "İlerle"}
+        />
 
         {/* <hr />
         <RHFFormValues /> */}

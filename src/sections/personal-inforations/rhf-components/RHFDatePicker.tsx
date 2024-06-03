@@ -35,6 +35,8 @@ export const RHFDatePicker: FC<DatePickerProps> = ({
               py: 1,
               pl: 2,
               pr: 4,
+              fontSize: "22px",
+              fontWeight: 700,
             },
             // "& .MuiInputLabel-outlined.Mui-focused": {
             //   color: "rgba(73, 69, 79, 1)",

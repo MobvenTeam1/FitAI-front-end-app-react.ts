@@ -39,34 +39,34 @@ const gender: PersonalValue = {
 const size: PersonalValue = {
   step: 1,
   name: "size",
-  label: "Boyunuz kaç? (cm)",
+  label: "Boyunuz kaç?",
   selectType: 2,
-  placeholder: "Lütfen boyunuzu giriniz",
+  placeholder: "Lütfen boyunuzu giriniz (cm)",
   type: "number",
 };
 
 const currentWeight: PersonalValue = {
   step: 2,
   name: "currentWeight",
-  label: "Mevcut kilonuz kaç? (kg)",
+  label: "Mevcut kilonuz kaç?",
   selectType: 2,
-  placeholder: "Lütfen mevcut kilonuzu giriniz",
+  placeholder: "Lütfen mevcut kilonuzu giriniz(kg)",
   type: "number",
 };
 
 const targetWeight: PersonalValue = {
   step: 3,
   name: "targetWeight",
-  label: "Hedef kilonuz kaç? (kg)",
+  label: "Hedef kilonuz kaç?",
   selectType: 2,
-  placeholder: "Lütfen hedef kilonuzu giriniz",
+  placeholder: "Lütfen hedef kilonuzu giriniz (kg)",
   type: "number",
 };
 
 const birthDate: PersonalValue = {
   step: 4,
   name: "birthDate",
-  label: "Doğum gününüz nedir? (gg.aa.yyyy)",
+  label: "Doğum gününüz nedir?",
   selectType: 3,
   placeholder: "Lütfen doğum gününüzü giriniz",
 };
