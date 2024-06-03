@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { PersonalInformationsContext } from "../context/PersonalInformationsContext";
 import { useRouter } from "../../../hooks/useRouter";
 import { paths } from "../../../routes/paths";
-import { PersonalValue } from "../values";
+import { PersonalValue } from "../values/types";
+
 
 type TypeName = {
   values: PersonalValue[];
