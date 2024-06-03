@@ -8,6 +8,7 @@ import {
   Login,
   NewPassword,
   NotFound404,
+  NutritionAdd,
   Profile,
   Programs,
   Register,
@@ -15,6 +16,7 @@ import {
   SuccessPassword,
   Users,
   VerificationPassword,
+  WorkoutAdd,
   paths,
 } from "./imports";
 
@@ -77,6 +79,14 @@ const routes = createBrowserRouter([
           {
             path: paths.dashboard.programs,
             element: <Programs />,
+          },
+          {
+            path: paths.dashboard.workoutAdd,
+            element: <WorkoutAdd />,
+          },
+          {
+            path: paths.dashboard.nutritionAdd,
+            element: <NutritionAdd />,
           },
           {
             path: paths.dashboard.profile,

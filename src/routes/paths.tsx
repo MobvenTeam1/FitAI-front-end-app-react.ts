@@ -5,6 +5,8 @@ interface DashboardPaths {
   };
   programs: string;
   profile: string;
+  workoutAdd: string;
+  nutritionAdd: string;
 }
 
 interface AuthPaths {
@@ -32,6 +34,8 @@ export const paths: Paths = {
     },
     programs: "/programs",
     profile: "/profile",
+    workoutAdd: "/workout-add",
+    nutritionAdd: "/nutrition-add",
   },
   registration: "/registration",
   auth: {

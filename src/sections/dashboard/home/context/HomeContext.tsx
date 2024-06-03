@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 import { PersonalInformationsContextProvider } from "../../../personal-inforations/context/PersonalInformationsContext";
 import { CreateTrainingProgramForm } from "../../../personal-inforations/forms/CreateTrainingProgram";
 import { CreateNutritionProgramForm } from "../../../personal-inforations/forms/CreateNutritionProgramForm";
+import { paths } from "../../../../routes/paths";
 
 // Define the shape of the context
 interface HomeContextValues {
@@ -180,12 +181,12 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     {
       icon: "running",
       title: "Egzersiz Ekle",
-      path: "/add-xxx",
+      path: paths.dashboard.workoutAdd,
     },
     {
       icon: "fork",
       title: "Besin Ekle",
-      path: "/add-xxx",
+      path: paths.dashboard.nutritionAdd,
     },
   ];
 

@@ -1,5 +1,7 @@
 // imports.ts
 
+
+
 export { NotFound404 } from "../pages/NotFound404";
 export { Home } from "../pages/dashboard/Home";
 export { Users } from "../pages/dashboard/Users";
@@ -16,3 +18,5 @@ export { VerificationPassword } from "../pages/auth/VerificationPassword";
 export { SuccessPassword } from "../pages/auth/SuccessPassword";
 export { ForgotPassword } from "../pages/auth/ForgotPassword";
 export { Profile } from "../pages/dashboard/profile/Profile";
+export { NutritionAdd } from "../pages/dashboard/NutritionAdd";
+export { WorkoutAdd } from "../pages/dashboard/WorkoutAdd";
