@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { HomeContext } from "../context/HomeContext";
-import { GoalInfo } from "../components/GoalInfo";
+import { GoalInfo } from "../../../../components/GoalInfo";
 
 export const DailyGoalsView: React.FC = () => {
   const { goalValues } = useContext(HomeContext);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { CustomModal } from "../../../../components/customs/custom-modal";
-import { CustomButton } from "../../../../components/customs/custom-button";
-import { CreateAiSupportPlanValue } from "../context/types";
+import { CustomModal } from "./customs/custom-modal";
+import { CustomButton } from "./customs/custom-button";
+import { CreateAiSupportPlanValue } from "../sections/dashboard/home/context/types";
 
 
 type Props = {

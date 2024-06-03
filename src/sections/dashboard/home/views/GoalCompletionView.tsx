@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { HomeContext } from "../context/HomeContext";
-import { AddPlan } from "../components/AddPlan";
+import { AddPlan } from "../../../../components/AddPlan";
 import { RadialChart } from "../../../../components/charts/RadialChart";
-import { GoalCompletionInfos } from "../components/GoalCompletionInfos";
+import { GoalCompletionInfos } from "../../../../components/GoalCompletionInfos";
 
 export const GoalCompletionView: React.FC = () => {
   const { addPlanValues, goalCompletionInfoValues } = useContext(HomeContext);

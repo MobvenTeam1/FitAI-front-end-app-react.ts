@@ -1,5 +1,5 @@
 import React from "react";
-import { PersonalPlanCard } from "../components/PersonalPlanCard";
+import { PersonalPlanCard } from "../../../../components/PersonalPlanCard";
 import { PersonalPropram } from "../context/types";
 
 interface Props {

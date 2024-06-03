@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import SvgColor from "../svg-color";
 
-export const CustomSearchInput: React.FC = () => {
+interface CustomSearchInputProps {
+  onSearch: (query: string) => void;
+}
+
+export const CustomSearchInput: React.FC<CustomSearchInputProps> = ({
+  onSearch,
+}) => {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setInputValue(value);
+    onSearch(value);
+  };
+
   return (
     <div className="relative flex items-center">
       <div className="absolute left-8 top-4">
@@ -10,7 +24,9 @@ export const CustomSearchInput: React.FC = () => {
       <input
         type="text"
         placeholder="Ara..."
-        className="w-full pl-16 pr-8 py-4 rounded-xl border border-gray-50 shadow placeholder:text-gray-300"
+        className="w-full pl-16 pr-8 py-4 rounded-xl border border-gray-50 shadow placeholder:text-gray-300 focus:outline-none focus:border-gray-600"
+        value={inputValue}
+        onChange={handleInputChange}
       />
     </div>
   );

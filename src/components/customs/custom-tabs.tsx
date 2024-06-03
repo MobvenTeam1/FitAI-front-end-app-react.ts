@@ -1,15 +1,10 @@
 import React from "react";
+import { TabValue } from "../../sections/dashboard/workoutAdd/context/types";
 
 type Props = {
-  values: {
-    id: number;
-    title: string;
-  }[];
-  selectedTab: {
-    id: number;
-    title: string;
-  };
-  onClick: (value: { id: number; title: string }) => void;
+  values: TabValue[];
+  selectedTab: TabValue;
+  onClick: (value: TabValue) => void;
 };
 
 export const CustomTabs: React.FC<Props> = ({

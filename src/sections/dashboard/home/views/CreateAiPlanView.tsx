@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import SvgColor from "../../../../components/svg-color";
 import { CustomModal } from "../../../../components/customs/custom-modal";
 import { HomeContext } from "../context/HomeContext";
-import { CreateAiPlanCard } from "../components/CreateAiPlanCard";
+import { CreateAiPlanCard } from "../../../../components/CreateAiPlanCard";
 import { CreateAiSupportPlanValue } from "../context/types";
 
 export const CreateAiPlanView: React.FC = () => {

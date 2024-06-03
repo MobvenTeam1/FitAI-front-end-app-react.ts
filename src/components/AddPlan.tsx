@@ -1,6 +1,6 @@
 import React from "react";
-import SvgColor from "../../../../components/svg-color";
-import { useRouter } from "../../../../hooks/useRouter";
+import SvgColor from "./svg-color";
+import { useRouter } from "../hooks/useRouter";
 
 type Props = {
   icon: string;

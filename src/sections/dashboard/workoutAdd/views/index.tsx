@@ -1,124 +1,112 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { CustomSearchInput } from "../../../../components/customs/custom-search-input";
 import { CustomTabs } from "../../../../components/customs/custom-tabs";
 import { AddOptionCard } from "../../../../components/AddOptionCard";
-
-type TabValue = {
-  id: number;
-  title: string;
-};
+import { WorkoutAddContext } from "../context/WorkoutAddContext";
+import { PersonalProgramView } from "../../home/views/PersonalProgramView";
+import { PersonalPropram } from "../../home/context/types";
 
 export const WorkoutAddView: React.FC = () => {
-  const tabValues = [
-    { id: 1, title: "Geçmiş", value: "old"},
-    { id: 2, title: "Favoriler", value: "favorite" },
-  ];
-
-  const [selectedTab, setSelectedTab] = useState<TabValue>(tabValues[0]);
-
-  const handleChangeTab = (value: TabValue) => {
-    setSelectedTab(value);
-  };
+  const {
+    filteredOptions,
+    handleSearch,
+    tabValues,
+    selectedTab,
+    handleChangeTab,
+  } = useContext(WorkoutAddContext);
 
   return (
     <div className="grid grid-cols-12 gap-5">
       <div className="col-span-8">
         <div className="flex flex-col gap-10">
-          <CustomSearchInput />
+          <CustomSearchInput onSearch={handleSearch} />
           <CustomTabs
             values={tabValues}
             selectedTab={selectedTab}
             onClick={handleChangeTab}
           />
           <div className="flex flex-col gap-2">
-            {tempOptionValues.map((option, index) => (
+            {filteredOptions.map((option, index) => (
               <AddOptionCard key={index + option.title} option={option} />
             ))}
           </div>
         </div>
       </div>
-      <div className="col-span-4">x</div>
+      <div className="col-span-4">
+        <PersonalProgramView
+          values={personalTrainingPrograms}
+          header="Kişiselleştirilmiş Antrenman Planlanın"
+        />
+      </div>
     </div>
   );
 };
 
-interface Option {
-  id: number;
-  title: string;
-  img: string;
-  subtitle: string;
-  type: string;
-}
-
-const tempOptionValues: Option[] = [
+const personalTrainingPrograms: PersonalPropram[] = [
   {
-    id: 1,
-    title: "Yürüyüş",
-    img: "walking",
-    subtitle: "Düşük Tempo - 1 saatte 65 kcal",
-    type: "favorite",
+    programId: 1,
+    programTitle: "Yoga",
+    img: "personal-training",
+    duration: "60 dakika",
+    caloriesBurned: "100 kcal",
+    options: {
+      optionTitle: "Poses",
+      optionDetails: [
+        {
+          optionId: 1,
+          optionImage: "walking",
+          optionTitle: "Sun Salutation",
+          optionSubtitle: "Mat",
+          type: "training",
+        },
+        {
+          optionId: 2,
+          optionImage: "walk",
+          optionTitle: "Tree Pose",
+          optionSubtitle: "Mat",
+          type: "training",
+        },
+        {
+          optionId: 3,
+          optionImage: "walk-reverse",
+          optionTitle: "Downward Dog",
+          optionSubtitle: "Mat",
+          type: "training",
+        },
+      ],
+    },
   },
   {
-    id: 2,
-    title: "Koşu",
-    img: "running",
-    subtitle: "1 saatte 178 kcal",
-    type: "old",
-  },
-  {
-    id: 3,
-    title: "Bisiklet",
-    img: "cycling",
-    subtitle: "1 saatte 200 kcal",
-    type: "old",
-  },
-  {
-    id: 4,
-    title: "Yüzme",
-    img: "swimming",
-    subtitle: "1 saatte 300 kcal",
-    type: "favorite",
-  },
-  {
-    id: 5,
-    title: "Fitness",
-    img: "fitness",
-    subtitle: "1 saatte 400 kcal",
-    type: "old",
-  },
-  {
-    id: 6,
-    title: "Yoga",
-    img: "yoga",
-    subtitle: "1 saatte 150 kcal",
-    type: "favorite",
-  },
-  {
-    id: 7,
-    title: "Pilates",
-    img: "pilates",
-    subtitle: "1 saatte 200 kcal",
-    type: "old",
-  },
-  {
-    id: 8,
-    title: "Crossfit",
-    img: "crossfit",
-    subtitle: "1 saatte 500 kcal",
-    type: "favorite",
-  },
-  {
-    id: 9,
-    title: "Zumba",
-    img: "zumba",
-    subtitle: "1 saatte 300 kcal",
-    type: "old",
-  },
-  {
-    id: 10,
-    title: "Basketbol",
-    img: "basketball",
-    subtitle: "1 saatte 400 kcal",
-    type: "favorite",
+    programId: 2,
+    programTitle: "Cardio",
+    img: "doing-yoga",
+    duration: "30 minutes",
+    caloriesBurned: "300 kcal",
+    options: {
+      optionTitle: "Exercises",
+      optionDetails: [
+        {
+          optionId: 1,
+          optionImage: "walking",
+          optionTitle: "Jumping Jacks",
+          optionSubtitle: "No equipment",
+          type: "training",
+        },
+        {
+          optionId: 2,
+          optionImage: "walk",
+          optionTitle: "Burpees",
+          optionSubtitle: "No equipment",
+          type: "training",
+        },
+        {
+          optionId: 3,
+          optionImage: "walk-reverse",
+          optionTitle: "Mountain Climbers",
+          optionSubtitle: "No equipment",
+          type: "training",
+        },
+      ],
+    },
   },
 ];

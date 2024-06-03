@@ -20,7 +20,6 @@ const CustomBreadcrumbs: React.FC<CustomBreadcrumbsProps> = ({
   action,
   heading,
   moreLink,
-
   className,
 }) => {
   return (
@@ -31,7 +30,7 @@ const CustomBreadcrumbs: React.FC<CustomBreadcrumbsProps> = ({
         {links.length > 0 && (
           <nav className="flex items-center gap-4">
             {links.map((link, index) => (
-              <div className="flex items-center gap-4">
+              <div key={index + link.name} className="flex items-center gap-4">
                 <Link
                   key={link.name}
                   to={link.href || "#"}

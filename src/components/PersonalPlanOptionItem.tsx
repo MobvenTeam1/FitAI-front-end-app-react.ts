@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import { HomeContext } from "../context/HomeContext";
-import { CustomModal } from "../../../../components/customs/custom-modal";
+import { HomeContext } from "../sections/dashboard/home/context/HomeContext";
+import { CustomModal } from "./customs/custom-modal";
 import { AddPlanValues } from "./AddPlanValues";
-import { OptionPersonalProgramDetail } from "../context/types";
+import { OptionPersonalProgramDetail } from "../sections/dashboard/home/context/types";
 
 type Props = {
   option: OptionPersonalProgramDetail;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import SvgColor from "../../../../components/svg-color";
+import SvgColor from "./svg-color";
 import { PersonalPlanOptions } from "./PersonalPlanOptions";
-import { PersonalPropram } from "../context/types";
+import { PersonalPropram } from "../sections/dashboard/home/context/types";
 
 type Props = {
   value: PersonalPropram;

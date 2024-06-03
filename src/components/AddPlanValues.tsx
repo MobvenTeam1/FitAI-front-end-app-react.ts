@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CustomButton } from "../../../../components/customs/custom-button";
+import { CustomButton } from "./customs/custom-button";
 
 type Props = {
   values: StateValue[];
