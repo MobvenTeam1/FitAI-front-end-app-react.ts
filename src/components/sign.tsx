@@ -27,6 +27,7 @@ const Sign: React.FC = () => {
       >
         Github
       </a>
+      <p>v1</p>
     </div>
   );
 };
