@@ -1,7 +1,8 @@
 import React from "react";
-import { OptionsPersonalProgram } from "../context/HomeContext";
+
 import { CustomButton } from "../../../../components/customs/custom-button";
 import { PersonalPlanOptionItem } from "./PersonalPlanOptionItem";
+import { OptionsPersonalProgram } from "../context/types";
 
 type Props = {
   value: OptionsPersonalProgram;

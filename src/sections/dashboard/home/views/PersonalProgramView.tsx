@@ -1,6 +1,6 @@
 import React from "react";
-import { PersonalPropram } from "../context/HomeContext";
 import { PersonalPlanCard } from "../components/PersonalPlanCard";
+import { PersonalPropram } from "../context/types";
 
 interface Props {
   values: PersonalPropram[];

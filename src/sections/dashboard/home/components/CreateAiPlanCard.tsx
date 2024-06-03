@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { CustomModal } from "../../../../components/customs/custom-modal";
 import { CustomButton } from "../../../../components/customs/custom-button";
-import { CreateAiSupportPlanValue } from "../context/HomeContext";
+import { CreateAiSupportPlanValue } from "../context/types";
+
 
 type Props = {
   img: string;

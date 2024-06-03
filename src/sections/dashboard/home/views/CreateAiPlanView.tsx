@@ -1,13 +1,16 @@
 import React, { useContext, useState } from "react";
 import SvgColor from "../../../../components/svg-color";
 import { CustomModal } from "../../../../components/customs/custom-modal";
-import { CreateAiSupportPlanValue, HomeContext } from "../context/HomeContext";
+import { HomeContext } from "../context/HomeContext";
 import { CreateAiPlanCard } from "../components/CreateAiPlanCard";
+import { CreateAiSupportPlanValue } from "../context/types";
 
 export const CreateAiPlanView: React.FC = () => {
   const { aiSupportPlanValues } = useContext(HomeContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState<CreateAiSupportPlanValue>(aiSupportPlanValues[0]);
+  const [selectedCard, setSelectedCard] = useState<CreateAiSupportPlanValue>(
+    aiSupportPlanValues[0]
+  );
 
   const handleOpen = () => {
     setIsOpen(true);
