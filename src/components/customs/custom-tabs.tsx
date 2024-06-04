@@ -1,5 +1,11 @@
 import React from "react";
-import { TabValue } from "../../sections/dashboard/workoutAdd/context/types";
+
+type TabValue = {
+  id: number;
+  title: string;
+  value?: string;
+};
+
 
 type Props = {
   values: TabValue[];

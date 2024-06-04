@@ -1,9 +1,13 @@
 import React, { createContext, useState } from "react";
-import { TabValue, WorkoutAddContextValues, WorkoutOptionValue } from "./types";
+import {
+  NutritionAddContextValues,
+  NutritionOptionValue,
+  TabValue,
+} from "./types";
 
 // Create the context with default values
-export const WorkoutAddContext = createContext<WorkoutAddContextValues>({
-  workoutOptionValues: [],
+export const NutritionAddContext = createContext<NutritionAddContextValues>({
+  nutritionOptionValues: [],
   selectedTab: { id: 0, title: "", value: "" },
   handleChangeTab: () => {},
   tabValues: [],
@@ -17,10 +21,9 @@ interface ChildrenProps {
 }
 
 // Create the provider component
-export const WorkoutAddContextProvider: React.FC<ChildrenProps> = ({
+export const NutritionAddContextProvider: React.FC<ChildrenProps> = ({
   children,
 }) => {
-
   const tabValues: TabValue[] = [
     { id: 1, title: "Geçmiş", value: "old" },
     { id: 2, title: "Favoriler", value: "favorite" },
@@ -32,75 +35,75 @@ export const WorkoutAddContextProvider: React.FC<ChildrenProps> = ({
     setSelectedTab(value);
   };
 
-  const workoutOptionValues: WorkoutOptionValue[] = [
+  const nutritionOptionValues: NutritionOptionValue[] = [
     {
       id: 1,
-      title: "Yürüyüş",
-      img: "walking",
-      subtitle: "Düşük Tempo - 1 saatte 65 kcal",
+      title: "Fruits",
+      img: "snack1",
+      subtitle: "1 serving - 60 kcal",
       type: "favorite",
     },
     {
       id: 2,
-      title: "Koşu",
-      img: "running",
-      subtitle: "1 saatte 178 kcal",
+      title: "Vegetables",
+      img: "snack2",
+      subtitle: "1 serving - 25 kcal",
       type: "old",
     },
     {
       id: 3,
-      title: "Bisiklet",
-      img: "dumbell",
-      subtitle: "1 saatte 200 kcal",
+      title: "Grains",
+      img: "food1",
+      subtitle: "1 serving - 200 kcal",
       type: "old",
     },
     {
       id: 4,
-      title: "Yüzme",
-      img: "plates",
-      subtitle: "1 saatte 300 kcal",
+      title: "Protein",
+      img: "food2",
+      subtitle: "1 serving - 150 kcal",
       type: "favorite",
     },
     {
       id: 5,
-      title: "Fitness",
-      img: "fitness",
-      subtitle: "1 saatte 400 kcal",
+      title: "Dairy",
+      img: "food3",
+      subtitle: "1 serving - 120 kcal",
       type: "old",
     },
     {
       id: 6,
-      title: "Yoga",
-      img: "yoga",
-      subtitle: "1 saatte 150 kcal",
+      title: "Fats",
+      img: "food4",
+      subtitle: "1 serving - 45 kcal",
       type: "favorite",
     },
     {
       id: 7,
-      title: "Pilates",
-      img: "plates",
-      subtitle: "1 saatte 200 kcal",
+      title: "Sweets",
+      img: "food5",
+      subtitle: "1 serving - 150 kcal",
       type: "old",
     },
     {
       id: 8,
-      title: "Crossfit",
-      img: "plates",
-      subtitle: "1 saatte 500 kcal",
+      title: "Beverages",
+      img: "snack1",
+      subtitle: "1 serving - 100 kcal",
       type: "favorite",
     },
     {
       id: 9,
-      title: "Zumba",
-      img: "plates",
-      subtitle: "1 saatte 300 kcal",
+      title: "Snacks",
+      img: "snack2",
+      subtitle: "1 serving - 150 kcal",
       type: "old",
     },
     {
       id: 10,
-      title: "Basketbol",
-      img: "plates",
-      subtitle: "1 saatte 400 kcal",
+      title: "Fast Food",
+      img: "food4",
+      subtitle: "1 serving - 500 kcal",
       type: "favorite",
     },
   ];
@@ -111,26 +114,24 @@ export const WorkoutAddContextProvider: React.FC<ChildrenProps> = ({
     setSearchQuery(query);
   };
 
-  const filteredOptions = workoutOptionValues
+  const filteredOptions = nutritionOptionValues
     .filter((option) => option.type === selectedTab.value)
     .filter((option) =>
       option.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-  
-
   return (
-    <WorkoutAddContext.Provider
+    <NutritionAddContext.Provider
       value={{
-        workoutOptionValues,
+        nutritionOptionValues,
         tabValues,
         selectedTab,
         handleChangeTab,
         filteredOptions,
-        handleSearch
+        handleSearch,
       }}
     >
       {children}
-    </WorkoutAddContext.Provider>
+    </NutritionAddContext.Provider>
   );
 };

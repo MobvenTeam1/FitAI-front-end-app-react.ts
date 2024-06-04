@@ -4,7 +4,7 @@ import CustomBreadcrumbs from "../../components/customs/custom-breadcrumbs";
 import { WorkoutAddView } from "../../sections/dashboard/workoutAdd/views";
 import { WorkoutAddContextProvider } from "../../sections/dashboard/workoutAdd/context/WorkoutAddContext";
 
-export const WorkoutAdd: React.FC = () => {
+const WorkoutAdd: React.FC = () => {
   return (
     <WorkoutAddContextProvider>
       <CustomBreadcrumbs
@@ -19,3 +19,5 @@ export const WorkoutAdd: React.FC = () => {
     </WorkoutAddContextProvider>
   );
 };
+
+export default WorkoutAdd;

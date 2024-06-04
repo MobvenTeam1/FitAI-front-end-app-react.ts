@@ -2,18 +2,19 @@ import React, { useContext } from "react";
 import { CustomSearchInput } from "../../../../components/customs/custom-search-input";
 import { CustomTabs } from "../../../../components/customs/custom-tabs";
 import { AddOptionCard } from "../../../../components/AddOptionCard";
-import { WorkoutAddContext } from "../context/WorkoutAddContext";
+
 import { PersonalProgramView } from "../../home/views/PersonalProgramView";
 import { PersonalPropram } from "../../home/context/types";
+import { NutritionAddContext } from "../context/NutritionAddContext";
 
-export const WorkoutAddView: React.FC = () => {
+export const NutritionAddView: React.FC = () => {
   const {
     filteredOptions,
     handleSearch,
     tabValues,
     selectedTab,
     handleChangeTab,
-  } = useContext(WorkoutAddContext);
+  } = useContext(NutritionAddContext);
 
   return (
     <div className="grid grid-cols-12 gap-5">
@@ -40,77 +41,70 @@ export const WorkoutAddView: React.FC = () => {
       </div>
       <div className="col-span-4">
         <PersonalProgramView
-          values={personalTrainingPrograms}
-          header="Kişiselleştirilmiş Antrenman Planlanın"
+          values={personalNutritionPrograms}
+          header="Kişiselleştirilmiş Beslenme Planlanın"
         />
       </div>
     </div>
   );
 };
 
-const personalTrainingPrograms: PersonalPropram[] = [
+const personalNutritionPrograms: PersonalPropram[] = [
   {
     programId: 1,
-    programTitle: "Yoga",
-    img: "personal-training",
-    duration: "60 dakika",
-    caloriesBurned: "100 kcal",
+    programTitle: "Kahvaltı",
+    img: "breakfast",
+    duration: "Hemen",
+    caloriesBurned: "95 kcal",
     options: {
-      optionTitle: "Poses",
+      optionTitle: "Besinler",
       optionDetails: [
         {
           optionId: 1,
-          optionImage: "walking",
-          optionTitle: "Sun Salutation",
-          optionSubtitle: "Mat",
-          type: "training",
+          optionImage: "food4",
+          optionTitle: "Badem",
+          optionSubtitle: "5 tane, 75 kcal",
+          type: "nutrition",
         },
         {
           optionId: 2,
-          optionImage: "walk",
-          optionTitle: "Tree Pose",
-          optionSubtitle: "Mat",
-          type: "training",
-        },
-        {
-          optionId: 3,
-          optionImage: "walk-reverse",
-          optionTitle: "Downward Dog",
-          optionSubtitle: "Mat",
-          type: "training",
+          optionImage: "food5",
+          optionTitle: "Ceviz İçi",
+          optionSubtitle: "3 tane, 20 kcal",
+          type: "nutrition",
         },
       ],
     },
   },
   {
     programId: 2,
-    programTitle: "Cardio",
-    img: "doing-yoga",
-    duration: "30 minutes",
-    caloriesBurned: "300 kcal",
+    programTitle: "Ara Öğün",
+    img: "snack",
+    duration: "Günde 3 kez",
+    caloriesBurned: "2600 kcal",
     options: {
-      optionTitle: "Exercises",
+      optionTitle: "Yemekler",
       optionDetails: [
         {
           optionId: 1,
-          optionImage: "walking",
-          optionTitle: "Jumping Jacks",
-          optionSubtitle: "No equipment",
-          type: "training",
+          optionImage: "food1",
+          optionTitle: "Tavuk Pilav",
+          optionSubtitle: "her porsiyon, 500 kcal",
+          type: "nutrition",
         },
         {
           optionId: 2,
-          optionImage: "walk",
-          optionTitle: "Burpees",
-          optionSubtitle: "No equipment",
-          type: "training",
+          optionImage: "food2",
+          optionTitle: "Yumurta",
+          optionSubtitle: "her adet, 70 kcal",
+          type: "nutrition",
         },
         {
           optionId: 3,
-          optionImage: "walk-reverse",
-          optionTitle: "Mountain Climbers",
-          optionSubtitle: "No equipment",
-          type: "training",
+          optionImage: "food3",
+          optionTitle: "Salata",
+          optionSubtitle: "her porsiyon, 100 kcal",
+          type: "nutrition",
         },
       ],
     },

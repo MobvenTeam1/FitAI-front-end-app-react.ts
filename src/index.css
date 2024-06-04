@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
   .animate-spin {
     animation: spin 10s linear infinite;
@@ -56,7 +55,6 @@
   background: transparent;
 }
 
-
 /* mui calendar */
 
 /* .single-chart {
@@ -94,3 +92,41 @@
   stroke: #a1d604;
 } */
 
+
+/* test temp */
+/* <div className="btn-div w-full p-20 flex items-center justify-center">
+<button className="test-btn">Aşağı Kaydır</button>
+</div>
+
+
+.btn-div {
+  background: purple;
+}
+
+.test-btn {
+  background: white;
+  width: 200px;
+  height: 60px;
+  position: relative;
+  background: whites;
+  border: none;
+  overflow: hidden;
+  z-index: 999;
+  border-top-right-radius: 9999px;
+}
+
+.test-btn::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 100%;
+  background: purple;
+  border: none;
+  overflow: hidden;
+  z-index: 1;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 30px;
+  transition: 0.5s;
+} */

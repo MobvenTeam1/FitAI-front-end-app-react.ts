@@ -17,19 +17,19 @@ interface Option {
   title: string;
   img: string;
   subtitle: string;
-  type: string;
+  type?: string | undefined;
 }
 
 type TrainingRangeTime = {
-  timeRange: string;
+  foodRande: string;
 };
 
 const schema = yup.object().shape({
-  timeRange: yup.string().required("Zaman zorunlu"),
+  foodRande: yup.string().required("Zaman zorunlu"),
 });
 
 const defaultValues: TrainingRangeTime = {
-  timeRange: "",
+  foodRande: "",
 };
 
 export const AddOptionCard: React.FC<Props> = ({ option }) => {
@@ -58,10 +58,15 @@ export const AddOptionCard: React.FC<Props> = ({ option }) => {
       <div className="flex items-center justify-between px-8 py-4 shadow rounded-xl border border-gray-50">
         <div className="flex items-center gap-2">
           <div className="bg-black-100 rounded-xl h-full p-2 flex items-center justify-center">
-            <SvgColor
+            {/* <SvgColor
               src={`/icons/ic_${option.img}.svg`}
               width={40}
               height={40}
+            /> */}
+            <img
+              className="w-10 h-10"
+              src={`/icons/ic_${option.img}.svg`}
+              alt=""
             />
           </div>
           <div className="flex flex-col">
@@ -84,12 +89,12 @@ export const AddOptionCard: React.FC<Props> = ({ option }) => {
             noValidate
           >
             <p className="font-bold text-gray-900 text-3xl">
-              Egzersizinizi kaç dakika yaptınız?{" "}
+              Öğünün porsiyonundan ne kadar kullandınız ?
             </p>
             <RHFTextfield
-              name="timeRange"
+              name="foodRande"
               type="number"
-              placeholder="Örn: 30 dakika"
+              placeholder="Örn: 1 kaşık 180 kcal"
             />
 
             <CustomButton type="submit" label="Tamamla" />

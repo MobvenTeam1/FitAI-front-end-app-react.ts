@@ -19,6 +19,8 @@ import {
   WorkoutAdd,
   paths,
 } from "./imports";
+import { Suspense } from "react";
+import { SplashScreen } from "../components/loading-screen/splash-screen";
 
 const routes = createBrowserRouter([
   {
@@ -61,16 +63,28 @@ const routes = createBrowserRouter([
   },
   {
     path: paths.dashboard.root,
-    element: <Outlet />,
+    element: (
+      <Suspense fallback={<SplashScreen />}>
+        <Outlet />
+      </Suspense>
+    ),
     children: [
       {
         path: paths.dashboard.root,
-        element: <GuestGuard />,
+        element: (
+          <Suspense fallback={<SplashScreen />}>
+            <GuestGuard />
+          </Suspense>
+        ),
         // element: <DashboardLayoutMain />,
         children: [
           {
             index: true,
-            element: <Home />,
+            element: (
+              <Suspense fallback={<SplashScreen />}>
+                <Home />
+              </Suspense>
+            ),
           },
           {
             path: paths.dashboard.users.root,
@@ -82,15 +96,27 @@ const routes = createBrowserRouter([
           },
           {
             path: paths.dashboard.workoutAdd,
-            element: <WorkoutAdd />,
+            element: (
+              <Suspense fallback={<SplashScreen />}>
+                <WorkoutAdd />
+              </Suspense>
+            ),
           },
           {
             path: paths.dashboard.nutritionAdd,
-            element: <NutritionAdd />,
+            element: (
+              <Suspense fallback={<SplashScreen />}>
+                <NutritionAdd />
+              </Suspense>
+            ),
           },
           {
             path: paths.dashboard.profile,
-            element: <Profile />,
+            element: (
+              <Suspense fallback={<SplashScreen />}>
+                <Profile />
+              </Suspense>
+            ),
           },
         ],
       },

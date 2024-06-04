@@ -1,18 +1,18 @@
-export interface WorkoutAddContextValues {
-  workoutOptionValues: WorkoutOptionValue[];
+export interface NutritionAddContextValues {
+  nutritionOptionValues: NutritionOptionValue[];
   selectedTab: TabValue;
   handleChangeTab: (value: TabValue) => void;
   tabValues: TabValue[];
-  filteredOptions: WorkoutOptionValue[];
+  filteredOptions: NutritionOptionValue[];
   handleSearch: (query: string) => void;
 }
 
-export interface WorkoutOptionValue {
+export interface NutritionOptionValue {
   id: number;
   title: string;
   img: string;
   subtitle: string;
-  type?: string;
+  type: string;
 }
 
 export type TabValue = {

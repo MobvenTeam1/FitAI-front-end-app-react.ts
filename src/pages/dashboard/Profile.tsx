@@ -1,17 +1,13 @@
 import React from "react";
-import CustomBreadcrumbs from "../../components/customs/custom-breadcrumbs";
-import { paths } from "../../routes/paths";
+import { ProfileContextProvider } from "../../sections/dashboard/profile/context/ProfileContext";
+import ProfileView from "../../sections/dashboard/profile/views";
 
-export const Profile: React.FC = () => {
+const Profile: React.FC = () => {
   return (
-    <div>
-      <CustomBreadcrumbs
-        heading="Profil"
-        links={[
-          { name: "Dashboard", href: paths.dashboard.root },
-          { name: "Profil", href: paths.dashboard.profile },
-        ]}
-      />
-    </div>
+    <ProfileContextProvider>
+      <ProfileView />
+    </ProfileContextProvider>
   );
 };
+
+export default Profile;
