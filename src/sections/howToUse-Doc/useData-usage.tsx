@@ -7,13 +7,13 @@ const jsonData = {
 };
 
 export const UseDataUsage: React.FC = () => {
-  const { data: getData, error: getError } = useData<unknown>(
-    requests.getCart,
-    "GET",
-    {
-      limit: 5,
-    }
-  );
+  // const { data: getData, error: getError } = useData<unknown>(
+  //   requests.getCart,
+  //   "GET",
+  //   {
+  //     limit: 2,
+  //   }
+  // );
 
   const {
     data: postData,
@@ -36,7 +36,7 @@ export const UseDataUsage: React.FC = () => {
   //   error: formPostError
   // } = useData<any>("/endpoint", "POST", formData, "multipart/form-data");
 
-  console.log("getData", getData, getError);
+  // console.log("getData", getData, getError);
 
   console.log("postData", postData, postError, loading);
 

@@ -54,7 +54,7 @@ function ServerDay(
         />
         <path
           className="circle"
-          stroke-dasharray="30, 100" // dimaic value
+          strokeDasharray="30, 100" // dimaic value
           d="M18 2.0845
             a 15.9155 15.9155 0 0 1 0 31.831
             a 15.9155 15.9155 0 0 1 0 -31.831"
