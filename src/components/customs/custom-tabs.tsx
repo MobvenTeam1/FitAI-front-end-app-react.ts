@@ -23,7 +23,7 @@ export const CustomTabs: React.FC<Props> = ({
       {values.map((value) => (
         <button
           key={value.id}
-          className={`w-full py-4 px-8 rounded-xl ${
+          className={`w-full py-4 px-8 rounded-xl text-nowrap ${
             selectedTab.id === value.id
               ? "bg-green-500 text-gray-900"
               : "text-gray-300"

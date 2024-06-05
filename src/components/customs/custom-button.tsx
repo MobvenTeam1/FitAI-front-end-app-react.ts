@@ -28,7 +28,7 @@ interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const baseClassName =
-  "group relative w-full text-gray-500 font-semibold flex justify-center py-2 px-4 font-semibold rounded-lg transition-colors duration-200";
+  "group relative w-full text-gray-500 font-semibold flex justify-center py-2 px-4 font-semibold rounded-xl transition-colors duration-200";
 
 export const CustomButton: FC<CustomButtonProps> = ({
   type = "button",

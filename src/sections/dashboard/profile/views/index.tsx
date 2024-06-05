@@ -4,10 +4,15 @@ import { paths } from "../../../../routes/paths";
 import { CustomTabs } from "../../../../components/customs/custom-tabs";
 import { ProfileContext } from "../context/ProfileContext";
 import PurposeGainView from "./PurposeGainView";
+import { OutletSectionValue } from "../context/types";
 
 const ProfileView: React.FC = () => {
-  const { tabValues, selectedTab, handleChangeTab } =
+  const { tabValues, selectedTab, handleChangeTab, outletSectionValues } =
     useContext(ProfileContext);
+
+  const selectedSection: OutletSectionValue | undefined =
+    outletSectionValues.find((item) => item.id === selectedTab.id);
+
   return (
     <div className="flex flex-col gap-10">
       <CustomBreadcrumbs
@@ -15,8 +20,10 @@ const ProfileView: React.FC = () => {
         links={[
           { name: "Dashboard", href: paths.dashboard.root },
           { name: "Profil", href: paths.dashboard.profile },
+          { name: selectedSection?.title || "Kişileştir" },
         ]}
       />
+
       <CustomTabs
         values={tabValues}
         selectedTab={selectedTab}
@@ -27,7 +34,7 @@ const ProfileView: React.FC = () => {
         <div className="col-span-4">
           <PurposeGainView />
         </div>
-        <div className="col-span-8">y</div>
+        <div className="col-span-8">{selectedSection?.section}</div>
       </div>
     </div>
   );
