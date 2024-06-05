@@ -10,31 +10,38 @@ import { AuthHeader } from "../../sections/auth/AuthHeader";
 import { AuthSocial } from "../../sections/auth/AuthSocial";
 import { AuthLink } from "../../sections/auth/AuthLink";
 import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/RHFCheckbox";
-import { RHFInputMask } from "../../components/hook-form/RHFInputMask";
+// import { RHFInputMask } from "../../components/hook-form/RHFInputMask";
 import { useState } from "react";
 import { CustomModal } from "../../components/customs/custom-modal";
+import {
+  ApplicationJson,
+  useData,
+  withHandleControl,
+} from "../../hooks/useData";
 // import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 
 export type FormValues = {
-  name: string;
-  surname: string;
+  userName: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  phone: string;
+  // phone: string;
   password: string;
-  confirmPassword: string;
+  passwordConfirm: string;
   isRead?: boolean;
 };
 
 const schema = yup.object().shape({
-  name: yup.string().required("Ad zorunlu"),
-  surname: yup.string().required("Soyad zorunlu"),
+  userName: yup.string().required("Kullanıcı Adı zorunlu"),
+  firstName: yup.string().required("Ad zorunlu"),
+  lastName: yup.string().required("Soyad zorunlu"),
   email: yup
     .string()
     .email("Email format zorunlu")
     .required("Email adresi zorunlu"),
-  phone: yup.string().required("Telefon zorunlu"),
+  // phone: yup.string().required("Telefon zorunlu"),
   password: yup.string().required("Parola zorunlu"),
-  confirmPassword: yup
+  passwordConfirm: yup
     .string()
     .oneOf([yup.ref("password")], "Paralolar eşleşmiyor")
     .required("Paraola tekrarı zorunlu"),
@@ -44,12 +51,13 @@ const schema = yup.object().shape({
 });
 
 const defaultValues: FormValues = {
-  name: "İlber",
-  surname: "Ortaylı",
+  userName: "iber_34",
+  firstName: "İlber",
+  lastName: "Ortaylı",
   email: "ilber@gmail.com",
-  phone: "555-555-5555",
+  // phone: "555-555-5555",
   password: "123456",
-  confirmPassword: "123456",
+  passwordConfirm: "123456",
   isRead: true,
 };
 
@@ -72,10 +80,29 @@ export const Register: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  const { control, handleSubmit } = form;
+  const { watch, control, handleSubmit } = form;
+  const jsonData = watch();
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
+  const {
+    data: returnApiData,
+    isLoading,
+    mutate,
+    
+  } = useData<unknown>(
+    "/User/Register",
+    "POST",
+    jsonData,
+    ApplicationJson,
+    withHandleControl
+  );
+  console.log(isLoading);
+
+  const onSubmit = async (data: FormValues) => {
+    console.log("Gönderilen veri", data);
+
+    mutate();
+
+    console.log("Api dönen veri", returnApiData);
 
     handlePush(paths.registration);
   };
@@ -96,18 +123,21 @@ export const Register: React.FC = () => {
             <AuthHeader title="Kayıt Ol" />
 
             <div className="grid grid-cols-12 gap-6">
-              <div className="col-span-6">
-                <RHFTextfield name="name" label="Ad" />
+              <div className="col-span-12">
+                <RHFTextfield name="userName" label="Kullanıcı Adı" />
               </div>
               <div className="col-span-6">
-                <RHFTextfield name="surname" label="Soyad" />
+                <RHFTextfield name="firstName" label="Ad" />
+              </div>
+              <div className="col-span-6">
+                <RHFTextfield name="lastName" label="Soy Ad" />
               </div>
               <div className="col-span-12">
                 <RHFTextfield name="email" label="Email" />
               </div>
-              <div className="col-span-12">
+              {/* <div className="col-span-12">
                 <RHFInputMask name="phone" label="Telefon" />
-              </div>
+              </div> */}
               <div className="col-span-12">
                 <RHFTextfield
                   name="password"
@@ -118,7 +148,7 @@ export const Register: React.FC = () => {
               </div>
               <div className="col-span-12">
                 <RHFTextfield
-                  name="confirmPassword"
+                  name="passwordConfirm"
                   label="Parola Tekrar"
                   type="password"
                 />

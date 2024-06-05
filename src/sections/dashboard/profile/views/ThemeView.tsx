@@ -29,13 +29,13 @@ const ThemeView: React.FC = () => {
         {themeValues.map((item, index) => (
           <div
             key={index}
-            className={`col-span-4 ${
-              selectedTheme === item.id ? "border-green-500" : ""
-            }`}
+            className={`col-span-4`}
             onClick={() => setSelectedTheme(item.id)}
           >
             <img
-              className="w-full rounded-xl h-28x"
+              className={`w-full border border-gray-50 rounded-xl cursor-pointer h-28x ${
+                selectedTheme === item.id ? "outline outline-green-500" : ""
+              }`}
               src={`/frames/frame_${item.img}-theme.png`}
               alt={item.title}
             />
