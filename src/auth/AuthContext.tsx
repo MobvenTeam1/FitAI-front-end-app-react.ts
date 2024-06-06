@@ -31,7 +31,7 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   });
 
   useEffect(() => {
-    setTokenLocalStorage(authState.token || "");
+    setTokenLocalStorage("accessToken", authState.token || "");
   }, [authState.token]);
 
   const login = (data: FormValues) => {
@@ -46,13 +46,13 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
       .then((json) => {
         // console.log(json.token);
         setAuthState({ token: json.token });
-        setTokenLocalStorage(json.token);
+        setTokenLocalStorage("accessToken", json.token);
       });
   };
 
   const logout = () => {
     setAuthState({ token: null });
-    setTokenLocalStorage("");
+    setTokenLocalStorage("accessToken", "");
   };
 
   return (

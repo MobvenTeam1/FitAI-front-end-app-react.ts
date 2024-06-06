@@ -14,3 +14,7 @@ export default class HttpClient {
     return this.client.request<T>(config);
   }
 }
+
+export const tempInstance = axios.create({
+  baseURL: BASE_URL
+});

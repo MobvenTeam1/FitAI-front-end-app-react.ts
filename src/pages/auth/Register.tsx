@@ -13,11 +13,8 @@ import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/
 // import { RHFInputMask } from "../../components/hook-form/RHFInputMask";
 import { useState } from "react";
 import { CustomModal } from "../../components/customs/custom-modal";
-import {
-  ApplicationJson,
-  useData,
-  withHandleControl,
-} from "../../hooks/useData";
+import { tempInstance } from "../../api/models/HttpClient";
+
 // import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 
 export type FormValues = {
@@ -80,31 +77,23 @@ export const Register: React.FC = () => {
     resolver: yupResolver(schema),
   });
 
-  const { watch, control, handleSubmit } = form;
-  const jsonData = watch();
+  const { control, handleSubmit } = form;
 
-  const {
-    data: returnApiData,
-    isLoading,
-    mutate,
-    
-  } = useData<unknown>(
-    "/User/Register",
-    "POST",
-    jsonData,
-    ApplicationJson,
-    withHandleControl
-  );
-  console.log(isLoading);
+  const postRegisterRequest = async (data: FormValues) => {
+    try {
+      const { data: resData } = await tempInstance.post("/User/Register", data);
+      console.log(resData);
+      handlePush(paths.registration);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = (data: FormValues) => {
     console.log("Gönderilen veri", data);
 
-    mutate();
-
-    console.log("Api dönen veri", returnApiData);
-
-    handlePush(paths.registration);
+    postRegisterRequest(data);
+    // handlePush(paths.registration);
   };
 
   const handlePush = (path: string) => {
@@ -114,6 +103,7 @@ export const Register: React.FC = () => {
   return (
     <>
       <div className="py-10">
+       
         <FormProvider {...form}>
           <form
             className="w-full pr-20 pl-28 flex flex-col gap-9 max-sm:px-6"
