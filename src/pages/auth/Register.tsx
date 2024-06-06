@@ -4,7 +4,7 @@ import { DevTool } from "@hookform/devtools";
 import * as yup from "yup";
 import { RHFTextfield } from "../../components/hook-form/RHFTextfield";
 import { RHFSubmitButton } from "../../components/hook-form/RHFSubmitButton";
-import { useRouter } from "../../hooks/useRouter";
+// import { useRouter } from "../../hooks/useRouter";
 import { paths } from "../../routes/paths";
 import { AuthHeader } from "../../sections/auth/AuthHeader";
 import { AuthSocial } from "../../sections/auth/AuthSocial";
@@ -13,7 +13,8 @@ import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/
 // import { RHFInputMask } from "../../components/hook-form/RHFInputMask";
 import { useState } from "react";
 import { CustomModal } from "../../components/customs/custom-modal";
-import { tempInstance } from "../../api/models/HttpClient";
+// import { tempInstance } from "../../api/models/HttpClient";
+import { ApplicationJson, useData } from "../../hooks/useData";
 
 // import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 
@@ -59,7 +60,9 @@ const defaultValues: FormValues = {
 };
 
 export const Register: React.FC = () => {
-  const router = useRouter();
+  // const router = useRouter();
+
+  const [jsonData, setJsonData] = useState<FormValues>(defaultValues);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -79,31 +82,41 @@ export const Register: React.FC = () => {
 
   const { control, handleSubmit } = form;
 
-  const postRegisterRequest = async (data: FormValues) => {
-    try {
-      const { data: resData } = await tempInstance.post("/User/Register", data);
-      console.log(resData);
-      handlePush(paths.registration);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const {
+    // data: postData,
+    // error: postError,
+    // isLoading: loading,
+    mutate,
+  } = useData<unknown>("/User/Register", "POST", jsonData, ApplicationJson);
+
+  // const postRegisterRequest = async (data: FormValues) => {
+  //   try {
+  //     const { data: resData } = await tempInstance.post("/User/Register", data);
+  //     console.log(resData);
+  //     handlePush(paths.registration);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   const onSubmit = (data: FormValues) => {
     console.log("Gönderilen veri", data);
 
-    postRegisterRequest(data);
+    setJsonData(data);
+
+    mutate();
+
+    // postRegisterRequest(data);
     // handlePush(paths.registration);
   };
 
-  const handlePush = (path: string) => {
-    router.push(path);
-  };
+  // const handlePush = (path: string) => {
+  //   router.push(path);
+  // };
 
   return (
     <>
       <div className="py-10">
-       
         <FormProvider {...form}>
           <form
             className="w-full pr-20 pl-28 flex flex-col gap-9 max-sm:px-6"
