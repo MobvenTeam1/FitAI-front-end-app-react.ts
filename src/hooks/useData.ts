@@ -1,22 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // src/hooks/useData.ts
-import useSWR, { SWRResponse, SWRConfiguration } from "swr";
-import GetClient from "../api/models/GetClient";
-import DeleteClient from "../api/models/DeleteClient";
-import PostClient from "../api/models/PostClient";
-import PutClient from "../api/models/PutClient";
-
+import useSWR, { SWRResponse } from "swr";
+import api from '../api';
 export const MultiFormData = "multipart/form-data";
 export const ApplicationJson = "application/json";
 export const withHandleControl = {
   revalidateOnMount: false,
   revalidateOnFocus: false,
+  onErrorRetry: () => {
+    return;
+  }
 };
-
-const getClient = new GetClient();
-const deleteClient = new DeleteClient();
-const jsonPostClient = new PostClient();
-const jsonPutClient = new PutClient();
 
 const fetcher = async ([url, method, data, contentType]: [
   string,
@@ -26,24 +20,18 @@ const fetcher = async ([url, method, data, contentType]: [
 ]) => {
   switch (method) {
     case "GET":
-      return getClient.get<any>(url, data);
+      return api.get<any>(url, data);
     case "POST":
-      if (contentType === MultiFormData) {
-        return jsonPostClient.post<any>(url, data, MultiFormData);
-      } else {
-        return jsonPostClient.post<any>(url, data, ApplicationJson);
-      }
-    case "PUT":
-      if (contentType === MultiFormData) {
-        return jsonPutClient.put<any>(url, data, MultiFormData);
-      } else {
-        return jsonPutClient.put<any>(url, data, ApplicationJson);
-      }
-    case "DELETE":
-      return deleteClient.delete<any>(url);
+      return api.post<any>(url, data, contentType || ApplicationJson);
+      // if (contentType === MultiFormData) {
+      //   return api.post<any>(url, data, MultiFormData);
+      // } else {
+      //   return api.post<any>(url, data, ApplicationJson);
+      // }
     default:
       throw new Error("Unsupported method");
   }
+  // return api.request(method, url, data, contentType)
 };
 
 export const useData = <T>(
@@ -51,7 +39,7 @@ export const useData = <T>(
   method: string = "GET",
   data?: any,
   contentType: string = ApplicationJson,
-  config?: SWRConfiguration<T, any>
+  // config?: SWRConfiguration<T, any>
 ): SWRResponse<T, any> => {
-  return useSWR<T>([url, method, data, contentType], fetcher, config);
+  return useSWR<T>([url, method, data, contentType], fetcher, withHandleControl);
 };

@@ -14,9 +14,9 @@ import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/
 import { useState } from "react";
 import { CustomModal } from "../../components/customs/custom-modal";
 // import { tempInstance } from "../../api/models/HttpClient";
-import { ApplicationJson, useData } from "../../hooks/useData";
-
+import api from '../../api';
 // import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
+import { useData, ApplicationJson } from "../../hooks/useData";
 
 export type FormValues = {
   userName: string;
@@ -62,8 +62,6 @@ const defaultValues: FormValues = {
 export const Register: React.FC = () => {
   // const router = useRouter();
 
-  const [jsonData, setJsonData] = useState<FormValues>(defaultValues);
-
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleOpenModal = (e: React.MouseEvent) => {
@@ -82,13 +80,6 @@ export const Register: React.FC = () => {
 
   const { control, handleSubmit } = form;
 
-  const {
-    // data: postData,
-    // error: postError,
-    // isLoading: loading,
-    mutate,
-  } = useData<unknown>("/User/Register", "POST", jsonData, ApplicationJson);
-
   // const postRegisterRequest = async (data: FormValues) => {
   //   try {
   //     const { data: resData } = await tempInstance.post("/User/Register", data);
@@ -99,15 +90,28 @@ export const Register: React.FC = () => {
   //   }
   // };
 
-  const onSubmit = (data: FormValues) => {
+  const [jsonData, setJsonData] = useState<FormValues>(defaultValues);
+  const { error, mutate } = useData<unknown>(`/User/Register`, "POST", jsonData, ApplicationJson);
+
+  const onSubmit = async (data: FormValues) => {
     console.log("Gönderilen veri", data);
-
     setJsonData(data);
-
     mutate();
+    
+    // api.post(
+    //   "/User/Register", 
+    //   data, 
+    //   ApplicationJson
+    // )
+    //   .then((res) => console.log(res))
+    //   .catch(error => console.log(error));
 
-    // postRegisterRequest(data);
-    // handlePush(paths.registration);
+    // const {data} = await api.post(
+    //   "/User/Register",
+    //   data,
+    //   ApplicationJson
+    // );
+    // console.log(data);
   };
 
   // const handlePush = (path: string) => {
@@ -116,6 +120,7 @@ export const Register: React.FC = () => {
 
   return (
     <>
+      <h3>{error?.message}</h3>
       <div className="py-10">
         <FormProvider {...form}>
           <form
