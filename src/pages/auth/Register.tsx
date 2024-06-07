@@ -4,7 +4,7 @@ import { DevTool } from "@hookform/devtools";
 import * as yup from "yup";
 import { RHFTextfield } from "../../components/hook-form/RHFTextfield";
 import { RHFSubmitButton } from "../../components/hook-form/RHFSubmitButton";
-import { useRouter } from "../../hooks/useRouter";
+// import { useRouter } from "../../hooks/useRouter";
 import { paths } from "../../routes/paths";
 import { AuthHeader } from "../../sections/auth/AuthHeader";
 import { AuthSocial } from "../../sections/auth/AuthSocial";
@@ -13,9 +13,10 @@ import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/
 // import { RHFInputMask } from "../../components/hook-form/RHFInputMask";
 import { useState } from "react";
 import { CustomModal } from "../../components/customs/custom-modal";
-import { tempInstance } from "../../api/models/HttpClient";
-
+// import { tempInstance } from "../../api/models/HttpClient";
+import api from '../../api';
 // import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
+import { useData, ApplicationJson } from "../../hooks/useData";
 
 export type FormValues = {
   userName: string;
@@ -59,7 +60,7 @@ const defaultValues: FormValues = {
 };
 
 export const Register: React.FC = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -79,31 +80,48 @@ export const Register: React.FC = () => {
 
   const { control, handleSubmit } = form;
 
-  const postRegisterRequest = async (data: FormValues) => {
-    try {
-      const { data: resData } = await tempInstance.post("/User/Register", data);
-      console.log(resData);
-      handlePush(paths.registration);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const postRegisterRequest = async (data: FormValues) => {
+  //   try {
+  //     const { data: resData } = await tempInstance.post("/User/Register", data);
+  //     console.log(resData);
+  //     handlePush(paths.registration);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  const onSubmit = (data: FormValues) => {
+  const [jsonData, setJsonData] = useState<FormValues>(defaultValues);
+  const { error, mutate } = useData<unknown>(`/User/Register`, "POST", jsonData, ApplicationJson);
+
+  const onSubmit = async (data: FormValues) => {
     console.log("Gönderilen veri", data);
+    setJsonData(data);
+    mutate();
+    
+    // api.post(
+    //   "/User/Register", 
+    //   data, 
+    //   ApplicationJson
+    // )
+    //   .then((res) => console.log(res))
+    //   .catch(error => console.log(error));
 
-    postRegisterRequest(data);
-    // handlePush(paths.registration);
+    // const {data} = await api.post(
+    //   "/User/Register",
+    //   data,
+    //   ApplicationJson
+    // );
+    // console.log(data);
   };
 
-  const handlePush = (path: string) => {
-    router.push(path);
-  };
+  // const handlePush = (path: string) => {
+  //   router.push(path);
+  // };
 
   return (
     <>
+      <h3>{error?.message}</h3>
       <div className="py-10">
-       
         <FormProvider {...form}>
           <form
             className="w-full pr-20 pl-28 flex flex-col gap-9 max-sm:px-6"
