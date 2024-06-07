@@ -15,8 +15,8 @@ import { useState } from "react";
 import { CustomModal } from "../../components/customs/custom-modal";
 // import { tempInstance } from "../../api/models/HttpClient";
 import api from '../../api';
+import { ApplicationJson } from "../../hooks/useData";
 // import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
-import { useData, ApplicationJson } from "../../hooks/useData";
 
 export type FormValues = {
   userName: string;
@@ -90,13 +90,20 @@ export const Register: React.FC = () => {
   //   }
   // };
 
-  const [jsonData, setJsonData] = useState<FormValues>(defaultValues);
-  const { error, mutate } = useData<unknown>(`/User/Register`, "POST", jsonData, ApplicationJson);
+  const postRegisterRequest = async (data: FormValues) => {
+    api.post(
+      "/User/Register", 
+      data, 
+      ApplicationJson
+    )
+      // .then((res) => console.log(res))
+      // .catch(error => console.log(error));
+  }
 
   const onSubmit = async (data: FormValues) => {
     console.log("Gönderilen veri", data);
-    setJsonData(data);
-    mutate();
+    postRegisterRequest(data)
+
     
     // api.post(
     //   "/User/Register", 
@@ -120,7 +127,6 @@ export const Register: React.FC = () => {
 
   return (
     <>
-      <h3>{error?.message}</h3>
       <div className="py-10">
         <FormProvider {...form}>
           <form

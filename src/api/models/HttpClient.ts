@@ -1,5 +1,5 @@
 // src/api/HttpClient.ts
-import axios, { AxiosHeaders, AxiosInstance, AxiosError } from 'axios';
+import axios, { AxiosHeaders, AxiosInstance } from 'axios';
 
 const BASE_URL = "http://165.22.93.225:5001/api";
 

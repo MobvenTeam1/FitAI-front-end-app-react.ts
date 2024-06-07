@@ -1,5 +1,5 @@
 import { requests } from "../../api/requests";
-import { ApplicationJson, useData, withHandleControl } from "../../hooks/useData";
+import { ApplicationJson, useData } from "../../hooks/useData";
 
 const jsonData = {
   username: "mor_2314",
@@ -25,7 +25,7 @@ export const UseDataUsage: React.FC = () => {
     "POST",
     jsonData,
     ApplicationJson,
-    withHandleControl
+    // withHandleControl
   );
 
   // // Create FormData object for multipart/form-data request
