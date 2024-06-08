@@ -15,6 +15,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@mui/material": "latest",
     "@mui/x-date-pickers": "latest",
+    "@tanstack/react-query": "^5.40.1",
     "apexcharts": "^3.49.1",
     "axios": "^1.7.0",
     "date-fns": "^3.6.0",

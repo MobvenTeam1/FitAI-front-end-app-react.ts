@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
 import { setTokenLocalStorage } from "../utils/setLocalStorage";
 import { FormValues } from "../pages/auth/Login";
+import { useMutation } from "@tanstack/react-query";
+import { loginRequest } from "../react-query";
 
 interface ChildrenProps {
   children: React.ReactNode;
@@ -25,6 +27,17 @@ export const AuthContext = createContext<{
 });
 
 export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
+  // const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: loginRequest,
+    onSuccess: (data) => {
+      setAuthState({ token: data.token });
+      setTokenLocalStorage("accessToken", data.token);
+      // Invalidate and refetch
+      //  queryClient.invalidateQueries({ queryKey: ['todos'] })
+    },
+  });
+
   const [authState, setAuthState] = useState(() => {
     const token = localStorage.getItem("accessToken");
     return { token };
@@ -35,19 +48,7 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   }, [authState.token]);
 
   const login = (data: FormValues) => {
-    fetch("https://fakestoreapi.com/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        // console.log(json.token);
-        setAuthState({ token: json.token });
-        setTokenLocalStorage("accessToken", json.token);
-      });
+    mutate(data);
   };
 
   const logout = () => {
