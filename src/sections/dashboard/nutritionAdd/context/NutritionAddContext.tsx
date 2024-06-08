@@ -13,6 +13,7 @@ export const NutritionAddContext = createContext<NutritionAddContextValues>({
   tabValues: [],
   filteredOptions: [],
   handleSearch: () => {},
+  updateTypeById: () => {},
 });
 
 // Define the properties for the provider component
@@ -35,7 +36,9 @@ export const NutritionAddContextProvider: React.FC<ChildrenProps> = ({
     setSelectedTab(value);
   };
 
-  const nutritionOptionValues: NutritionOptionValue[] = [
+  const [nutritionOptionValues, setNutritionOptionValues] = useState<
+    NutritionOptionValue[]
+  >([
     {
       id: 1,
       title: "Fruits",
@@ -106,7 +109,7 @@ export const NutritionAddContextProvider: React.FC<ChildrenProps> = ({
       subtitle: "1 serving - 500 kcal",
       type: "favorite",
     },
-  ];
+  ]);
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -120,6 +123,18 @@ export const NutritionAddContextProvider: React.FC<ChildrenProps> = ({
       option.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+  const updateTypeById = (id) => {
+    const updatedOptions = nutritionOptionValues.map((option) => {
+      if (option.id === id) {
+        const newType = option.type === "favorite" ? "old" : "favorite";
+        return { ...option, type: newType };
+      }
+      return option;
+    });
+
+    setNutritionOptionValues(updatedOptions);
+  };
+
   return (
     <NutritionAddContext.Provider
       value={{
@@ -129,6 +144,7 @@ export const NutritionAddContextProvider: React.FC<ChildrenProps> = ({
         handleChangeTab,
         filteredOptions,
         handleSearch,
+        updateTypeById,
       }}
     >
       {children}

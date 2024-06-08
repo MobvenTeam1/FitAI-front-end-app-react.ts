@@ -9,6 +9,7 @@ export const WorkoutAddContext = createContext<WorkoutAddContextValues>({
   tabValues: [],
   filteredOptions: [],
   handleSearch: () => {},
+  updateType: () => [],
 });
 
 // Define the properties for the provider component
@@ -20,7 +21,6 @@ interface ChildrenProps {
 export const WorkoutAddContextProvider: React.FC<ChildrenProps> = ({
   children,
 }) => {
-
   const tabValues: TabValue[] = [
     { id: 1, title: "Geçmiş", value: "old" },
     { id: 2, title: "Favoriler", value: "favorite" },
@@ -32,7 +32,9 @@ export const WorkoutAddContextProvider: React.FC<ChildrenProps> = ({
     setSelectedTab(value);
   };
 
-  const workoutOptionValues: WorkoutOptionValue[] = [
+  const [workoutOptionValues, setWorkoutOptionValues] = useState<
+    WorkoutOptionValue[]
+  >([
     {
       id: 1,
       title: "Yürüyüş",
@@ -103,7 +105,7 @@ export const WorkoutAddContextProvider: React.FC<ChildrenProps> = ({
       subtitle: "1 saatte 400 kcal",
       type: "favorite",
     },
-  ];
+  ]);
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -111,13 +113,23 @@ export const WorkoutAddContextProvider: React.FC<ChildrenProps> = ({
     setSearchQuery(query);
   };
 
+  const updateTypeById = (id) => {
+    const updatedOptions = workoutOptionValues.map((option) => {
+      if (option.id === id) {
+        const newType = option.type === "favorite" ? "old" : "favorite";
+        return { ...option, type: newType };
+      }
+      return option;
+    });
+
+    setWorkoutOptionValues(updatedOptions);
+  };
+
   const filteredOptions = workoutOptionValues
     .filter((option) => option.type === selectedTab.value)
     .filter((option) =>
       option.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
-  
 
   return (
     <WorkoutAddContext.Provider
@@ -127,7 +139,8 @@ export const WorkoutAddContextProvider: React.FC<ChildrenProps> = ({
         selectedTab,
         handleChangeTab,
         filteredOptions,
-        handleSearch
+        handleSearch,
+        updateTypeById,
       }}
     >
       {children}

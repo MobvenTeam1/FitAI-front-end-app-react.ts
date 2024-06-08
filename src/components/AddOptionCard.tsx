@@ -10,6 +10,7 @@ import { RHFTextfield } from "../sections/personal-inforations/rhf-components/RH
 
 type Props = {
   option: Option;
+  updateTypeById: (id: number) => void;
 };
 
 interface Option {
@@ -32,7 +33,7 @@ const defaultValues: TrainingRangeTime = {
   foodRande: "",
 };
 
-export const AddOptionCard: React.FC<Props> = ({ option }) => {
+export const AddOptionCard: React.FC<Props> = ({ option, updateTypeById }) => {
   const form = useForm<TrainingRangeTime>({
     defaultValues,
     resolver: yupResolver(schema),
@@ -74,11 +75,25 @@ export const AddOptionCard: React.FC<Props> = ({ option }) => {
             <span className="text-gray-300 text-sm">{option.subtitle}</span>
           </div>
         </div>
-        <div
-          onClick={handleOpen}
-          className="bg-black-100 rounded-full p-2 flex items-center justify-center cursor-pointer text-gray-900"
-        >
-          <SvgColor src="/icons/ic_added.svg" width={14} height={14} />
+        <div className="flex items-center gap-3">
+          <div
+            onClick={() => updateTypeById(option.id)}
+            className="bg-black-100 rounded-full p-2 flex items-center justify-center cursor-pointer text-gray-900"
+          >
+            <SvgColor
+              src={`/icons/ic_heart-${
+                option.type === "favorite" ? "full" : "empty"
+              }.svg`}
+              width={14}
+              height={14}
+            />
+          </div>
+          <div
+            onClick={handleOpen}
+            className="bg-black-100 rounded-full p-2 flex items-center justify-center cursor-pointer text-gray-900"
+          >
+            <SvgColor src="/icons/ic_added.svg" width={14} height={14} />
+          </div>
         </div>
       </div>
       <CustomModal isOpen={isOpen} onClose={handleClose}>

@@ -13,6 +13,7 @@ export const WorkoutAddView: React.FC = () => {
     tabValues,
     selectedTab,
     handleChangeTab,
+    updateTypeById
   } = useContext(WorkoutAddContext);
 
   return (
@@ -33,7 +34,7 @@ export const WorkoutAddView: React.FC = () => {
           </div>
           <div className="flex flex-col gap-2">
             {filteredOptions.map((option, index) => (
-              <AddOptionCard key={index + option.title} option={option} />
+              <AddOptionCard key={index + option.title} option={option} updateTypeById={updateTypeById} />
             ))}
           </div>
         </div>

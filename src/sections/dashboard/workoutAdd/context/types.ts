@@ -5,6 +5,7 @@ export interface WorkoutAddContextValues {
   tabValues: TabValue[];
   filteredOptions: WorkoutOptionValue[];
   handleSearch: (query: string) => void;
+  updateTypeById: (id: number) => void;
 }
 
 export interface WorkoutOptionValue {
