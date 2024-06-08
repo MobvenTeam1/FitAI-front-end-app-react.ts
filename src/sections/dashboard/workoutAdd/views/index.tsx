@@ -5,6 +5,7 @@ import { AddOptionCard } from "../../../../components/AddOptionCard";
 import { WorkoutAddContext } from "../context/WorkoutAddContext";
 import { PersonalProgramView } from "../../home/views/PersonalProgramView";
 import { PersonalPropram } from "../../home/context/types";
+import ResultNotFound from "../../../../components/ResultNotFound";
 
 export const WorkoutAddView: React.FC = () => {
   const {
@@ -13,7 +14,7 @@ export const WorkoutAddView: React.FC = () => {
     tabValues,
     selectedTab,
     handleChangeTab,
-    updateTypeById
+    updateTypeById,
   } = useContext(WorkoutAddContext);
 
   return (
@@ -32,9 +33,19 @@ export const WorkoutAddView: React.FC = () => {
               {filteredOptions.length} sonuç bulundu{" "}
             </p>
           </div>
+          {filteredOptions.length === 0 ? (
+            <ResultNotFound
+              buttonLabel="Antreman Ekle"
+              message="Aradığınız kriterlere uygun antreman bulunamadı."
+            />
+          ) : null}
           <div className="flex flex-col gap-2">
             {filteredOptions.map((option, index) => (
-              <AddOptionCard key={index + option.title} option={option} updateTypeById={updateTypeById} />
+              <AddOptionCard
+                key={index + option.title}
+                option={option}
+                updateTypeById={updateTypeById}
+              />
             ))}
           </div>
         </div>

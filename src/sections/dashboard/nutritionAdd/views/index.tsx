@@ -6,6 +6,7 @@ import { AddOptionCard } from "../../../../components/AddOptionCard";
 import { PersonalProgramView } from "../../home/views/PersonalProgramView";
 import { PersonalPropram } from "../../home/context/types";
 import { NutritionAddContext } from "../context/NutritionAddContext";
+import ResultNotFound from "../../../../components/ResultNotFound";
 
 export const NutritionAddView: React.FC = () => {
   const {
@@ -33,6 +34,12 @@ export const NutritionAddView: React.FC = () => {
               {filteredOptions.length} sonuç bulundu{" "}
             </p>
           </div>
+          {filteredOptions.length === 0 ? (
+            <ResultNotFound
+              buttonLabel="Beslneme Ekle"
+              message="Aradığınız kriterlere uygun beslenme bulunamadı."
+            />
+          ) : null}
           <div className="flex flex-col gap-2">
             {filteredOptions.map((option, index) => (
               <AddOptionCard
