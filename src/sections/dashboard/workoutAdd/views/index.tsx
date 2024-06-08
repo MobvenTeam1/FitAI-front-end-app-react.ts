@@ -6,6 +6,11 @@ import { WorkoutAddContext } from "../context/WorkoutAddContext";
 import { PersonalProgramView } from "../../home/views/PersonalProgramView";
 import { PersonalPropram } from "../../home/context/types";
 import ResultNotFound from "../../../../components/ResultNotFound";
+import * as yup from "yup";
+import { FormProvider, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RHFTextfield } from "../../../personal-inforations/rhf-components/RHFTextfield";
+import { CustomButton } from "../../../../components/customs/custom-button";
 
 export const WorkoutAddView: React.FC = () => {
   const {
@@ -45,6 +50,7 @@ export const WorkoutAddView: React.FC = () => {
                 key={index + option.title}
                 option={option}
                 updateTypeById={updateTypeById}
+                modalForm={<OpenModalForm sendId={option.id} />}
               />
             ))}
           </div>
@@ -57,6 +63,54 @@ export const WorkoutAddView: React.FC = () => {
         />
       </div>
     </div>
+  );
+};
+
+type TrainingRangeTime = {
+  foodRande: string;
+};
+
+const schema = yup.object().shape({
+  foodRande: yup.string().required("Zaman zorunlu"),
+});
+
+const defaultValues: TrainingRangeTime = {
+  foodRande: "",
+};
+
+type OpenModalFormProps = {
+  sendId: number;
+};
+
+const OpenModalForm: React.FC<OpenModalFormProps> = ({ sendId }) => {
+  const form = useForm<TrainingRangeTime>({
+    defaultValues,
+    resolver: yupResolver(schema),
+  });
+  const { handleSubmit } = form;
+
+  const onSubmit = (data: TrainingRangeTime) => {
+    console.log(data, sendId);
+  };
+  return (
+    <FormProvider {...form}>
+      <form
+        className="flex flex-col gap-6"
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+      >
+        <p className="font-bold text-gray-900 text-3xl">
+          Öğünün porsiyonundan ne kadar kullandınız ?
+        </p>
+        <RHFTextfield
+          name="foodRande"
+          type="number"
+          placeholder="Örn: 1 kaşık 180 kcal"
+        />
+
+        <CustomButton type="submit" label="Antremanı Tanımla" />
+      </form>
+    </FormProvider>
   );
 };
 

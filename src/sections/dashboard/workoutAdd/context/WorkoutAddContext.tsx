@@ -9,7 +9,7 @@ export const WorkoutAddContext = createContext<WorkoutAddContextValues>({
   tabValues: [],
   filteredOptions: [],
   handleSearch: () => {},
-  updateType: () => [],
+  updateTypeById: () => {},
 });
 
 // Define the properties for the provider component
@@ -113,7 +113,7 @@ export const WorkoutAddContextProvider: React.FC<ChildrenProps> = ({
     setSearchQuery(query);
   };
 
-  const updateTypeById = (id) => {
+  const updateTypeById = (id: number) => {
     const updatedOptions = workoutOptionValues.map((option) => {
       if (option.id === id) {
         const newType = option.type === "favorite" ? "old" : "favorite";

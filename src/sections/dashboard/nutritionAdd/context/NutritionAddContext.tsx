@@ -123,7 +123,7 @@ export const NutritionAddContextProvider: React.FC<ChildrenProps> = ({
       option.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-  const updateTypeById = (id) => {
+  const updateTypeById = (id : number) => {
     const updatedOptions = nutritionOptionValues.map((option) => {
       if (option.id === id) {
         const newType = option.type === "favorite" ? "old" : "favorite";

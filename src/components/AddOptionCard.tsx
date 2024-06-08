@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import SvgColor from "./svg-color";
 import { CustomModal } from "./customs/custom-modal";
-import * as yup from "yup";
-import { FormProvider, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-import { CustomButton } from "./customs/custom-button";
-import { RHFTextfield } from "../sections/personal-inforations/rhf-components/RHFTextfield";
 
 type Props = {
   option: Option;
   updateTypeById: (id: number) => void;
+  modalForm: React.ReactNode;
 };
 
 interface Option {
@@ -21,29 +16,11 @@ interface Option {
   type?: string | undefined;
 }
 
-type TrainingRangeTime = {
-  foodRande: string;
-};
-
-const schema = yup.object().shape({
-  foodRande: yup.string().required("Zaman zorunlu"),
-});
-
-const defaultValues: TrainingRangeTime = {
-  foodRande: "",
-};
-
-export const AddOptionCard: React.FC<Props> = ({ option, updateTypeById }) => {
-  const form = useForm<TrainingRangeTime>({
-    defaultValues,
-    resolver: yupResolver(schema),
-  });
-  const { handleSubmit } = form;
-
-  const onSubmit = (data: TrainingRangeTime) => {
-    console.log(data);
-  };
-
+export const AddOptionCard: React.FC<Props> = ({
+  option,
+  updateTypeById,
+  modalForm,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -97,24 +74,7 @@ export const AddOptionCard: React.FC<Props> = ({ option, updateTypeById }) => {
         </div>
       </div>
       <CustomModal isOpen={isOpen} onClose={handleClose}>
-        <FormProvider {...form}>
-          <form
-            className="flex flex-col gap-6"
-            onSubmit={handleSubmit(onSubmit)}
-            noValidate
-          >
-            <p className="font-bold text-gray-900 text-3xl">
-              Öğünün porsiyonundan ne kadar kullandınız ?
-            </p>
-            <RHFTextfield
-              name="foodRande"
-              type="number"
-              placeholder="Örn: 1 kaşık 180 kcal"
-            />
-
-            <CustomButton type="submit" label="Tamamla" />
-          </form>
-        </FormProvider>
+        {modalForm}
       </CustomModal>
     </>
   );
