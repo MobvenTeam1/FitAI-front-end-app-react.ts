@@ -9,6 +9,7 @@ import { RHFFormValues } from "../../../components/hook-form/RHFFormValues";
 import { renderFormElement } from "../rhf-components/renderFormElement";
 import { Stepper } from "../components/Stepper";
 import { CustomButton } from "../../../components/customs/custom-button";
+import { AuthContext } from "../../../auth/AuthContext";
 
 type PersonalFormValues = {
   gender: string;
@@ -38,6 +39,7 @@ const defaultValues: PersonalFormValues = {
 };
 
 export const FirstLoginForm: React.FC = () => {
+  const { logout } = useContext(AuthContext);
   const { step, forwardStep } = useContext(PersonalInformationsContext);
   const form = useForm<PersonalFormValues>({
     defaultValues,
@@ -77,6 +79,14 @@ export const FirstLoginForm: React.FC = () => {
           onClick={handleNext}
           type="button"
           label={isLastValue ? "Oluştur" : "İlerle"}
+        />
+
+        <CustomButton
+          type="button"
+          variant="link"
+          color="red"
+          onClick={logout}
+          label="Daha sonra devam et"
         />
 
         <hr />
