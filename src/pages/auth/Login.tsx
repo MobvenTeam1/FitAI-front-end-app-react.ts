@@ -4,7 +4,6 @@ import { DevTool } from "@hookform/devtools";
 import * as yup from "yup";
 import { RHFTextfield } from "../../components/hook-form/RHFTextfield";
 import { RHFSubmitButton } from "../../components/hook-form/RHFSubmitButton";
-// import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 import { AuthContext } from "../../auth/AuthContext";
 import { useContext } from "react";
 import { useRouter } from "../../hooks/useRouter";
@@ -14,7 +13,7 @@ import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/
 import { AuthSocial } from "../../sections/auth/AuthSocial";
 import { AuthLink } from "../../sections/auth/AuthLink";
 
-export type FormValues = {
+export type LoginFormValues = {
   email: string;
   password: string;
   isCheck: boolean;
@@ -29,13 +28,13 @@ const schema = yup.object().shape({
   isCheck: yup.boolean().required("Check is required"),
 });
 
-// const defaultValues: FormValues = {
+// const defaultValues: LoginFormValues = {
 //   email: "mor_2314",
 //   password: "83r5^_",
 //   isCheck: false,
 // };
 
-const defaultValues: FormValues = {
+const defaultValues: LoginFormValues = {
   email: "fatih.akpiyal1@gmail.com",
   password: "31hatay31",
   isCheck: false,
@@ -46,14 +45,14 @@ export const Login: React.FC = () => {
   const router = useRouter();
   const { login } = useContext(AuthContext);
 
-  const form = useForm<FormValues>({
+  const form = useForm<LoginFormValues>({
     defaultValues,
     resolver: yupResolver(schema),
   });
 
   const { control, handleSubmit } = form;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: LoginFormValues) => {
     login(data);
   };
 

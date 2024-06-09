@@ -4,19 +4,18 @@ import { DevTool } from "@hookform/devtools";
 import * as yup from "yup";
 import { RHFTextfield } from "../../components/hook-form/RHFTextfield";
 import { RHFSubmitButton } from "../../components/hook-form/RHFSubmitButton";
-// import { useRouter } from "../../hooks/useRouter";
+
 import { paths } from "../../routes/paths";
 import { AuthHeader } from "../../sections/auth/AuthHeader";
 import { AuthSocial } from "../../sections/auth/AuthSocial";
 import { AuthLink } from "../../sections/auth/AuthLink";
 import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/RHFCheckbox";
 // import { RHFInputMask } from "../../components/hook-form/RHFInputMask";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CustomModal } from "../../components/customs/custom-modal";
-// import { tempInstance } from "../../api/models/HttpClient";
-// import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
+import { AuthContext } from "../../auth/AuthContext";
 
-export type FormValues = {
+export type RegisterFormValues = {
   userName: string;
   firstName: string;
   lastName: string;
@@ -46,7 +45,7 @@ const schema = yup.object().shape({
     .oneOf([true], "Şartları ve gizlilik sözleşmesini kabul etmelisiniz"),
 });
 
-const defaultValues: FormValues = {
+const defaultValues: RegisterFormValues = {
   userName: "iber_34",
   firstName: "İlber",
   lastName: "Ortaylı",
@@ -58,7 +57,7 @@ const defaultValues: FormValues = {
 };
 
 export const Register: React.FC = () => {
-  // const router = useRouter();
+  const { register } = useContext(AuthContext);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -71,15 +70,16 @@ export const Register: React.FC = () => {
     setIsOpenModal(false);
   };
 
-  const form = useForm<FormValues>({
+  const form = useForm<RegisterFormValues>({
     defaultValues,
     resolver: yupResolver(schema),
   });
 
   const { control, handleSubmit } = form;
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: RegisterFormValues) => {
     console.log("Gönderilen veri", data);
+    register(data);
   };
 
   return (

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getLocalStorage } from "../utils/getLocalStorage";
 
 // BASE_URL tanımı, gerçek URL'nizle değiştirin
 export const BASE_URL = "http://165.22.93.225:5001/api/";
@@ -8,9 +9,10 @@ export const tempUrl = "https://fakestoreapi.com";
 export const serviceAxios = axios.create({ baseURL: BASE_URL });
 
 serviceAxios.interceptors.request.use((config) => {
-  const token = localStorage.getItem("accessToken");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  const accessToken = getLocalStorage("accessToken");
+  const registerToken = getLocalStorage("registerToken");
+  if (accessToken || registerToken) {
+    config.headers.Authorization = `Bearer ${registerToken || accessToken}`;
   }
   return config;
 });

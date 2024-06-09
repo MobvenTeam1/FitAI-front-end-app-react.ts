@@ -12,7 +12,6 @@ import {
   Profile,
   Programs,
   Register,
-  Registration,
   SuccessPassword,
   Users,
   VerificationPassword,
@@ -22,6 +21,7 @@ import {
 } from "./imports";
 import { Suspense } from "react";
 import { SplashScreen } from "../components/loading-screen/splash-screen";
+import RegistrationGuard from "../auth/guard/RegistrationGuard";
 
 const routes = createBrowserRouter([
   {
@@ -60,7 +60,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "/registration",
-    element: <Registration />,
+    element: <RegistrationGuard />,
   },
   {
     path: paths.dashboard.root,

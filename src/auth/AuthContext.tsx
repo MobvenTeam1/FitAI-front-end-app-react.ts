@@ -1,8 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
 import { setTokenLocalStorage } from "../utils/setLocalStorage";
-import { FormValues } from "../pages/auth/Login";
+
 import { useMutation } from "@tanstack/react-query";
 import { loginRequest, registerRequest } from "../api";
+import { LoginFormValues } from "../pages/auth/Login";
+import { RegisterFormValues } from "../pages/auth/Register";
 
 interface ChildrenProps {
   children: React.ReactNode;
@@ -20,9 +22,9 @@ const initialAuthState: AuthState = {
 
 export const AuthContext = createContext<{
   authState: AuthState;
-  login: (data: FormValues) => void;
+  login: (data: LoginFormValues) => void;
   logout: () => void;
-  register: (data: FormValues) => void;
+  register: (data: RegisterFormValues) => void;
 }>({
   authState: initialAuthState,
   login: () => {},
@@ -56,27 +58,31 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 
   const { mutate: registerMutate } = useMutation({
     mutationFn: registerRequest,
-    onSuccess: (data) => {
-      console.log("data", data);
-      setAuthState((prevState) => ({
+    onSuccess: async (data) => {
+      await setAuthState((prevState) => ({
         ...prevState,
         registerToken: data.userToken,
       }));
-      setTokenLocalStorage("registerToken", data.userToken);
+      await setTokenLocalStorage("registerToken", data.userToken);
     },
   });
 
-  const register = (data: FormValues) => {
+  const register = (data: RegisterFormValues) => {
     registerMutate(data);
   };
 
-  const login = (data: FormValues) => {
+  const login = (data: LoginFormValues) => {
     loginMutate(data);
   };
 
   const logout = () => {
-    setAuthState((prevState) => ({ ...prevState, accessToken: null }));
+    setAuthState((prevState) => ({
+      ...prevState,
+      accessToken: null,
+      registerToken: null,
+    }));
     setTokenLocalStorage("accessToken", "");
+    setTokenLocalStorage("registerToken", "");
   };
 
   return (

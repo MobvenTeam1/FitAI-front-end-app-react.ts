@@ -1,4 +1,5 @@
-import { FormValues } from "../pages/auth/Login";
+import { LoginFormValues } from "../pages/auth/Login";
+import { RegisterFormValues } from "../pages/auth/Register";
 import { serviceAxios } from "./axios";
 
 export type authorizationResponse = {
@@ -6,7 +7,7 @@ export type authorizationResponse = {
 };
 
 export const loginRequest = async (
-  data: FormValues
+  data: LoginFormValues
 ): Promise<authorizationResponse> => {
   const response = await serviceAxios.post("/User/Login", data, {
     headers: {
@@ -17,7 +18,7 @@ export const loginRequest = async (
 };
 
 export const registerRequest = async (
-  data: FormValues
+  data: RegisterFormValues
 ): Promise<authorizationResponse> => {
   const response = await serviceAxios.post("/User/Register", data, {
     headers: {
