@@ -14,8 +14,6 @@ import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/
 import { useState } from "react";
 import { CustomModal } from "../../components/customs/custom-modal";
 // import { tempInstance } from "../../api/models/HttpClient";
-import api from '../../old-api';
-import { ApplicationJson } from "../../hooks/useData";
 // import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 
 export type FormValues = {
@@ -80,50 +78,9 @@ export const Register: React.FC = () => {
 
   const { control, handleSubmit } = form;
 
-  // const postRegisterRequest = async (data: FormValues) => {
-  //   try {
-  //     const { data: resData } = await tempInstance.post("/User/Register", data);
-  //     console.log(resData);
-  //     handlePush(paths.registration);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  const postRegisterRequest = async (data: FormValues) => {
-    api.post(
-      "/User/Register", 
-      data, 
-      ApplicationJson
-    )
-      // .then((res) => console.log(res))
-      // .catch(error => console.log(error));
-  }
-
   const onSubmit = async (data: FormValues) => {
     console.log("Gönderilen veri", data);
-    postRegisterRequest(data)
-
-    
-    // api.post(
-    //   "/User/Register", 
-    //   data, 
-    //   ApplicationJson
-    // )
-    //   .then((res) => console.log(res))
-    //   .catch(error => console.log(error));
-
-    // const {data} = await api.post(
-    //   "/User/Register",
-    //   data,
-    //   ApplicationJson
-    // );
-    // console.log(data);
   };
-
-  // const handlePush = (path: string) => {
-  //   router.push(path);
-  // };
 
   return (
     <>

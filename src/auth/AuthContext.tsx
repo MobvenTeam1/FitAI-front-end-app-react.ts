@@ -2,63 +2,85 @@ import React, { createContext, useEffect, useState } from "react";
 import { setTokenLocalStorage } from "../utils/setLocalStorage";
 import { FormValues } from "../pages/auth/Login";
 import { useMutation } from "@tanstack/react-query";
-import { loginRequest } from "../api";
+import { loginRequest, registerRequest } from "../api";
 
 interface ChildrenProps {
   children: React.ReactNode;
 }
 
 interface AuthState {
-  token: string | null;
+  accessToken: string | null;
+  registerToken: string | null;
 }
 
 const initialAuthState: AuthState = {
-  token: null,
+  accessToken: null,
+  registerToken: null,
 };
 
 export const AuthContext = createContext<{
   authState: AuthState;
   login: (data: FormValues) => void;
   logout: () => void;
+  register: (data: FormValues) => void;
 }>({
   authState: initialAuthState,
   login: () => {},
   logout: () => {},
+  register: () => {},
 });
 
 export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
-  // const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationFn: loginRequest,
-    onSuccess: (data) => {
-      console.log("data", data);
-      setAuthState({ token: data.userToken });
-      setTokenLocalStorage("accessToken", data.userToken);
-      // Invalidate and refetch
-      //  queryClient.invalidateQueries({ queryKey: ['todos'] })
-    },
-  });
-
   const [authState, setAuthState] = useState(() => {
-    const token = localStorage.getItem("accessToken");
-    return { token };
+    const accessToken = localStorage.getItem("accessToken");
+    const registerToken = localStorage.getItem("registerToken");
+    return { accessToken, registerToken };
   });
 
   useEffect(() => {
-    setTokenLocalStorage("accessToken", authState.token || "");
-  }, [authState.token]);
+    setTokenLocalStorage("accessToken", authState.accessToken || "");
+  }, [authState.accessToken]);
+
+  // const queryClient = useQueryClient();
+  const { mutate: loginMutate } = useMutation({
+    mutationFn: loginRequest,
+    onSuccess: (data) => {
+      console.log("data", data);
+      setAuthState((prevState) => ({
+        ...prevState,
+        accessToken: data.userToken,
+      }));
+      setTokenLocalStorage("accessToken", data.userToken);
+    },
+  });
+
+  const { mutate: registerMutate } = useMutation({
+    mutationFn: registerRequest,
+    onSuccess: (data) => {
+      console.log("data", data);
+      setAuthState((prevState) => ({
+        ...prevState,
+        registerToken: data.userToken,
+      }));
+      setTokenLocalStorage("registerToken", data.userToken);
+    },
+  });
+
+  const register = (data: FormValues) => {
+    registerMutate(data);
+  };
 
   const login = (data: FormValues) => {
-    mutate(data);
+    loginMutate(data);
   };
 
   const logout = () => {
-    setAuthState({ token: null });
+    setAuthState((prevState) => ({ ...prevState, accessToken: null }));
     setTokenLocalStorage("accessToken", "");
   };
 
   return (
-    <AuthContext.Provider value={{ authState, login, logout }}>
+    <AuthContext.Provider value={{ authState, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -5,7 +5,7 @@ import { AuthLayoutMain } from "../../layouts/auth/AuthLayout";
 
 const AuthGuard: React.FC = () => {
   const { authState } = useContext(AuthContext);
-  const accessToken = authState.token;
+  const accessToken = authState.accessToken;
 
   return !accessToken ? <AuthLayoutMain /> : <Navigate to="/" />;
 };
