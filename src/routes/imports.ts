@@ -23,9 +23,11 @@ export { ForgotPassword } from "../pages/auth/ForgotPassword";
 
 export const Home = lazy(() => import("../pages/dashboard/Home"));
 export const Profile = lazy(() => import("../pages/dashboard/Profile"));
+export const WorkoutPlan = lazy(() => import("../pages/dashboard/WorkoutPlan"));
 export const NutritionAdd = lazy(
   () => import("../pages/dashboard/NutritionAdd")
 );
 export const WorkoutAdd = lazy(() => import("../pages/dashboard/WorkoutAdd"));
 export const AuthGuard = lazy(() => import("../auth/guard/AuthGuard"));
 export const GuestGuard = lazy(() => import("../auth/guard/GuestGuard"));
+

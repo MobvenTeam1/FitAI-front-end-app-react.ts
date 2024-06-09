@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // src/hooks/useData.ts
 import useSWR, { SWRResponse } from "swr";
-import api from '../api';
+import api from '../old-api';
 export const MultiFormData = "multipart/form-data";
 export const ApplicationJson = "application/json";
 export const withHandleControl = {

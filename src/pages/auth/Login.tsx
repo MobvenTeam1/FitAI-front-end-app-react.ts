@@ -15,23 +15,29 @@ import { AuthSocial } from "../../sections/auth/AuthSocial";
 import { AuthLink } from "../../sections/auth/AuthLink";
 
 export type FormValues = {
-  username: string;
+  email: string;
   password: string;
   isCheck: boolean;
 };
 
 const schema = yup.object().shape({
-  username: yup
+  email: yup
     .string()
-    // .email("Email format zorunlu")
+    .email("Email format zorunlu")
     .required("Email adresi zorunlu"),
   password: yup.string().required("Parola zorunlu"),
   isCheck: yup.boolean().required("Check is required"),
 });
 
+// const defaultValues: FormValues = {
+//   email: "mor_2314",
+//   password: "83r5^_",
+//   isCheck: false,
+// };
+
 const defaultValues: FormValues = {
-  username: "mor_2314",
-  password: "83r5^_",
+  email: "fatih.akpiyal1@gmail.com",
+  password: "31hatay31",
   isCheck: false,
 };
 
@@ -70,7 +76,7 @@ export const Login: React.FC = () => {
             />
 
             <div className="flex flex-col gap-6">
-              <RHFTextfield name="username" label="Email" />
+              <RHFTextfield name="email" label="Email" />
               <RHFTextfield name="password" type="password" label="Parola" />
 
               <div className="flex justify-between items-center">

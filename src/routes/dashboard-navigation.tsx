@@ -44,7 +44,7 @@ export const DashboardNavigation = [
       },
       {
         title: "training_plan",
-        path: paths.dashboard.programs,
+        path: paths.dashboard.workoutPlan,
         icon: ICONS.training_plan,
       },
       {

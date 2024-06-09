@@ -17,6 +17,7 @@ import {
   Users,
   VerificationPassword,
   WorkoutAdd,
+  WorkoutPlan,
   paths,
 } from "./imports";
 import { Suspense } from "react";
@@ -115,6 +116,14 @@ const routes = createBrowserRouter([
             element: (
               <Suspense fallback={<SplashScreen />}>
                 <Profile />
+              </Suspense>
+            ),
+          },
+          {
+            path: paths.dashboard.workoutPlan,
+            element: (
+              <Suspense fallback={<SplashScreen />}>
+                <WorkoutPlan />
               </Suspense>
             ),
           },

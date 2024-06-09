@@ -14,7 +14,7 @@ import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/
 import { useState } from "react";
 import { CustomModal } from "../../components/customs/custom-modal";
 // import { tempInstance } from "../../api/models/HttpClient";
-import api from '../../api';
+import api from '../../old-api';
 import { ApplicationJson } from "../../hooks/useData";
 // import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 

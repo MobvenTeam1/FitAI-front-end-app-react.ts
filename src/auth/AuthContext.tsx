@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { setTokenLocalStorage } from "../utils/setLocalStorage";
 import { FormValues } from "../pages/auth/Login";
 import { useMutation } from "@tanstack/react-query";
-import { loginRequest } from "../react-query";
+import { loginRequest } from "../api";
 
 interface ChildrenProps {
   children: React.ReactNode;
@@ -31,8 +31,9 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   const { mutate } = useMutation({
     mutationFn: loginRequest,
     onSuccess: (data) => {
-      setAuthState({ token: data.token });
-      setTokenLocalStorage("accessToken", data.token);
+      console.log("data", data);
+      setAuthState({ token: data.userToken });
+      setTokenLocalStorage("accessToken", data.userToken);
       // Invalidate and refetch
       //  queryClient.invalidateQueries({ queryKey: ['todos'] })
     },
