@@ -33,6 +33,8 @@ export const AuthContext = createContext<{
 });
 
 export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
+  // const pathname = window.location.pathname;
+
   const [authState, setAuthState] = useState(() => {
     const accessToken = localStorage.getItem("accessToken");
     const registerToken = localStorage.getItem("registerToken");
@@ -58,12 +60,13 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 
   const { mutate: registerMutate } = useMutation({
     mutationFn: registerRequest,
-    onSuccess: async (data) => {
-      await setAuthState((prevState) => ({
+    onSuccess: (data) => {
+      setAuthState((prevState) => ({
         ...prevState,
         registerToken: data.userToken,
       }));
-      await setTokenLocalStorage("registerToken", data.userToken);
+      setTokenLocalStorage("registerToken", data.userToken);
+      // window.location.href = "/registration";
     },
   });
 
@@ -84,6 +87,12 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     setTokenLocalStorage("accessToken", "");
     setTokenLocalStorage("registerToken", "");
   };
+
+  // useEffect(() => {
+  //   if (authState.registerToken && pathname !== paths.registration) {
+  //     logout();
+  //   }
+  // }, [authState.registerToken, pathname]);
 
   return (
     <AuthContext.Provider value={{ authState, login, register, logout }}>

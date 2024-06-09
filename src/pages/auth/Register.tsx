@@ -57,6 +57,7 @@ const defaultValues: RegisterFormValues = {
 };
 
 export const Register: React.FC = () => {
+
   const { register } = useContext(AuthContext);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -81,6 +82,8 @@ export const Register: React.FC = () => {
     console.log("Gönderilen veri", data);
     register(data);
   };
+
+
 
   return (
     <>
