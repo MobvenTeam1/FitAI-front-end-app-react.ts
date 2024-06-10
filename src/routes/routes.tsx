@@ -12,15 +12,16 @@ import {
   Profile,
   Programs,
   Register,
-  Registration,
   SuccessPassword,
   Users,
   VerificationPassword,
   WorkoutAdd,
+  WorkoutPlan,
   paths,
 } from "./imports";
 import { Suspense } from "react";
 import { SplashScreen } from "../components/loading-screen/splash-screen";
+import RegistrationGuard from "../auth/guard/RegistrationGuard";
 
 const routes = createBrowserRouter([
   {
@@ -59,7 +60,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "/registration",
-    element: <Registration />,
+    element: <RegistrationGuard />,
   },
   {
     path: paths.dashboard.root,
@@ -115,6 +116,14 @@ const routes = createBrowserRouter([
             element: (
               <Suspense fallback={<SplashScreen />}>
                 <Profile />
+              </Suspense>
+            ),
+          },
+          {
+            path: paths.dashboard.workoutPlan,
+            element: (
+              <Suspense fallback={<SplashScreen />}>
+                <WorkoutPlan />
               </Suspense>
             ),
           },

@@ -21,7 +21,7 @@ export type ButtonSize = "sm" | "md" | "lg";
 interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
   isSubmitting?: boolean;
-  label?: string;
+  label?: string | JSX.Element;
   variant?: ButtonVariant;
   color?: ButtonColor;
   size?: ButtonSize;
@@ -41,7 +41,7 @@ export const CustomButton: FC<CustomButtonProps> = ({
   const variantClassNames = {
     outlined: `bg-transparent border border-gray-900 text-gray-900`,
     contained: `border border-transparent bg-${color}-500 hover:bg-${color}-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${color}-500 hover:shadow-lg`,
-    link: `bg-transparent text-${color}-500 hover:text-${color}-600`,
+    link: `bg-transparent underline text-${color}-500 hover:text-${color}-600`,
   };
 
   const sizeClassNames = {

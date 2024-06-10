@@ -5,7 +5,7 @@ import { AuthContext } from "../AuthContext";
 
 const GuestGuard: React.FC = () => {
   const { authState } = useContext(AuthContext);
-  const accessToken = authState.token;
+  const accessToken = authState.accessToken;
 
   return accessToken ? <DashboardLayoutMain /> : <Navigate to="/auth/login" />;
 };

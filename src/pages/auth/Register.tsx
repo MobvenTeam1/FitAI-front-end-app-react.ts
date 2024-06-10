@@ -4,21 +4,18 @@ import { DevTool } from "@hookform/devtools";
 import * as yup from "yup";
 import { RHFTextfield } from "../../components/hook-form/RHFTextfield";
 import { RHFSubmitButton } from "../../components/hook-form/RHFSubmitButton";
-// import { useRouter } from "../../hooks/useRouter";
+
 import { paths } from "../../routes/paths";
 import { AuthHeader } from "../../sections/auth/AuthHeader";
 import { AuthSocial } from "../../sections/auth/AuthSocial";
 import { AuthLink } from "../../sections/auth/AuthLink";
 import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/RHFCheckbox";
 // import { RHFInputMask } from "../../components/hook-form/RHFInputMask";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CustomModal } from "../../components/customs/custom-modal";
-// import { tempInstance } from "../../api/models/HttpClient";
-import api from '../../api';
-import { ApplicationJson } from "../../hooks/useData";
-// import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
+import { AuthContext } from "../../auth/AuthContext";
 
-export type FormValues = {
+export type RegisterFormValues = {
   userName: string;
   firstName: string;
   lastName: string;
@@ -38,7 +35,27 @@ const schema = yup.object().shape({
     .email("Email format zorunlu")
     .required("Email adresi zorunlu"),
   // phone: yup.string().required("Telefon zorunlu"),
-  password: yup.string().required("Parola zorunlu"),
+  password: yup
+    .string()
+    .required("Parola zorunlu")
+    .min(8, "Parola en az 8 karakter olmalıdır")
+    .max(24, "Parola en fazla 24 karakter olmalıdır")
+    .matches(/[a-z]/, "En az bir küçük harf içermelidir")
+    .matches(/[A-Z]/, "En az bir büyük harf içermelidir")
+    .matches(/\d/, "En az bir rakam içermelidir"),
+  // .test(
+  //   "no-sequential-digits",
+  //   "Parola ardışık sayılar içeremez",
+  //   (value) => !/(012|123|234|345|456|567|678|789)/.test(value)
+  // )
+  // .test(
+  //   "no-sequential-letters",
+  //   "Parola ardışık harfler içeremez",
+  //   (value) =>
+  //     !/(abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz)/i.test(
+  //       value
+  //     )
+  // ),
   passwordConfirm: yup
     .string()
     .oneOf([yup.ref("password")], "Paralolar eşleşmiyor")
@@ -48,19 +65,19 @@ const schema = yup.object().shape({
     .oneOf([true], "Şartları ve gizlilik sözleşmesini kabul etmelisiniz"),
 });
 
-const defaultValues: FormValues = {
-  userName: "iber_34",
-  firstName: "İlber",
-  lastName: "Ortaylı",
-  email: "ilber@gmail.com",
+const defaultValues: RegisterFormValues = {
+  userName: "",
+  firstName: "",
+  lastName: "",
+  email: "",
   // phone: "555-555-5555",
-  password: "123456",
-  passwordConfirm: "123456",
+  password: "",
+  passwordConfirm: "",
   isRead: true,
 };
 
 export const Register: React.FC = () => {
-  // const router = useRouter();
+  const { register, isLoading } = useContext(AuthContext);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -73,57 +90,17 @@ export const Register: React.FC = () => {
     setIsOpenModal(false);
   };
 
-  const form = useForm<FormValues>({
+  const form = useForm<RegisterFormValues>({
     defaultValues,
     resolver: yupResolver(schema),
   });
 
   const { control, handleSubmit } = form;
 
-  // const postRegisterRequest = async (data: FormValues) => {
-  //   try {
-  //     const { data: resData } = await tempInstance.post("/User/Register", data);
-  //     console.log(resData);
-  //     handlePush(paths.registration);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  const postRegisterRequest = async (data: FormValues) => {
-    api.post(
-      "/User/Register", 
-      data, 
-      ApplicationJson
-    )
-      // .then((res) => console.log(res))
-      // .catch(error => console.log(error));
-  }
-
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: RegisterFormValues) => {
     console.log("Gönderilen veri", data);
-    postRegisterRequest(data)
-
-    
-    // api.post(
-    //   "/User/Register", 
-    //   data, 
-    //   ApplicationJson
-    // )
-    //   .then((res) => console.log(res))
-    //   .catch(error => console.log(error));
-
-    // const {data} = await api.post(
-    //   "/User/Register",
-    //   data,
-    //   ApplicationJson
-    // );
-    // console.log(data);
+    register(data);
   };
-
-  // const handlePush = (path: string) => {
-  //   router.push(path);
-  // };
 
   return (
     <>
@@ -193,7 +170,7 @@ export const Register: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <RHFSubmitButton label="Kayıt Ol" />
+              <RHFSubmitButton label="Kayıt Ol" isLoading={isLoading} />
               <AuthLink
                 title="Zaten hesabınız var mı?"
                 rootText="Giriş Yap"

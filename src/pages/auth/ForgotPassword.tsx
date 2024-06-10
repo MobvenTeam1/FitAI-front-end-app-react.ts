@@ -21,7 +21,7 @@ const schema = yup.object().shape({
 });
 
 const defaultValues: FormValues = {
-  email: "temp@gmail.com",
+  email: "",
 };
 
 export const ForgotPassword: React.FC = () => {

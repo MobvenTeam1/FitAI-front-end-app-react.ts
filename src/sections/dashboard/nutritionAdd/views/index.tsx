@@ -6,6 +6,14 @@ import { AddOptionCard } from "../../../../components/AddOptionCard";
 import { PersonalProgramView } from "../../home/views/PersonalProgramView";
 import { PersonalPropram } from "../../home/context/types";
 import { NutritionAddContext } from "../context/NutritionAddContext";
+import ResultNotFound from "../../../../components/ResultNotFound";
+import SvgColor from "../../../../components/svg-color";
+
+import * as yup from "yup";
+import { FormProvider, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RHFTextfield } from "../../../personal-inforations/rhf-components/RHFTextfield";
+import { CustomButton } from "../../../../components/customs/custom-button";
 
 export const NutritionAddView: React.FC = () => {
   const {
@@ -14,6 +22,7 @@ export const NutritionAddView: React.FC = () => {
     tabValues,
     selectedTab,
     handleChangeTab,
+    updateTypeById,
   } = useContext(NutritionAddContext);
 
   return (
@@ -21,6 +30,7 @@ export const NutritionAddView: React.FC = () => {
       <div className="col-span-8">
         <div className="flex flex-col gap-10">
           <CustomSearchInput onSearch={handleSearch} />
+          <ScanOptions />
           <CustomTabs
             values={tabValues}
             selectedTab={selectedTab}
@@ -32,9 +42,20 @@ export const NutritionAddView: React.FC = () => {
               {filteredOptions.length} sonuç bulundu{" "}
             </p>
           </div>
+          {filteredOptions.length === 0 ? (
+            <ResultNotFound
+              buttonLabel="Beslneme Ekle"
+              message="Aradığınız kriterlere uygun beslenme bulunamadı."
+            />
+          ) : null}
           <div className="flex flex-col gap-2">
             {filteredOptions.map((option, index) => (
-              <AddOptionCard key={index + option.title} option={option} />
+              <AddOptionCard
+                key={index + option.title}
+                option={option}
+                updateTypeById={updateTypeById}
+                modalForm={<OpenModalForm sendId={option.id} />}
+              />
             ))}
           </div>
         </div>
@@ -46,6 +67,75 @@ export const NutritionAddView: React.FC = () => {
         />
       </div>
     </div>
+  );
+};
+
+const ScanOptions = () => (
+  <div className="flex items-center gap-3">
+    <ScanOption icon="/icons/ic_scan-nutrition.svg" label="Besin Tara" />
+    <ScanOption icon="/icons/ic_scan-barcode.svg" label="Barkod Tara" />
+  </div>
+);
+
+interface ScanOptionProps {
+  icon: string;
+  label: string;
+}
+
+const ScanOption: React.FC<ScanOptionProps> = ({ icon, label }) => (
+  <div className="shadow rounded-xl border border-gray-50 flex items-center justify-center w-full">
+    <div className="p-5 flex flex-col gap-3 items-center justify-center text-gray-400">
+      <SvgColor src={icon} width={34} height={34} />
+      <p className="text-base font-semibold">{label}</p>
+    </div>
+  </div>
+);
+
+type TrainingRangeTime = {
+  foodRande: string;
+};
+
+const schema = yup.object().shape({
+  foodRande: yup.string().required("Zaman zorunlu"),
+});
+
+const defaultValues: TrainingRangeTime = {
+  foodRande: "",
+};
+
+type OpenModalFormProps = {
+  sendId: number;
+};
+
+const OpenModalForm: React.FC<OpenModalFormProps> = ({ sendId }) => {
+  const form = useForm<TrainingRangeTime>({
+    defaultValues,
+    resolver: yupResolver(schema),
+  });
+  const { handleSubmit } = form;
+
+  const onSubmit = (data: TrainingRangeTime) => {
+    console.log(data, sendId);
+  };
+  return (
+    <FormProvider {...form}>
+      <form
+        className="flex flex-col gap-6"
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+      >
+        <p className="font-bold text-gray-900 text-3xl">
+          Öğünün porsiyonundan ne kadar kullandınız ?
+        </p>
+        <RHFTextfield
+          name="foodRande"
+          type="number"
+          placeholder="Örn: 1 kaşık 180 kcal"
+        />
+
+        <CustomButton type="submit" label="Öğünü Tanımla" />
+      </form>
+    </FormProvider>
   );
 };
 

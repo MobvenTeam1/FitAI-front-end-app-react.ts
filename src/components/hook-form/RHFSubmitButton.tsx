@@ -1,4 +1,4 @@
-import { useFormContext } from "react-hook-form";
+import { CircularProgress } from "@mui/material";
 import {
   ButtonColor,
   ButtonSize,
@@ -11,6 +11,7 @@ type RHFSubmitButtonProps = {
   color?: ButtonColor;
   size?: ButtonSize;
   variant?: ButtonVariant;
+  isLoading?: boolean;
 };
 
 export const RHFSubmitButton: React.FC<RHFSubmitButtonProps> = ({
@@ -18,20 +19,17 @@ export const RHFSubmitButton: React.FC<RHFSubmitButtonProps> = ({
   color = "green",
   size = "md",
   variant = "contained",
+  isLoading = false,
   ...props
 }) => {
-  const {
-    formState: { isSubmitting },
-  } = useFormContext();
-
   return (
     <CustomButton
       type="submit"
       variant={variant}
       color={color}
       size={size}
-      label={isSubmitting ? "Loading..." : label}
-      disabled={isSubmitting}
+      label={isLoading ? <CircularProgress sx={{ color: "white" }} /> : label}
+      disabled={isLoading}
       {...props}
     />
   );

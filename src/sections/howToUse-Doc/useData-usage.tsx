@@ -1,4 +1,4 @@
-import { requests } from "../../api/requests";
+import { requests } from "../../old-api/requests";
 import { ApplicationJson, useData } from "../../hooks/useData";
 
 const jsonData = {

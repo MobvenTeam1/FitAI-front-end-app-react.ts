@@ -5,6 +5,7 @@ export interface NutritionAddContextValues {
   tabValues: TabValue[];
   filteredOptions: NutritionOptionValue[];
   handleSearch: (query: string) => void;
+  updateTypeById: (id: number) => void;
 }
 
 export interface NutritionOptionValue {

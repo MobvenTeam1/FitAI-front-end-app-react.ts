@@ -4,7 +4,6 @@ import { DevTool } from "@hookform/devtools";
 import * as yup from "yup";
 import { RHFTextfield } from "../../components/hook-form/RHFTextfield";
 import { RHFSubmitButton } from "../../components/hook-form/RHFSubmitButton";
-// import { RHFFormValues } from "../../components/hook-form/RHFFormValues";
 import { AuthContext } from "../../auth/AuthContext";
 import { useContext } from "react";
 import { useRouter } from "../../hooks/useRouter";
@@ -14,39 +13,45 @@ import { RHFCheckBox } from "../../sections/personal-inforations/rhf-components/
 import { AuthSocial } from "../../sections/auth/AuthSocial";
 import { AuthLink } from "../../sections/auth/AuthLink";
 
-export type FormValues = {
-  username: string;
+export type LoginFormValues = {
+  email: string;
   password: string;
   isCheck: boolean;
 };
 
 const schema = yup.object().shape({
-  username: yup
+  email: yup
     .string()
-    // .email("Email format zorunlu")
+    .email("Email format zorunlu")
     .required("Email adresi zorunlu"),
   password: yup.string().required("Parola zorunlu"),
   isCheck: yup.boolean().required("Check is required"),
 });
 
-const defaultValues: FormValues = {
-  username: "mor_2314",
-  password: "83r5^_",
+// const defaultValues: LoginFormValues = {
+//   email: "mor_2314",
+//   password: "83r5^_",
+//   isCheck: false,
+// };
+
+const defaultValues: LoginFormValues = {
+  email: "",
+  password: "",
   isCheck: false,
 };
 
 export const Login: React.FC = () => {
   const router = useRouter();
-  const { login } = useContext(AuthContext);
+  const { login, isLoading } = useContext(AuthContext);
 
-  const form = useForm<FormValues>({
+  const form = useForm<LoginFormValues>({
     defaultValues,
     resolver: yupResolver(schema),
   });
 
   const { control, handleSubmit } = form;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: LoginFormValues) => {
     login(data);
   };
 
@@ -69,7 +74,7 @@ export const Login: React.FC = () => {
             />
 
             <div className="flex flex-col gap-6">
-              <RHFTextfield name="username" label="Email" />
+              <RHFTextfield name="email" label="Email" />
               <RHFTextfield name="password" type="password" label="Parola" />
 
               <div className="flex justify-between items-center">
@@ -88,7 +93,7 @@ export const Login: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <RHFSubmitButton label="Giriş Yap" />
+              <RHFSubmitButton label="Giriş Yap" isLoading={isLoading} />
               <AuthLink
                 title="Hesabın yok mu?"
                 rootText="Kayıt ol"
