@@ -2,28 +2,26 @@ import { LoginFormValues } from "../pages/auth/Login";
 import { RegisterFormValues } from "../pages/auth/Register";
 import { serviceAxios } from "./axios";
 
-export type authorizationResponse = {
+export interface AuthorizationResponse {
   userToken: string;
-};
+}
 
-export const loginRequest = async (
+async function makeAuthRequest(
+  endpoint: string,
+  data: LoginFormValues | RegisterFormValues
+): Promise<AuthorizationResponse> {
+  const response = await serviceAxios.post(endpoint, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response.data;
+}
+
+export const loginRequest = (
   data: LoginFormValues
-): Promise<authorizationResponse> => {
-  const response = await serviceAxios.post("/User/Login", data, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  return response.data;
-};
+): Promise<AuthorizationResponse> => makeAuthRequest("/User/Login", data);
 
-export const registerRequest = async (
+export const registerRequest = (
   data: RegisterFormValues
-): Promise<authorizationResponse> => {
-  const response = await serviceAxios.post("/User/Register", data, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  return response.data;
-};
+): Promise<AuthorizationResponse> => makeAuthRequest("/User/Register", data);

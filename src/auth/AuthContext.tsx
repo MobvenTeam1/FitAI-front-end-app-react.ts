@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { loginRequest, registerRequest } from "../api";
 import { LoginFormValues } from "../pages/auth/Login";
 import { RegisterFormValues } from "../pages/auth/Register";
+import { toast } from "react-toastify";
 
 interface ChildrenProps {
   children: React.ReactNode;
@@ -55,7 +56,11 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
         accessToken: data.userToken,
       }));
       setTokenLocalStorage("accessToken", data.userToken);
+      toast.success("Giriş Başarılı");
     },
+    onError: (error) => {
+      toast.error(error.message);
+    }
   });
 
   const { mutate: registerMutate } = useMutation({
@@ -66,8 +71,12 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
         registerToken: data.userToken,
       }));
       setTokenLocalStorage("registerToken", data.userToken);
+      toast.success("Kayıt Başarılı");
       // window.location.href = "/registration";
     },
+    onError: (error) => {
+      toast.error(error.message);
+    }
   });
 
   const register = (data: RegisterFormValues) => {
