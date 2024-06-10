@@ -15,7 +15,7 @@ export const gender: PersonalValue = {
 
 export const size: PersonalValue = {
   step: 1,
-  name: "size",
+  name: "height",
   label: "Boyunuz kaç?",
   selectType: 2,
   placeholder: "Lütfen boyunuzu giriniz (cm)",
@@ -24,7 +24,7 @@ export const size: PersonalValue = {
 
 export const currentWeight: PersonalValue = {
   step: 2,
-  name: "currentWeight",
+  name: "firstWeight",
   label: "Mevcut kilonuz kaç?",
   selectType: 2,
   placeholder: "Lütfen mevcut kilonuzu giriniz(kg)",
@@ -42,7 +42,7 @@ export const targetWeight: PersonalValue = {
 
 export const birthDate: PersonalValue = {
   step: 4,
-  name: "birthDate",
+  name: "dateOfBirth",
   label: "Doğum gününüz nedir?",
   selectType: 3,
   placeholder: "Lütfen doğum gününüzü giriniz",
@@ -50,7 +50,7 @@ export const birthDate: PersonalValue = {
 
 export const goal: PersonalValue = {
   step: 5,
-  name: "goal",
+  name: "goals",
   label: "Hedefleriniz nelerdir?",
   selectType: 0,
   options: [

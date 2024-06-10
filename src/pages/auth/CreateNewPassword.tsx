@@ -23,8 +23,8 @@ const schema = yup.object().shape({
 });
 
 const defaultValues: FormValues = {
-  password: "123456",
-  confirmPassword: "123456",
+  password: "",
+  confirmPassword: "",
 };
 
 export const CreateNewPassword: React.FC = () => {

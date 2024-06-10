@@ -35,15 +35,14 @@ const schema = yup.object().shape({
 // };
 
 const defaultValues: LoginFormValues = {
-  email: "fatih.akpiyal1@gmail.com",
-  password: "31hatay31",
+  email: "",
+  password: "",
   isCheck: false,
 };
 
 export const Login: React.FC = () => {
-
   const router = useRouter();
-  const { login } = useContext(AuthContext);
+  const { login, isLoading } = useContext(AuthContext);
 
   const form = useForm<LoginFormValues>({
     defaultValues,
@@ -94,7 +93,7 @@ export const Login: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <RHFSubmitButton label="Giriş Yap" />
+              <RHFSubmitButton label="Giriş Yap" isLoading={isLoading} />
               <AuthLink
                 title="Hesabın yok mu?"
                 rootText="Kayıt ol"

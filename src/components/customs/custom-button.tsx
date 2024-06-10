@@ -21,7 +21,7 @@ export type ButtonSize = "sm" | "md" | "lg";
 interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
   isSubmitting?: boolean;
-  label?: string;
+  label?: string | JSX.Element;
   variant?: ButtonVariant;
   color?: ButtonColor;
   size?: ButtonSize;

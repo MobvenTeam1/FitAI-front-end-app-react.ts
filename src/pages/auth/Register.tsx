@@ -35,7 +35,27 @@ const schema = yup.object().shape({
     .email("Email format zorunlu")
     .required("Email adresi zorunlu"),
   // phone: yup.string().required("Telefon zorunlu"),
-  password: yup.string().required("Parola zorunlu"),
+  password: yup
+    .string()
+    .required("Parola zorunlu")
+    .min(8, "Parola en az 8 karakter olmalıdır")
+    .max(24, "Parola en fazla 24 karakter olmalıdır")
+    .matches(/[a-z]/, "En az bir küçük harf içermelidir")
+    .matches(/[A-Z]/, "En az bir büyük harf içermelidir")
+    .matches(/\d/, "En az bir rakam içermelidir"),
+  // .test(
+  //   "no-sequential-digits",
+  //   "Parola ardışık sayılar içeremez",
+  //   (value) => !/(012|123|234|345|456|567|678|789)/.test(value)
+  // )
+  // .test(
+  //   "no-sequential-letters",
+  //   "Parola ardışık harfler içeremez",
+  //   (value) =>
+  //     !/(abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz)/i.test(
+  //       value
+  //     )
+  // ),
   passwordConfirm: yup
     .string()
     .oneOf([yup.ref("password")], "Paralolar eşleşmiyor")
@@ -46,19 +66,18 @@ const schema = yup.object().shape({
 });
 
 const defaultValues: RegisterFormValues = {
-  userName: "iber_34",
-  firstName: "İlber",
-  lastName: "Ortaylı",
-  email: "ilber@gmail.com",
+  userName: "",
+  firstName: "",
+  lastName: "",
+  email: "",
   // phone: "555-555-5555",
-  password: "123456",
-  passwordConfirm: "123456",
+  password: "",
+  passwordConfirm: "",
   isRead: true,
 };
 
 export const Register: React.FC = () => {
-
-  const { register } = useContext(AuthContext);
+  const { register, isLoading } = useContext(AuthContext);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -82,8 +101,6 @@ export const Register: React.FC = () => {
     console.log("Gönderilen veri", data);
     register(data);
   };
-
-
 
   return (
     <>
@@ -153,7 +170,7 @@ export const Register: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4">
-              <RHFSubmitButton label="Kayıt Ol" />
+              <RHFSubmitButton label="Kayıt Ol" isLoading={isLoading} />
               <AuthLink
                 title="Zaten hesabınız var mı?"
                 rootText="Giriş Yap"

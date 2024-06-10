@@ -26,11 +26,13 @@ export const AuthContext = createContext<{
   login: (data: LoginFormValues) => void;
   logout: () => void;
   register: (data: RegisterFormValues) => void;
+  isLoading: boolean;
 }>({
   authState: initialAuthState,
   login: () => {},
   logout: () => {},
   register: () => {},
+  isLoading: false,
 });
 
 export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
@@ -47,7 +49,7 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   }, [authState.accessToken]);
 
   // const queryClient = useQueryClient();
-  const { mutate: loginMutate } = useMutation({
+  const { mutate: loginMutate, isPending: isLoadingLogin } = useMutation({
     mutationFn: loginRequest,
     onSuccess: (data) => {
       console.log("data", data);
@@ -60,10 +62,10 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     },
     onError: (error) => {
       toast.error(error.message);
-    }
+    },
   });
 
-  const { mutate: registerMutate } = useMutation({
+  const { mutate: registerMutate, isPending: isLoadingRegister } = useMutation({
     mutationFn: registerRequest,
     onSuccess: (data) => {
       setAuthState((prevState) => ({
@@ -76,7 +78,7 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     },
     onError: (error) => {
       toast.error(error.message);
-    }
+    },
   });
 
   const register = (data: RegisterFormValues) => {
@@ -103,8 +105,12 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   //   }
   // }, [authState.registerToken, pathname]);
 
+  const isLoading = isLoadingLogin || isLoadingRegister;
+
   return (
-    <AuthContext.Provider value={{ authState, login, register, logout }}>
+    <AuthContext.Provider
+      value={{ authState, login, register, logout, isLoading }}
+    >
       {children}
     </AuthContext.Provider>
   );
