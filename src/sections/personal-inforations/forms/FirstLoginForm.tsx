@@ -10,6 +10,7 @@ import { renderFormElement } from "../rhf-components/renderFormElement";
 import { Stepper } from "../components/Stepper";
 import { CustomButton } from "../../../components/customs/custom-button";
 import { AuthContext } from "../../../auth/AuthContext";
+import { RHFSubmitButton } from "../../../components/hook-form/RHFSubmitButton";
 
 type PersonalFormValues = {
   gender: string;
@@ -61,7 +62,7 @@ export const FirstLoginForm: React.FC = () => {
   };
 
   const onSubmit = (data: PersonalFormValues) => {
-    console.log(data);
+    console.log("buttona tıklandı", data);
   };
 
   return (
@@ -75,11 +76,11 @@ export const FirstLoginForm: React.FC = () => {
 
         <div className="text-4xl font-bold pb-7">{showStep?.label}</div>
         {showStep && renderFormElement(showStep)}
-        <CustomButton
-          onClick={handleNext}
-          type="button"
-          label={isLastValue ? "Oluştur" : "İlerle"}
-        />
+        {isLastValue ? (
+          <RHFSubmitButton label="Oluştur" />
+        ) : (
+          <CustomButton onClick={handleNext} type="button" label={"İlerle"} />
+        )}
 
         <CustomButton
           type="button"
