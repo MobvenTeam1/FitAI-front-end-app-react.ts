@@ -2,7 +2,7 @@ import axios from "axios";
 import { getLocalStorage } from "../utils/getLocalStorage";
 
 // BASE_URL tanımı, gerçek URL'nizle değiştirin
-export const BASE_URL = "http://165.22.93.225:5001/api/";
+export const BASE_URL = "https://talent.mobven.com:5041/api/";
 export const tempUrl = "https://fakestoreapi.com";
 
 // Axios istemcisini özelleştir
