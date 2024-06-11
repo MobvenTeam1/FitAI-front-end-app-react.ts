@@ -9,39 +9,56 @@ import { CreateTrainingProgramValues } from "../values";
 import { renderFormElement } from "../rhf-components/renderFormElement";
 import { Stepper } from "../components/Stepper";
 import { CustomButton } from "../../../components/customs/custom-button";
+import { RHFSubmitButton } from "../../../components/hook-form/RHFSubmitButton";
+import { HomeContext } from "../../dashboard/home/context/HomeContext";
 
-type PersonalFormValues = {
-  trainingHealtIssue?: string | null | undefined;
-  trainingType: Array<string | undefined>;
-  trainingRange: string;
-  targetArea: Array<string | undefined>;
+export type CreateWorkoutPlanValues = {
+  healthProblem?: string | null | undefined;
+  preferredActivities: Array<string | undefined>;
+  workoutFrequency: string;
+  focusAreas: Array<string | undefined>;
+};
+
+export type CreateWorkoutPlanValuesSend = {
+  healthProblem?: string | null | undefined;
+  preferredActivities: string;
+  workoutFrequency: string;
+  focusAreas: string;
 };
 
 const schema = yup.object().shape({
-  trainingHealtIssue: yup.string().nullable(),
-  trainingType: yup
+  healthProblem: yup.string().nullable(),
+  preferredActivities: yup
     .array()
     .of(yup.string())
     .required()
     .min(1, "Antreman tipi seçiniz"),
-  trainingRange: yup.string().required("Antreman sıklığı seçiniz"),
-  targetArea: yup
+  workoutFrequency: yup.string().required("Antreman sıklığı seçiniz"),
+  focusAreas: yup
     .array()
     .of(yup.string())
     .required()
     .min(1, "Antreman hedefi seçiniz"),
 });
 
-const defaultValues: PersonalFormValues = {
-  trainingHealtIssue: "",
-  trainingType: [],
-  trainingRange: "",
-  targetArea: [],
+const defaultValues: CreateWorkoutPlanValues = {
+  healthProblem: "",
+  preferredActivities: [],
+  workoutFrequency: "",
+  focusAreas: [],
 };
 
-export const CreateTrainingProgramForm: React.FC = () => {
+type CreateTrainingProgramFormProps = {
+  handleClose?: () => void;
+};
+
+export const CreateTrainingProgramForm: React.FC<
+  CreateTrainingProgramFormProps
+> = () => {
+  const { axiosQueryVariables } = useContext(HomeContext);
+  const queryVariables = axiosQueryVariables.createAiWorkoutRequest;
   const { step, forwardStep } = useContext(PersonalInformationsContext);
-  const form = useForm<PersonalFormValues>({
+  const form = useForm<CreateWorkoutPlanValues>({
     defaultValues,
     resolver: yupResolver(schema),
   });
@@ -54,7 +71,9 @@ export const CreateTrainingProgramForm: React.FC = () => {
 
   const handleNext = async () => {
     if (showStep) {
-      const isValid = await trigger(showStep.name as keyof PersonalFormValues);
+      const isValid = await trigger(
+        showStep.name as keyof CreateWorkoutPlanValues
+      );
       //   console.log(isValid);
       if (isValid && !isLastValue) {
         forwardStep();
@@ -62,8 +81,19 @@ export const CreateTrainingProgramForm: React.FC = () => {
     }
   };
 
-  const onSubmit = (data: PersonalFormValues) => {
-    console.log(data);
+  const onSubmit = (data: CreateWorkoutPlanValues) => {
+    const { preferredActivities, focusAreas, ...rest } = data;
+
+    const sendPreferredActivities = preferredActivities.join("-");
+    const sendFocusAreas = focusAreas.join("-");
+
+    const sendeData = {
+      ...rest,
+      preferredActivities: sendPreferredActivities,
+      focusAreas: sendFocusAreas,
+    };
+    
+    queryVariables.mutate(sendeData);
   };
 
   return (
@@ -87,11 +117,15 @@ export const CreateTrainingProgramForm: React.FC = () => {
                 variant="outlined"
               />
             )}
-            <CustomButton
-              onClick={handleNext}
-              type="button"
-              label={isLastValue ? "Oluştur" : "İlerle"}
-            />
+
+            {isLastValue ? (
+              <RHFSubmitButton
+                label="Oluştur"
+                isLoading={queryVariables.isLoading}
+              />
+            ) : (
+              <CustomButton onClick={handleNext} type="button" label="İlerle" />
+            )}
           </div>
         </div>
 

@@ -6,6 +6,13 @@ interface CustomModalProps {
   children: React.ReactNode;
 }
 
+export const ForcedCustomModalClose = () => {
+  const customModal = document.getElementById("customModal");
+  if (customModal) {
+    customModal.style.display = "none";
+  }
+};
+
 export const CustomModal: React.FC<CustomModalProps> = ({
   isOpen,
   onClose,
@@ -25,6 +32,7 @@ export const CustomModal: React.FC<CustomModalProps> = ({
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
+      id="customModal"
       // onClick={onClose}
     >
       <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">

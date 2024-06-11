@@ -1,19 +1,27 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 import { PersonalInformationsContextProvider } from "../../../personal-inforations/context/PersonalInformationsContext";
-import { CreateTrainingProgramForm } from "../../../personal-inforations/forms/CreateTrainingProgram";
+import {
+  CreateTrainingProgramForm,
+  CreateWorkoutPlanValuesSend,
+} from "../../../personal-inforations/forms/CreateTrainingProgram";
 import { CreateNutritionProgramForm } from "../../../personal-inforations/forms/CreateNutritionProgramForm";
 import { paths } from "../../../../routes/paths";
 import {
   AddPlanValue,
+  AxiosQueryParams,
   CreateAiSupportPlanValue,
   CreatePlanValue,
   GoalCompletionInfoValue,
   GoalValue,
   HomeCategoryValue,
   HomeContextValues,
+  ModalStates,
   PersonalPropram,
   aiSuggestionItem,
 } from "./types";
+import { createAiWorkoutRequest } from "../../../../api";
+import { toast } from "react-toastify";
+import { useMutation } from "@tanstack/react-query";
 
 // Create the context with default values
 export const HomeContext = createContext<HomeContextValues>({
@@ -28,6 +36,15 @@ export const HomeContext = createContext<HomeContextValues>({
   personalNutritionPrograms: [],
   aiNutritionSuggestions: [],
   suggestionRender: () => [],
+  modalStates: {},
+  handleOpenModal: () => {},
+  handleCloseModal: () => {},
+  axiosQueryVariables: {
+    createAiWorkoutRequest: {
+      isLoading: false,
+      mutate: () => {},
+    },
+  },
 });
 
 // Define the properties for the provider component
@@ -37,6 +54,41 @@ interface ChildrenProps {
 
 // Create the provider component
 export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
+  const [modalStates, setModalStates] = useState<ModalStates>({});
+
+  const handleOpenModal = (id: string) => {
+    setModalStates((prevStates) => ({ ...prevStates, [id]: true }));
+  };
+
+  const handleCloseModal = (id: string) => {
+    setModalStates((prevStates) => ({ ...prevStates, [id]: false }));
+  };
+
+  // ** api requests
+  const {
+    mutate: createWorkoutAiPlanMutate,
+    isPending: createWorkoutAiPlanLoading,
+  } = useMutation({
+    mutationFn: createAiWorkoutRequest,
+    onSuccess: (data) => {
+      console.log("registrationRequest data", data);
+      toast.success("Antreman Planı Oluşturma Başarılı");
+      handleCloseModal(createPlanValues[0].modalId);
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
+  const axiosQueryVariables: AxiosQueryParams = {
+    createAiWorkoutRequest: {
+      isLoading: createWorkoutAiPlanLoading,
+      mutate: createWorkoutAiPlanMutate as (
+        variables?: CreateWorkoutPlanValuesSend
+      ) => void,
+    },
+  };
+
   const goalValues: GoalValue[] = [
     {
       icon: "kcal",
@@ -59,6 +111,7 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     {
       icon: "kcal",
       title: "Kişiselleştirilmiş Antrenman",
+      modalId: "training-modal",
       form: (
         <PersonalInformationsContextProvider>
           <CreateTrainingProgramForm />
@@ -68,6 +121,7 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     {
       icon: "food-plan",
       title: "Kişiselleştirilmiş Beslenme",
+      modalId: "nutrition-modal",
       form: (
         <PersonalInformationsContextProvider>
           <CreateNutritionProgramForm />
@@ -337,6 +391,10 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
         personalNutritionPrograms,
         aiNutritionSuggestions,
         suggestionRender,
+        handleOpenModal,
+        handleCloseModal,
+        modalStates,
+        axiosQueryVariables,
       }}
     >
       {children}

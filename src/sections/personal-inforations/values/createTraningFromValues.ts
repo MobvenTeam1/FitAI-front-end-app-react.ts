@@ -2,7 +2,7 @@ import { PersonalValue } from "./types";
 
 export const trainingHealtIssue: PersonalValue = {
   step: 0,
-  name: "trainingHealtIssue",
+  name: "healthProblem",
   label: "Bilinen sağlık sorununuz var mı?",
   placeholder: "Hamilelik,hamilelik sonrası, minüsküs yırtığı...",
   selectType: 2,
@@ -13,7 +13,7 @@ export const trainingHealtIssue: PersonalValue = {
 
 export const trainingType: PersonalValue = {
   step: 1,
-  name: "trainingType",
+  name: "preferredActivities",
   label: "Tercih ettiğiniz spor aktiviteleri nelerdir?",
   selectType: 1,
   options: [
@@ -28,7 +28,7 @@ export const trainingType: PersonalValue = {
 
 export const trainingRange: PersonalValue = {
   step: 2,
-  name: "trainingRange",
+  name: "workoutFrequency",
   label: "Hangi sıklıkla spor yapmak istersiniz?",
   selectType: 0,
   options: [
@@ -41,7 +41,7 @@ export const trainingRange: PersonalValue = {
 
 export const targetArea: PersonalValue = {
   step: 3,
-  name: "targetArea",
+  name: "focusAreas",
   label: "Hangi bölgelerde çalışmak istersiniz?",
   selectType: 1,
   options: [

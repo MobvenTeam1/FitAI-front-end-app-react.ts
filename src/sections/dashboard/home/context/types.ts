@@ -1,3 +1,5 @@
+import { CreateWorkoutPlanValuesSend } from "../../../personal-inforations/forms/CreateTrainingProgram";
+
 export interface HomeContextValues {
   goalValues: GoalValue[];
   createPlanValues: CreatePlanValue[];
@@ -10,6 +12,23 @@ export interface HomeContextValues {
   personalNutritionPrograms: PersonalPropram[];
   aiNutritionSuggestions: aiSuggestionItem[];
   suggestionRender: (type: string) => aiSuggestionItem[];
+  modalStates: ModalStates;
+  handleOpenModal: (id: string) => void;
+  handleCloseModal: (id: string) => void;
+  axiosQueryVariables: AxiosQueryParams;
+}
+
+export type ModalStates = {
+  [key: string]: boolean;
+};
+
+export interface AxiosQueryParams {
+  createAiWorkoutRequest: AxiosQueryCreateAiWorkoutParams;
+}
+
+export interface AxiosQueryCreateAiWorkoutParams {
+  isLoading: boolean;
+  mutate: (variables?: CreateWorkoutPlanValuesSend) => void;
 }
 
 // Define the shape of the goalValues
@@ -24,6 +43,7 @@ export interface CreatePlanValue {
   icon: string;
   title: string;
   form: JSX.Element;
+  modalId: string;
 }
 
 export interface AddPlanValue {

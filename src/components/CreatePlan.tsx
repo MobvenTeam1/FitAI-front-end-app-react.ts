@@ -1,27 +1,22 @@
-import { useState } from "react";
+import { useContext } from "react";
 import SvgColor from "./svg-color";
 import { CustomModal } from "./customs/custom-modal";
+import { HomeContext } from "../sections/dashboard/home/context/HomeContext";
+import { CreatePlanValue } from "../sections/dashboard/home/context/types";
 
-type GoalInfoProps = {
-  icon: string;
-  title: string;
-  form?: JSX.Element;
-};
+export const CreatePlan: React.FC<CreatePlanValue> = ({
+  icon,
+  title,
+  form,
+  modalId,
+}) => {
+  const { modalStates, handleCloseModal, handleOpenModal } =
+    useContext(HomeContext);
 
-export const CreatePlan: React.FC<GoalInfoProps> = ({ icon, title, form }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
   return (
     <div
       className="flex items-center rounded-xl overflow-hidden w-full h-28"
-      onClick={handleOpen}
+      onClick={() => handleOpenModal(modalId)}
     >
       <div className="bg-green-500 pl-8 h-full text-gray-900 flex items-center justify-center">
         <SvgColor src={`/icons/ic_${icon}.svg`} width={44} height={44} />
@@ -35,7 +30,11 @@ export const CreatePlan: React.FC<GoalInfoProps> = ({ icon, title, form }) => {
         </p>
       </div>
 
-      <CustomModal isOpen={isOpen} onClose={handleClose}>
+      <CustomModal
+        isOpen={modalStates[modalId]}
+        onClose={() => handleCloseModal(modalId)}
+      >
+        {/* {form} */}
         {form}
       </CustomModal>
     </div>
