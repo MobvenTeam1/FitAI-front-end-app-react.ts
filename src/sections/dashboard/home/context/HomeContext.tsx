@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { PersonalInformationsContextProvider } from "../../../personal-inforations/context/PersonalInformationsContext";
 import {
   CreateTrainingProgramForm,
@@ -19,9 +19,10 @@ import {
   PersonalPropram,
   aiSuggestionItem,
 } from "./types";
-import { createAiWorkoutRequest } from "../../../../api";
+import { createAiWorkoutRequest, getAiWorkoutsRequest } from "../../../../api";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
+import { AuthContext } from "../../../../auth/AuthContext";
 
 // Create the context with default values
 export const HomeContext = createContext<HomeContextValues>({
@@ -44,6 +45,10 @@ export const HomeContext = createContext<HomeContextValues>({
       isLoading: false,
       mutate: () => {},
     },
+    getAiWorkoutsRequest: {
+      isLoading: false,
+      mutate: () => {},
+    },
   },
 });
 
@@ -54,6 +59,7 @@ interface ChildrenProps {
 
 // Create the provider component
 export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
+  const { user } = useContext(AuthContext);
   const [modalStates, setModalStates] = useState<ModalStates>({});
 
   const handleOpenModal = (id: string) => {
@@ -65,6 +71,18 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   };
 
   // ** api requests
+
+  const { mutate: getWorkoutAiPlanMutate, isPending: getWorkoutAiPlanLoading } =
+    useMutation({
+      mutationFn: getAiWorkoutsRequest,
+      onSuccess: (data) => {
+        console.log("işlem başarılı getAiWorkoutsRequest : ", data);
+      },
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    });
+
   const {
     mutate: createWorkoutAiPlanMutate,
     isPending: createWorkoutAiPlanLoading,
@@ -74,6 +92,7 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
       console.log("registrationRequest data", data);
       toast.success("Antreman Planı Oluşturma Başarılı");
       handleCloseModal(createPlanValues[0].modalId);
+      getWorkoutAiPlanMutate();
     },
     onError: (error) => {
       toast.error(error.message);
@@ -86,6 +105,10 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
       mutate: createWorkoutAiPlanMutate as (
         variables?: CreateWorkoutPlanValuesSend
       ) => void,
+    },
+    getAiWorkoutsRequest: {
+      isLoading: getWorkoutAiPlanLoading,
+      mutate: getWorkoutAiPlanMutate,
     },
   };
 
@@ -103,7 +126,7 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     {
       icon: "dart",
       title: "Günlük Hedef",
-      value: "-2500",
+      value: `${user?.dailyKcalGoal}`,
     },
   ];
 
@@ -180,11 +203,11 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   const goalCompletionInfoValues: GoalCompletionInfoValue[] = [
     {
       title: "Mevcut Kilo",
-      value: "50 kg",
+      value: `${user?.currentWeight} kg`,
     },
     {
       title: "Hedef Kilo",
-      value: "45 kg",
+      value: `${user?.targetWeight} kg`,
     },
     {
       title: "Hedeflenen Tarih",
@@ -401,3 +424,36 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     </HomeContext.Provider>
   );
 };
+
+// const temp2 = [
+//   {
+//     title: "Yoga",
+//     time: "60dk",
+//     kcal: "100kcal",
+//     details: [
+//       {
+//         title: "Chest Press",
+//         desc: " 4 set, 12 tekrar",
+//       },
+//       {
+//         title: "Barbell Rows",
+//         desc: " 4 set, 12 tekrar",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Cardio",
+//     time: "30dk",
+//     kcal: "300kcal",
+//     details: [
+//       {
+//         title: "Squats",
+//         desc: " 4 set, 12 tekrar",
+//       },
+//       {
+//         title: "Hamstring Curls",
+//         desc: " 4 set, 12 tekrar",
+//       },
+//     ],
+//   },
+// ];

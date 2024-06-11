@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { TodayDate, fDate } from "../../utils/format-time";
 import { Racoon } from "./Racoon";
 import SvgColor from "../../components/svg-color";
+import { AuthContext } from "../../auth/AuthContext";
 
 export const Header: React.FC = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="flex justify-between items-center">
       <p className="text-gray-900 text-3xl font-bold">
-        Merhaba! Göktuğ Murat Demir
+        Merhaba! {user?.firstName} {user?.lastName}
       </p>
       <div className="flex items-center gap-5">
         <div className="flex items-center justify-center gap-2.5 p-3 border border-gray-50 shadow rounded-xl">

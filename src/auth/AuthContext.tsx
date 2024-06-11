@@ -1,11 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
 import { setTokenLocalStorage } from "../utils/setLocalStorage";
 
-import { useMutation } from "@tanstack/react-query";
-import { loginRequest, registerRequest } from "../api";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getUserDetailsRequest, loginRequest, registerRequest } from "../api";
 import { LoginFormValues } from "../pages/auth/Login";
 import { RegisterFormValues } from "../pages/auth/Register";
 import { toast } from "react-toastify";
+import { User } from "./type";
 
 interface ChildrenProps {
   children: React.ReactNode;
@@ -14,14 +15,17 @@ interface ChildrenProps {
 interface AuthState {
   accessToken: string | null;
   registerToken: string | null;
+  isFirstLogin: string | null;
 }
 
 const initialAuthState: AuthState = {
   accessToken: null,
   registerToken: null,
+  isFirstLogin: null,
 };
 
 export const AuthContext = createContext<{
+  user: User | null;
   authState: AuthState;
   login: (data: LoginFormValues) => void;
   logout: () => void;
@@ -29,6 +33,7 @@ export const AuthContext = createContext<{
   isLoading: boolean;
   setAuthState: React.Dispatch<React.SetStateAction<AuthState>>;
 }>({
+  user: null,
   authState: initialAuthState,
   login: () => {},
   logout: () => {},
@@ -43,12 +48,32 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   const [authState, setAuthState] = useState(() => {
     const accessToken = localStorage.getItem("accessToken");
     const registerToken = localStorage.getItem("registerToken");
-    return { accessToken, registerToken };
+    const isFirstLogin = localStorage.getItem("isFirstLogin");
+    return { accessToken, registerToken, isFirstLogin };
+  });
+
+  const [user, setUser] = useState<User | null>(null);
+
+  // console.log(user);
+  
+
+  const { data: userData } = useQuery({
+    queryKey: ["user"],
+    queryFn: getUserDetailsRequest,
   });
 
   useEffect(() => {
+    if (userData) {
+      setUser(userData);
+    }
+  }, [userData]);
+  
+
+  useEffect(() => {
     setTokenLocalStorage("accessToken", authState.accessToken || "");
-  }, [authState.accessToken]);
+    setTokenLocalStorage("registerToken", authState.registerToken || "");
+    setTokenLocalStorage("isFirstLogin", authState.isFirstLogin || "");
+  }, [authState.accessToken, authState.registerToken, authState.isFirstLogin]);
 
   // const queryClient = useQueryClient();
   const { mutate: loginMutate, isPending: isLoadingLogin } = useMutation({
@@ -60,7 +85,19 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
         accessToken: data.userToken.token,
       }));
       setTokenLocalStorage("accessToken", data.userToken.token);
-      toast.success("Giriş Başarılı");
+      setAuthState((prevState) => ({
+        ...prevState,
+        isFirstLogin: data.userToken.isFirstLogin ? "true" : "false",
+      }));
+      setTokenLocalStorage(
+        "isFirstLogin",
+        data.userToken.isFirstLogin ? "true" : "false"
+      );
+      toast.success(
+        data.userToken.isFirstLogin
+          ? "Lütfen Formu Doldurunuz"
+          : "Giriş Başarılı"
+      );
     },
     onError: (error) => {
       toast.error(error.message);
@@ -96,9 +133,11 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
       ...prevState,
       accessToken: null,
       registerToken: null,
+      isFirstLogin: null,
     }));
     setTokenLocalStorage("accessToken", "");
     setTokenLocalStorage("registerToken", "");
+    setTokenLocalStorage("isFirstLogin", "");
   };
 
   // useEffect(() => {
@@ -111,7 +150,15 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ authState, login, register, logout, isLoading, setAuthState }}
+      value={{
+        authState,
+        login,
+        register,
+        logout,
+        isLoading,
+        setAuthState,
+        user,
+      }}
     >
       {children}
     </AuthContext.Provider>

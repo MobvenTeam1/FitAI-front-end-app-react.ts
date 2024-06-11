@@ -6,6 +6,9 @@ import { paths } from "../../routes/paths";
 
 const AuthGuard: React.FC = () => {
   const { authState } = useContext(AuthContext);
+
+  // console.log("authState", authState);
+
   const accessToken = authState.accessToken;
   const registerToken = authState.registerToken;
 

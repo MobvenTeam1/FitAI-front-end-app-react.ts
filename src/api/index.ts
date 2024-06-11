@@ -1,3 +1,4 @@
+import { User } from "../auth/type";
 import { LoginFormValues } from "../pages/auth/Login";
 import { RegisterFormValues } from "../pages/auth/Register";
 import { CreateWorkoutPlanValuesSend } from "../sections/personal-inforations/forms/CreateTrainingProgram";
@@ -21,14 +22,6 @@ export const registerRequest = async (data: RegisterFormValues) => {
   return response.data;
 };
 
-// export const loginRequest = (
-//   data: LoginFormValues
-// ): Promise<AuthorizationResponse> => makeAuthRequest("/User/Login", data);
-
-// export const registerRequest = (
-//   data: RegisterFormValues
-// ): Promise<AuthorizationResponse> => makeAuthRequest("/User/Register", data);
-
 export const registrationRequest = async (data: FirstLoginFormSendValues) => {
   const response = await serviceAxios.post("/User/savefirstlogindetails", data);
   return response.data;
@@ -40,3 +33,14 @@ export const createAiWorkoutRequest = async (
   const response = await serviceAxios.post("/User/workoutdetails", data);
   return response.data;
 };
+
+export const getAiWorkoutsRequest = async () => {
+  const response = await serviceAxios.get("/WorkoutPlan/generateworkoutplan");
+  return response.data;
+};
+
+export const getUserDetailsRequest  = async () : Promise<User>  => {
+  const response = await serviceAxios.get("/User/GetUserDetails");
+  return response.data;
+}
+
