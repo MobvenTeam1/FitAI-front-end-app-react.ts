@@ -24,6 +24,12 @@ export type ModalStates = {
 
 export interface AxiosQueryParams {
   createAiWorkoutRequest: AxiosQueryCreateAiWorkoutParams;
+  getAiWorkoutsRequest: AxiosQueryGetAiWorkoutsParams;
+}
+
+export interface AxiosQueryGetAiWorkoutsParams {
+  isLoading: boolean;
+  mutate: () => void;
 }
 
 export interface AxiosQueryCreateAiWorkoutParams {

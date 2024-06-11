@@ -9,6 +9,7 @@ const RegistrationGuard: React.FC = (): ReactElement | null => {
   const { authState } = useContext(AuthContext);
   const registerToken = authState.registerToken;
 
+
   // Redirects the user if the registerToken is not present
   if (!registerToken) {
     return <Navigate to={`/${paths.auth.root}/${paths.auth.login}`} />;

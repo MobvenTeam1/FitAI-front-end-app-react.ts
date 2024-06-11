@@ -12,7 +12,7 @@ const WorkoutPlanView: React.FC = () => {
       <div className="col-span-8">{currentStep?.element}</div>
       <div className="col-span-4">
         <div className="flex flex-col gap-5">
-          <AiSuggestionView />
+          {step === 1 && <AiSuggestionView />}
           <FavoriWorkoutsView />
         </div>
       </div>
