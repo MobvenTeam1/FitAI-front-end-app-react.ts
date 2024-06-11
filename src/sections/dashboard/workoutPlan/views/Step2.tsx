@@ -78,19 +78,35 @@ const WorkoutDetails: React.FC = () => (
 type ControlIconProps = {
   src: string;
   active?: boolean;
+  handleStartWorkout?: () => void;
 };
 
-const ControlIcon: React.FC<ControlIconProps> = ({ src, active = false }) => (
-  <div className={`p-2.5 ${active ? "rounded-xl bg-green-500 p-6" : ""}`}>
+const ControlIcon: React.FC<ControlIconProps> = ({
+  src,
+  active = false,
+  handleStartWorkout,
+}) => (
+  <div
+    onClick={handleStartWorkout}
+    className={`p-2.5 cursor-pointer ${active ? "rounded-xl bg-green-500 p-6" : ""}`}
+  >
     <SvgColor src={`/icons/${src}`} width={32} height={32} />
   </div>
 );
 
-const ControlPanel: React.FC = () => (
+type ControlPanelProps = {
+  handleStartWorkout: () => void;
+};
+
+const ControlPanel: React.FC<ControlPanelProps> = ({ handleStartWorkout }) => (
   <div className="border border-gray-50 shadow rounded-xl flex items-center justify-center p-6 pt-10 -mt-4 gap-12">
     <ControlIcon src="ic_ai-asistan.svg" />
     <ControlIcon src="ic_music.svg" />
-    <ControlIcon src="ic_play.svg" active />
+    <ControlIcon
+      src="ic_play.svg"
+      active
+      handleStartWorkout={handleStartWorkout}
+    />
     <ControlIcon src="ic_cloud-download.svg" />
     <ControlIcon src="ic_settings.svg" />
   </div>
@@ -104,6 +120,29 @@ const Step2: React.FC = () => {
     setIsFavorite(!isFavorite);
     setShowConfirmation(true);
     setTimeout(() => setShowConfirmation(false), 3000);
+  };
+
+  const [showWorkoutDetails, setShowWorkoutDetails] = useState(true);
+  const [countdown, setCountdown] = useState(3);
+  const [isWorkoutStarted, setIsWorkoutStarted] = useState(false);
+
+  useEffect(() => {
+    let intervalId: number | undefined;
+    if (countdown > 0 && !showWorkoutDetails) {
+      intervalId = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
+    } else if (countdown === 0) {
+      setIsWorkoutStarted(true);
+      clearInterval(intervalId);
+    }
+    return () => clearInterval(intervalId);
+  }, [countdown, showWorkoutDetails]);
+
+  const handleStartWorkout = () => {
+    setShowWorkoutDetails(false);
+    setCountdown(3);
+    setIsWorkoutStarted(false);
   };
 
   return (
@@ -126,10 +165,17 @@ const Step2: React.FC = () => {
           <ConfirmationBanner message="Favori Antrenmanlarına Eklendi" />
         )}
 
-        <WorkoutDetails />
+        {showWorkoutDetails && <WorkoutDetails />}
+
+        {!showWorkoutDetails && countdown > 0 && (
+          <div className="font-bold text-green-500 italic text-9xl">
+            {countdown}
+          </div>
+        )}
+        {isWorkoutStarted && <div>Another Div</div>}
       </div>
 
-      <ControlPanel />
+      <ControlPanel handleStartWorkout={handleStartWorkout} />
     </div>
   );
 };
