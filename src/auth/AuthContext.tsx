@@ -57,9 +57,9 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
       console.log("data", data);
       setAuthState((prevState) => ({
         ...prevState,
-        accessToken: data.userToken,
+        accessToken: data.userToken.token,
       }));
-      setTokenLocalStorage("accessToken", data.userToken);
+      setTokenLocalStorage("accessToken", data.userToken.token);
       toast.success("Giriş Başarılı");
     },
     onError: (error) => {

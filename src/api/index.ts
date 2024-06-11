@@ -5,28 +5,29 @@ import { FirstLoginFormSendValues } from "../sections/personal-inforations/forms
 import { serviceAxios } from "./axios";
 
 export interface AuthorizationResponse {
-  userToken: string;
+  userToken: {
+    token: string;
+    isFirstLogin: boolean;
+  };
 }
 
-const makeAuthRequest = async (
-  endpoint: string,
-  data: LoginFormValues | RegisterFormValues
-): Promise<AuthorizationResponse> => {
-  const response = await serviceAxios.post(endpoint, data, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+export const loginRequest = async (data: LoginFormValues) => {
+  const response = await serviceAxios.post("/User/Login", data);
   return response.data;
 };
 
-export const loginRequest = (
-  data: LoginFormValues
-): Promise<AuthorizationResponse> => makeAuthRequest("/User/Login", data);
+export const registerRequest = async (data: RegisterFormValues) => {
+  const response = await serviceAxios.post("/User/Register", data);
+  return response.data;
+};
 
-export const registerRequest = (
-  data: RegisterFormValues
-): Promise<AuthorizationResponse> => makeAuthRequest("/User/Register", data);
+// export const loginRequest = (
+//   data: LoginFormValues
+// ): Promise<AuthorizationResponse> => makeAuthRequest("/User/Login", data);
+
+// export const registerRequest = (
+//   data: RegisterFormValues
+// ): Promise<AuthorizationResponse> => makeAuthRequest("/User/Register", data);
 
 export const registrationRequest = async (data: FirstLoginFormSendValues) => {
   const response = await serviceAxios.post("/User/savefirstlogindetails", data);
