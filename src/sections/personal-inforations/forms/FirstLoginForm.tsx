@@ -14,6 +14,7 @@ import { RHFSubmitButton } from "../../../components/hook-form/RHFSubmitButton";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { registrationRequest } from "../../../api";
+import { setTokenLocalStorage } from "../../../utils/setLocalStorage";
 
 type FirstLoginFormValues = {
   gender: string;
@@ -52,7 +53,7 @@ const defaultValues: FirstLoginFormValues = {
 };
 
 export const FirstLoginForm: React.FC = () => {
-  const { logout } = useContext(AuthContext);
+  const { logout, authState, setAuthState } = useContext(AuthContext);
   const { step, forwardStep } = useContext(PersonalInformationsContext);
   const form = useForm<FirstLoginFormValues>({
     defaultValues,
@@ -80,7 +81,16 @@ export const FirstLoginForm: React.FC = () => {
     onSuccess: (data) => {
       console.log("registrationRequest data", data);
       toast.success("Kayıt Oluşturma Başarılı");
-      logout();
+      setAuthState((prevState) => ({
+        ...prevState,
+        accessToken: authState.registerToken,
+      }));
+      setTokenLocalStorage("accessToken", authState.registerToken || "");
+      setTokenLocalStorage("registerToken", "");
+      setAuthState((prevState) => ({
+        ...prevState,
+        registerToken: null,
+      }));
     },
     onError: (error) => {
       toast.error(error.message);

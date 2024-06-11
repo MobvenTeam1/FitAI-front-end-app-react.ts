@@ -44,6 +44,8 @@ export const RHFTextfield: FC<InputProps> = ({
   const togglePasswordVisibility = () =>
     setInputType((prevType) => (prevType === "password" ? "text" : "password"));
 
+  // ${inputType === "password" ? "font-black tracking-widest" : ""}
+
   return (
     <div>
       <div className="relative">
@@ -53,9 +55,7 @@ export const RHFTextfield: FC<InputProps> = ({
           placeholder={label}
           className={`font-medium text-base border ${
             error ? "border-red" : "border-gray-50"
-          } rounded-lg px-4 py-5 w-full bg-gray-150 ${
-            inputType === "password" ? "font-black tracking-widest" : ""
-          } focus:outline-none focus:ring-1 ${
+          } rounded-lg px-4 py-5 w-full bg-gray-150  focus:outline-none focus:ring-1 ${
             error ? "focus:ring-red-500" : "focus:ring-green-500"
           } focus:border-transparent focus:placeholder-transparent`}
           {...register(name)}

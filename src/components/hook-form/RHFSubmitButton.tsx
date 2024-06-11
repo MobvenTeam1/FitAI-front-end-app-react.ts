@@ -28,7 +28,13 @@ export const RHFSubmitButton: React.FC<RHFSubmitButtonProps> = ({
       variant={variant}
       color={color}
       size={size}
-      label={isLoading ? <CircularProgress sx={{ color: "white" }} /> : label}
+      label={
+        isLoading ? (
+          <CircularProgress size={28} sx={{ color: "white" }} />
+        ) : (
+          label
+        )
+      }
       disabled={isLoading}
       {...props}
     />

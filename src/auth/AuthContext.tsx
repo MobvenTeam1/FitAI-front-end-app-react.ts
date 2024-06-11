@@ -27,12 +27,14 @@ export const AuthContext = createContext<{
   logout: () => void;
   register: (data: RegisterFormValues) => void;
   isLoading: boolean;
+  setAuthState: React.Dispatch<React.SetStateAction<AuthState>>;
 }>({
   authState: initialAuthState,
   login: () => {},
   logout: () => {},
   register: () => {},
   isLoading: false,
+  setAuthState: () => {},
 });
 
 export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
@@ -109,7 +111,7 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ authState, login, register, logout, isLoading }}
+      value={{ authState, login, register, logout, isLoading, setAuthState }}
     >
       {children}
     </AuthContext.Provider>
