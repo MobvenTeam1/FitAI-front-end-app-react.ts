@@ -9,21 +9,24 @@ interface SvgColorProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const SvgColor = forwardRef<HTMLSpanElement, SvgColorProps>(
-  ({ src, style, width = 12, height = 12, ...other }, ref) => (
-    <span
-      ref={ref}
-      style={{
-        width,
-        height,
-        display: "inline-block",
-        backgroundColor: "currentColor",
-        mask: `url(/public/${src}) no-repeat center / contain`,
-        WebkitMask: `url(${src}) no-repeat center / contain`,
-        ...style,
-      }}
-      {...other}
-    />
-  )
+  ({ src, style, width = 12, height = 12, ...other }, ref) => {
+    const adjustedSrc = `/public${src}`;
+    return (
+      <span
+        ref={ref}
+        style={{
+          width,
+          height,
+          display: "inline-block",
+          backgroundColor: "currentColor",
+          mask: `url(${adjustedSrc}) no-repeat center / contain`,
+          WebkitMask: `url(${adjustedSrc}) no-repeat center / contain`,
+          ...style,
+        }}
+        {...other}
+      />
+    );
+  }
 );
 
 export default SvgColor;
