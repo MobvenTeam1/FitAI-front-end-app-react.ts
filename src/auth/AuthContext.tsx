@@ -32,6 +32,7 @@ export const AuthContext = createContext<{
   register: (data: RegisterFormValues) => void;
   isLoading: boolean;
   setAuthState: React.Dispatch<React.SetStateAction<AuthState>>;
+  userDetailMutate: () => void;
 }>({
   user: null,
   authState: initialAuthState,
@@ -40,6 +41,7 @@ export const AuthContext = createContext<{
   register: () => {},
   isLoading: false,
   setAuthState: () => {},
+  userDetailMutate: () => {},
 });
 
 export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
@@ -86,21 +88,19 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
       console.log("data", data);
       setAuthState((prevState) => ({
         ...prevState,
-        accessToken: data.userToken.token,
+        accessToken: data.token,
       }));
-      setTokenLocalStorage("accessToken", data.userToken.token);
+      setTokenLocalStorage("accessToken", data.token);
       setAuthState((prevState) => ({
         ...prevState,
-        isFirstLogin: data.userToken.isFirstLogin ? "true" : "false",
+        isFirstLogin: data.isFirstLogin ? "true" : "false",
       }));
       setTokenLocalStorage(
         "isFirstLogin",
-        data.userToken.isFirstLogin ? "true" : "false"
+        data.isFirstLogin ? "true" : "false"
       );
       toast.success(
-        data.userToken.isFirstLogin
-          ? "Lütfen Formu Doldurunuz"
-          : "Giriş Başarılı"
+        data.isFirstLogin ? "Lütfen Formu Doldurunuz" : "Giriş Başarılı"
       );
       userDetailMutate();
     },
@@ -114,9 +114,9 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     onSuccess: (data) => {
       setAuthState((prevState) => ({
         ...prevState,
-        registerToken: data.userToken.token,
+        registerToken: data.token,
       }));
-      setTokenLocalStorage("registerToken", data.userToken.token);
+      setTokenLocalStorage("registerToken", data.token);
       toast.success("Kayıt Başarılı");
       // window.location.href = "/registration";
     },
@@ -163,6 +163,7 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
         isLoading,
         setAuthState,
         user,
+        userDetailMutate,
       }}
     >
       {children}

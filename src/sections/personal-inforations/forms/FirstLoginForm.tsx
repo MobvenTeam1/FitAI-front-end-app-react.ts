@@ -30,7 +30,7 @@ export type FirstLoginFormSendValues = {
   height: number;
   firstWeight: number;
   targetWeight: number;
-  dateOfBirth: Date;
+  dateOfBirth: string;
   goals: string;
 };
 
@@ -53,7 +53,8 @@ const defaultValues: FirstLoginFormValues = {
 };
 
 export const FirstLoginForm: React.FC = () => {
-  const { logout, authState, setAuthState } = useContext(AuthContext);
+  const { logout, authState, setAuthState, userDetailMutate } =
+    useContext(AuthContext);
   const { step, forwardStep } = useContext(PersonalInformationsContext);
   const form = useForm<FirstLoginFormValues>({
     defaultValues,
@@ -91,6 +92,7 @@ export const FirstLoginForm: React.FC = () => {
         ...prevState,
         registerToken: null,
       }));
+      userDetailMutate();
     },
     onError: (error) => {
       toast.error(error.message);
@@ -102,12 +104,14 @@ export const FirstLoginForm: React.FC = () => {
     const heightInt = parseInt(height, 10);
     const firstWeightInt = parseInt(firstWeight, 10);
     const targetWeightInt = parseInt(targetWeight, 10);
+    const formattedDate = new Date(data.dateOfBirth).toISOString().split('T')[0];
 
     const sendeData = {
       ...rest,
       height: heightInt,
       firstWeight: firstWeightInt,
       targetWeight: targetWeightInt,
+      dateOfBirth: formattedDate,
     };
     mutate(sendeData);
   };
