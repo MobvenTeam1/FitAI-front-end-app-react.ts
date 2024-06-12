@@ -10,7 +10,7 @@ const MusicSuggestion: React.FC = () => {
           <div className="flex items-center gap-2">
             <img
               className="w-10 h-10 rounded-lg"
-              src="/frames/music-frame.svg"
+              src="/src/assets/frames/music-frame.svg"
               alt=""
             />
             <div className="flex flex-col">

@@ -16,7 +16,7 @@ export const PersonalPlanCard: React.FC<Props> = ({ value }) => {
         onClick={() => setIsShow(!isShow)}
         className="h-28 px-6 object-cover cursor-pointer bg-center bg-no-repeat bg-cover relative rounded-xl"
         style={{
-          backgroundImage: `url(/frames/frame_${value.img}.jpg)`,
+          backgroundImage: `url(/src/assets/frames/frame_${value.img}.jpg)`,
         }}
       >
         <div className="flex items-center justify-between text-white h-full">

@@ -20,7 +20,7 @@ export const CategoriesViews: React.FC<Props> = ({ header, values, col }) => {
           <div key={index + value.title} className={`${col} relative`}>
             <img
               className="w-full rounded-xl h-56 object-cover"
-              src={`/frames/frame_${value.img}.png`}
+              src={`/src/assets/frames/frame_${value.img}.png`}
               alt={value.title}
             />
             <p className="absolute left-0 top-40 text-center font-bold text-base bg-green-500 py-1 px-4 rounded-e-full">

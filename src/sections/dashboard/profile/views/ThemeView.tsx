@@ -36,7 +36,7 @@ const ThemeView: React.FC = () => {
               className={`w-full border border-gray-50 rounded-xl cursor-pointer h-28x ${
                 selectedTheme === item.id ? "outline outline-green-500" : ""
               }`}
-              src={`/frames/frame_${item.img}-theme.png`}
+              src={`/src/assets/frames/frame_${item.img}-theme.png`}
               alt={item.title}
             />
             <p className="text-gray-900 text-base text-center mt-5">

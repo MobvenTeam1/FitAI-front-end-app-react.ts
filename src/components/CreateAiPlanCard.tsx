@@ -41,7 +41,7 @@ export const CreateAiPlanCard: React.FC<Props> = ({
           isSelected ? "border-green-500" : "border-gray-50"
         } shadow-sm rounded-xl`}
       >
-        <img src={`/frames/frame_${img}.png`} alt="" />
+        <img src={`/src/assets/frames/frame_${img}.png`} alt="" />
         <div className="flex flex-col gap-2">
           <p className="text-base font-bold">{title}</p>
           <p className="text-gray-300 text-sm">{subtitle}</p>

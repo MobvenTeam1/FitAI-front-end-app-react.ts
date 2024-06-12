@@ -16,7 +16,7 @@ const MusicPlayer: React.FC = () => {
       <div className="flex items-center gap-2">
         <img
           className="w-14 h-14 rounded-xl"
-          src="/frames/frame_eminem.svg"
+          src="/src/assets/frames/frame_eminem.svg"
           alt=""
         />
         <div>

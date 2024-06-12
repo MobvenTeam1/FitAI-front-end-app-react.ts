@@ -10,7 +10,7 @@ const PurposeGainView: React.FC = () => {
         </div>
         <img
           className="border border-gray-50 rounded-full w-24 h-24"
-          src="/frames/user.png"
+          src="/src/assets/frames/user.png"
           alt="purpose-gain"
         />
         <p className="text-xs text-gray-300 text-center">

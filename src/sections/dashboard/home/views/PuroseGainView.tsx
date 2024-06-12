@@ -6,7 +6,7 @@ export const PuroseGainView: React.FC = () => {
       <div className="absolute top-0 left-0 right-0 transform -translate-y-1/3 flex flex-col items-center justify-center gap-3">
         <img
           className="border border-gray-50 rounded-full w-24 h-24"
-          src="/frames/user.png"
+          src="/src/assets/frames/user.png"
           alt="purpose-gain"
         />
         <div className="text-center">

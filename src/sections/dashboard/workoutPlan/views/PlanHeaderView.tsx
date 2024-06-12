@@ -3,7 +3,7 @@ import SvgColor from "../../../../components/svg-color";
 
 const PlanHeaderView: React.FC = () => {
   return (
-    <div className="p-8 flex flex-col gap-3 text-white rounded-xl bg-[url('/frames/frame_hiit.svg')] bg-cover bg-center backdrop-grayscale">
+    <div className="p-8 flex flex-col gap-3 text-white rounded-xl bg-[url('/src/assets/frames/frame_hiit.svg')] bg-cover bg-center backdrop-grayscale">
       <p className="font-bold text-4xl">Koşu</p>
       <div className="flex items-center gap-3">
         <InfoCardItem title="Kilo Verme" icon="goal-up_weight" />

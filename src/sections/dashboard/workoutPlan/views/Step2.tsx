@@ -18,7 +18,7 @@ const Step2: React.FC = () => {
 
   return (
     <div>
-      <div className="relative w-full h-[525px] rounded-xl bg-[url('/frames/frame_hiit.svg')] bg-cover bg-center flex items-center justify-center">
+      <div className="relative w-full h-[525px] rounded-xl bg-[url('/src/assets/frames/frame_hiit.svg')] bg-cover bg-center flex items-center justify-center">
         <FavoriteIconView />
         <MusicPlayer />
 

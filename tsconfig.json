@@ -7,9 +7,9 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "@icons/*" : ["src/assets/icons/*"],
-      "@utils/*" : ["src/utils/*"],
+      "@/*": ["./src/*"],
+      "@icons/*" : ["./src/assets/icons/*"],
+      "@utils/*" : ["./src/utils/*"],
     },
 
 
