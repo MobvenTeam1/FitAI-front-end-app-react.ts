@@ -1,6 +1,5 @@
 import axios from "axios";
 import { getLocalStorage } from "../utils/getLocalStorage";
-import { setTokenLocalStorage } from "../utils/setLocalStorage";
 
 // BASE_URL tanımı, gerçek URL'nizle değiştirin
 export const BASE_URL = "https://talent.mobven.com:5041/api/";
@@ -23,14 +22,14 @@ serviceAxios.interceptors.response.use(
   async (error) => {
     console.log("error", error.response);
     switch (error.response.status) {
-      case 401:
-        if (window.location.pathname !== "/auth/login") {
-          setTokenLocalStorage("accessToken", "");
-          setTokenLocalStorage("registerToken", "");
-          setTokenLocalStorage("isFirstLogin", "");
-          window.location.href = "/auth/login";
-        }
-        break;
+      // case 401:
+      //   // if (window.location.pathname !== "/auth/login") {
+      //   //   setTokenLocalStorage("accessToken", "");
+      //   //   setTokenLocalStorage("registerToken", "");
+      //   //   setTokenLocalStorage("isFirstLogin", "");
+      //   //   window.location.href = "/auth/login";
+      //   // }
+      //   break;
       default:
         break;
     }
