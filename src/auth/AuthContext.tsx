@@ -114,9 +114,9 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
     onSuccess: (data) => {
       setAuthState((prevState) => ({
         ...prevState,
-        registerToken: data.userToken,
+        registerToken: data.userToken.token,
       }));
-      setTokenLocalStorage("registerToken", data.userToken);
+      setTokenLocalStorage("registerToken", data.userToken.token);
       toast.success("Kayıt Başarılı");
       // window.location.href = "/registration";
     },
