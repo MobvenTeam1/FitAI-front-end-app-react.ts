@@ -129,13 +129,12 @@ export const FirstLoginForm: React.FC = () => {
           <CustomButton onClick={handleNext} type="button" label={"İlerle"} />
         )}
 
-        <CustomButton
-          type="button"
-          variant="link"
-          color="red"
+        <p
           onClick={logout}
-          label="Daha sonra devam et"
-        />
+          className="text-gray-300 text-base text-center cursor-pointer"
+        >
+          Daha sonra devam et
+        </p>
 
         <hr />
         <RHFFormValues />

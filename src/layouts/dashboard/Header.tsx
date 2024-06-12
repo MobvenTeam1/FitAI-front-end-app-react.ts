@@ -6,6 +6,8 @@ import { AuthContext } from "../../auth/AuthContext";
 
 export const Header: React.FC = () => {
   const { user } = useContext(AuthContext);
+  console.log(user);
+  
   return (
     <div className="flex justify-between items-center">
       <p className="text-gray-900 text-3xl font-bold">

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { StepWorkoutValue, WorkoutPlanContextValues } from "./types";
 import Step1 from "../views/Step1";
 import Step2 from "../views/Step2";
@@ -9,6 +9,13 @@ export const WorkoutPlanContext = createContext<WorkoutPlanContextValues>({
   step: 0,
   setStep: () => {},
   stepValues: [],
+  isWorkoutStarted: false,
+  handleStartWorkout: () => {},
+  isFavorite: false,
+  toggleFavorite: () => {},
+  showConfirmation: false,
+  showWorkoutDetails: true,
+  countdown: 3,
 });
 
 // Define the properties for the provider component
@@ -36,8 +43,53 @@ export const WorkoutPlanContextProvider: React.FC<ChildrenProps> = ({
       element: <Step3 />,
     },
   ];
+
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+    setShowConfirmation(true);
+    setTimeout(() => setShowConfirmation(false), 3000);
+  };
+
+  const [showWorkoutDetails, setShowWorkoutDetails] = useState(true);
+  const [countdown, setCountdown] = useState(3);
+  const [isWorkoutStarted, setIsWorkoutStarted] = useState(false);
+
+  useEffect(() => {
+    let intervalId: number | undefined;
+    if (countdown > 0 && !showWorkoutDetails) {
+      intervalId = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
+    } else if (countdown === 0) {
+      setIsWorkoutStarted(true);
+      clearInterval(intervalId);
+    }
+    return () => clearInterval(intervalId);
+  }, [countdown, showWorkoutDetails]);
+
+  const handleStartWorkout = () => {
+    setShowWorkoutDetails(false);
+    setCountdown(3);
+    setIsWorkoutStarted(false);
+  };
   return (
-    <WorkoutPlanContext.Provider value={{ step, setStep, stepValues }}>
+    <WorkoutPlanContext.Provider
+      value={{
+        step,
+        setStep,
+        stepValues,
+        isWorkoutStarted,
+        showWorkoutDetails,
+        countdown,
+        handleStartWorkout,
+        toggleFavorite,
+        showConfirmation,
+        isFavorite
+      }}
+    >
       {children}
     </WorkoutPlanContext.Provider>
   );

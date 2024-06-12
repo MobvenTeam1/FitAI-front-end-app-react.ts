@@ -425,11 +425,17 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   );
 };
 
+// const sss = [
+//   {
+//     title: "Yoga",
+//     img: "ssss"
+//   }
+// ]
+
 // const temp2 = [
 //   {
 //     title: "Yoga",
-//     time: "60dk",
-//     kcal: "100kcal",
+//     desc: "60dk 100kcal",
 //     details: [
 //       {
 //         title: "Chest Press",
@@ -443,8 +449,7 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 //   },
 //   {
 //     title: "Cardio",
-//     time: "30dk",
-//     kcal: "300kcal",
+//     desc: "60dk 100kcal",
 //     details: [
 //       {
 //         title: "Squats",

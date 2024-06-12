@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { setTokenLocalStorage } from "../utils/setLocalStorage";
 
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { getUserDetailsRequest, loginRequest, registerRequest } from "../api";
 import { LoginFormValues } from "../pages/auth/Login";
 import { RegisterFormValues } from "../pages/auth/Register";
@@ -55,19 +55,13 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
   // console.log(user);
-  
-
-  const { data: userData } = useQuery({
-    queryKey: ["user"],
-    queryFn: getUserDetailsRequest,
-  });
 
   useEffect(() => {
-    if (userData) {
-      setUser(userData);
+    if (authState.accessToken) {
+      userDetailMutate();
     }
-  }, [userData]);
-  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setTokenLocalStorage("accessToken", authState.accessToken || "");
@@ -76,6 +70,16 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
   }, [authState.accessToken, authState.registerToken, authState.isFirstLogin]);
 
   // const queryClient = useQueryClient();
+  const { mutate: userDetailMutate } = useMutation({
+    mutationFn: getUserDetailsRequest,
+    onSuccess: (data) => {
+      setUser(data);
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
   const { mutate: loginMutate, isPending: isLoadingLogin } = useMutation({
     mutationFn: loginRequest,
     onSuccess: (data) => {
@@ -98,6 +102,7 @@ export const AuthContextProvider: React.FC<ChildrenProps> = ({ children }) => {
           ? "Lütfen Formu Doldurunuz"
           : "Giriş Başarılı"
       );
+      userDetailMutate();
     },
     onError: (error) => {
       toast.error(error.message);

@@ -20,9 +20,11 @@ export const Sidebar: React.FC = () => {
     <aside className="flex flex-col gap-4 max-h-screen overflow-auto">
       <div className="flex items-center justify-start gap-3 py-6 px-8">
         <SvgColor src="/logo/logo.svg" width={40} height={40} />
-        <h1 className="text-4xl font-medium">
-          Fit<span className="font-black">AI</span>
-        </h1>
+        <Link to="/">
+          <h1 className="text-4xl font-medium">
+            Fit<span className="font-black">AI</span>
+          </h1>
+        </Link>
       </div>
       {/* <Racoon /> */}
 
@@ -34,7 +36,7 @@ export const Sidebar: React.FC = () => {
             </p>
             <div className="flex flex-col gap-1">
               {item.navs.map((nav, index) => (
-                <div key={index+"a"} className="flex gap-2 w-full">
+                <div key={index + "a"} className="flex gap-2 w-full">
                   <div
                     className={`h-14 rounded-e-full w-2 ${
                       isCurrentPath(nav.path) && "bg-green-500"
