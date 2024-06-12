@@ -2,7 +2,7 @@ import SvgColor from "../../../../components/svg-color";
 import { useEffect, useState } from "react";
 
 const MusicPlayer: React.FC = () => {
-  const [audio] = useState(new Audio("/music/Lose-Yourself.mp3"));
+  const [audio] = useState(new Audio("/src/assets/music/Lose-Yourself.mp3"));
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
@@ -25,18 +25,26 @@ const MusicPlayer: React.FC = () => {
         </div>
       </div>
       <div className="flex items-center gap-5">
-        <SvgColor src={`/icons/ic_play-back.svg`} width={20} height={20} />
+        <SvgColor
+          src={`/src/assets/icons/ic_play-back.svg`}
+          width={20}
+          height={20}
+        />
         <div
           className="cursor-pointer flex items-center justify-center"
           onClick={toggleMusic}
         >
           <SvgColor
-            src={`/icons/ic_${isPlaying ? "pause" : "play"}.svg`}
+            src={`/src/assets/icons/ic_${isPlaying ? "pause" : "play"}.svg`}
             width={28}
             height={28}
           />
         </div>
-        <SvgColor src={`/icons/ic_play-forward.svg`} width={20} height={20} />
+        <SvgColor
+          src={`/src/assets/icons/ic_play-forward.svg`}
+          width={20}
+          height={20}
+        />
       </div>
     </div>
   );

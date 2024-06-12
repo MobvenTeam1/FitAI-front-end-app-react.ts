@@ -24,11 +24,11 @@ export const PersonalPlanCard: React.FC<Props> = ({ value }) => {
             <p className="font-bold text-2xl">{value.programTitle}</p>
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
-                <SvgColor src="/icons/ic_clock.svg" />
+                <SvgColor src="/src/assets/icons/ic_clock.svg" />
                 <p className="font-base">{value.duration}</p>
               </div>
               <div className="flex items-center gap-1">
-                <SvgColor src="/icons/ic_kcal.svg" />
+                <SvgColor src="/src/assets/icons/ic_kcal.svg" />
                 <p className="font-base">{value.caloriesBurned}</p>
               </div>
             </div>
@@ -38,7 +38,7 @@ export const PersonalPlanCard: React.FC<Props> = ({ value }) => {
               isShow ? "transform rotate-180" : ""
             }`}
           >
-            <SvgColor src="/icons/ic_arrow-up.svg" width={24} height={24} />
+            <SvgColor src="/src/assets/icons/ic_arrow-up.svg" width={24} height={24} />
           </div>
         </div>
       </div>

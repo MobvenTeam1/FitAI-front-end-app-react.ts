@@ -55,7 +55,7 @@ export const CustomModal: React.FC<CustomModalProps> = ({
               onClick={onClose}
               className="border border-gray-50 p-4 shadow rounded-xl"
             >
-              <img src="/icons/ic_close.svg" alt="" />
+              <img src="/src/assets/icons/ic_close.svg" alt="" />
             </button>
           </div>
           <div className="bg-white">{children}</div>

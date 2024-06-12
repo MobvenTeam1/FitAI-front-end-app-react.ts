@@ -33,7 +33,7 @@ export const Stepper: React.FC<TypeName> = ({ values }) => {
                 : backwardStep()
             }
           >
-            <img src="/icons/ic_arrow-left.svg" className="w-6 h-6" alt="" />
+            <img src="/src/assets/icons/ic_arrow-left.svg" className="w-6 h-6" alt="" />
           </button>
         )}
         <div className={`text-sm font-bold text-end ${step === 0 && "w-full"}`}>

@@ -11,7 +11,7 @@ const AiSuggestionView: React.FC = () => {
       <div className="rounded-xl p-3 flex items-center justify-between bg-white">
         <div className="flex items-center gap-3.5">
           <div className="shadow border border-black-50 bg-white rounded-3xl p-3">
-            <SvgColor src="/icons/ic_walk.svg" width={40} height={40} />
+            <SvgColor src="/src/assets/icons/ic_walk.svg" width={40} height={40} />
           </div>
           <div>
             <p className="font-bold text-base">Yürüyüş</p>
@@ -36,7 +36,7 @@ type KcalItemProps = {
 
 const KcalItem: React.FC<KcalItemProps> = ({ desc, value, icon }) => (
   <div className="bg-gray-50 rounded-xl py-1.5 px-2 flex items-center gap-1">
-    <SvgColor src={`/icons/ic_${icon}.svg`} width={12} height={12} />
+    <SvgColor src={`/src/assets/icons/ic_${icon}.svg`} width={12} height={12} />
     <p className="text-sm">{`${value} ${desc}`}</p>
   </div>
 );

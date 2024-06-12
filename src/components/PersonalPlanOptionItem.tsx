@@ -28,7 +28,7 @@ export const PersonalPlanOptionItem: React.FC<Props> = ({ option }) => {
           <div className="bg-black-100 rounded-xl p-3">
             <img
               className="w-6 h-6"
-              src={`/icons/ic_${option.optionImage}.svg`}
+              src={`/src/assets/icons/ic_${option.optionImage}.svg`}
               alt=""
             />
           </div>
@@ -41,7 +41,7 @@ export const PersonalPlanOptionItem: React.FC<Props> = ({ option }) => {
           className="rounded-xl py-2 px-2.5 bg-green-500 cursor-pointer"
           onClick={handleOpen}
         >
-          <img className="w-5 h-5" src="/icons/ic_stars.svg" alt="" />
+          <img className="w-5 h-5" src="/src/assets/icons/ic_stars.svg" alt="" />
         </div>
       </div>
 

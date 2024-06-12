@@ -22,7 +22,7 @@ const PasswordToggleButton: FC<{
     <SvgColor
       width={24}
       height={24}
-      src={`/icons/ic_password_${isPasswordVisible ? "eye-close" : "eye"}.svg`}
+      src={`/src/assets/icons/ic_password_${isPasswordVisible ? "eye-close" : "eye"}.svg`}
     />
   </button>
 );

@@ -19,7 +19,7 @@ const InfoCardItem: React.FC<{ title: string; icon: string }> = ({
 }) => {
   return (
     <div className="flex items-center gap-2 p-3 rounded-xl backdrop-blur-2xl">
-      <SvgColor src={`/icons/ic_${icon}.svg`} width={12} height={12} />
+      <SvgColor src={`/src/assets/icons/ic_${icon}.svg`} width={12} height={12} />
       <p className="text-base font-semibold">{title}</p>
     </div>
   );

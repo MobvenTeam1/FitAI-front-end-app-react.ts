@@ -19,7 +19,7 @@ export const CustomSearchInput: React.FC<CustomSearchInputProps> = ({
   return (
     <div className="relative flex items-center">
       <div className="absolute left-8 top-4">
-        <SvgColor src="/icons/ic_search.svg" width={24} height={24} />
+        <SvgColor src="/src/assets/icons/ic_search.svg" width={24} height={24} />
       </div>
       <input
         type="text"

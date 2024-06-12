@@ -55,7 +55,7 @@ export const RHFMultiSelect: FC<SelectProps> = ({ name, options }) => {
                 >
                   <img
                     className="w-5 h-5"
-                    src={`/icons/ic_${option.icon}.svg`}
+                    src={`/src/assets/icons/ic_${option.icon}.svg`}
                     alt=""
                   />
                 </div>
@@ -73,7 +73,7 @@ export const RHFMultiSelect: FC<SelectProps> = ({ name, options }) => {
               <div
                 className={`rounded-full p-1 w-6 h-6 bg-green-500 text-white flex items-center justify-center`}
               >
-                <SvgColor src="/icons/ic_check.svg" />
+                <SvgColor src="/src/assets/icons/ic_check.svg" />
               </div>
             )}
           </div>

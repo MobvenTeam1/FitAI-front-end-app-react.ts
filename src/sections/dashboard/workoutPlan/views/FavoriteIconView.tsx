@@ -11,7 +11,7 @@ const FavoriteIconView: React.FC = () => {
       onClick={toggleFavorite}
     >
       <SvgColor
-        src={`/icons/ic_${isFavorite ? "heart-full" : "heart"}.svg`}
+        src={`/src/assets/icons/ic_${isFavorite ? "heart-full" : "heart"}.svg`}
         width={24}
         height={24}
       />

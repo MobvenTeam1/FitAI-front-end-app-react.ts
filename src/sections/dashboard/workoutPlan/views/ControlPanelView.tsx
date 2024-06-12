@@ -35,7 +35,7 @@ const ControlIcon: React.FC<ControlIconProps> = ({
       active ? "rounded-xl bg-green-500 p-6" : ""
     }`}
   >
-    <SvgColor src={`/icons/${src}`} width={32} height={32} />
+    <SvgColor src={`/src/assets/icons/${src}`} width={32} height={32} />
   </div>
 );
 

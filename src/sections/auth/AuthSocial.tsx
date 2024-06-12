@@ -8,17 +8,17 @@ const loginOptions: LoginOption[] = [
   {
     id: 1,
     name: "Facebook",
-    icon: "/icons/ic_facebook.svg",
+    icon: "/src/assets/icons/ic_facebook.svg",
   },
   {
     id: 2,
     name: "Google",
-    icon: "/icons/ic_google.svg",
+    icon: "/src/assets/icons/ic_google.svg",
   },
   {
     id: 3,
     name: "Apple",
-    icon: "/icons/ic_apple.svg",
+    icon: "/src/assets/icons/ic_apple.svg",
   },
 ];
 

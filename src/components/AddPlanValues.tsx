@@ -39,7 +39,7 @@ export const AddPlanValues: React.FC<Props> = ({ values, texts }) => {
               <div className="w-full flex items-center justify-center rounded-xl bg-black-100 py-4">
                 <img
                   className="w-20 h-20"
-                  src={`/icons/ic_${value.img}.svg`}
+                  src={`/src/assets/icons/ic_${value.img}.svg`}
                   alt=""
                 />
               </div>

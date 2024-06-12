@@ -7,7 +7,7 @@ type DetailItemProps = {
 
 const DetailItem: React.FC<DetailItemProps> = ({ icon, text }) => (
   <div className="w-full rounded-xl px-4 py-2 gap-2 flex items-center backdrop-blur-2xl">
-    <SvgColor src={`/icons/${icon}`} width={16} height={16} />
+    <SvgColor src={`/src/assets/icons/${icon}`} width={16} height={16} />
     <p className="text-base">{text}</p>
   </div>
 );

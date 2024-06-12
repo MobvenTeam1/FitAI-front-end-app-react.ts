@@ -15,7 +15,7 @@ const ResultNotFound: React.FC<ResultNotFoundProps> = ({
       <div className="w-28 h-28 rounded-full p-8 bg-black-100 flex items-center justify-center">
         <img
           className="w-full h-full"
-          src="/icons/ic_not-fount.svg"
+          src="/src/assets/icons/ic_not-fount.svg"
           alt="not-found"
         />
       </div>

@@ -21,7 +21,7 @@ const MusicSuggestion: React.FC = () => {
             </div>
           </div>
           <div className="rounded-lg p-1.5 bg-green-500 cursor-pointer">
-            <img className="w-6 h-6" src="/icons/ic_music.svg" alt="" />
+            <img className="w-6 h-6" src="/src/assets/icons/ic_music.svg" alt="" />
           </div>
         </div>
       </div>

@@ -37,13 +37,13 @@ export const AddOptionCard: React.FC<Props> = ({
         <div className="flex items-center gap-2">
           <div className="bg-black-100 rounded-xl h-full p-2 flex items-center justify-center">
             {/* <SvgColor
-              src={`/icons/ic_${option.img}.svg`}
+              src={`/src/assets/icons/ic_${option.img}.svg`}
               width={40}
               height={40}
             /> */}
             <img
               className="w-10 h-10"
-              src={`/icons/ic_${option.img}.svg`}
+              src={`/src/assets/icons/ic_${option.img}.svg`}
               alt=""
             />
           </div>
@@ -59,7 +59,7 @@ export const AddOptionCard: React.FC<Props> = ({
               className="bg-black-100 rounded-full p-2 flex items-center justify-center cursor-pointer text-gray-900"
             >
               <SvgColor
-                src={`/icons/ic_heart-${
+                src={`/src/assets/icons/ic_heart-${
                   option.type === "favorite" ? "full" : "empty"
                 }.svg`}
                 width={14}
@@ -70,7 +70,7 @@ export const AddOptionCard: React.FC<Props> = ({
               onClick={handleOpen}
               className="bg-black-100 rounded-full p-2 flex items-center justify-center cursor-pointer text-gray-900"
             >
-              <SvgColor src="/icons/ic_added.svg" width={14} height={14} />
+              <SvgColor src="/src/assets/icons/ic_added.svg" width={14} height={14} />
             </div>
           </div>
         )}

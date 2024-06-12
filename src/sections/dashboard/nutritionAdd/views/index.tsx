@@ -72,8 +72,8 @@ export const NutritionAddView: React.FC = () => {
 
 const ScanOptions = () => (
   <div className="flex items-center gap-3">
-    <ScanOption icon="/icons/ic_scan-nutrition.svg" label="Besin Tara" />
-    <ScanOption icon="/icons/ic_scan-barcode.svg" label="Barkod Tara" />
+    <ScanOption icon="/src/assets/icons/ic_scan-nutrition.svg" label="Besin Tara" />
+    <ScanOption icon="/src/assets/icons/ic_scan-barcode.svg" label="Barkod Tara" />
   </div>
 );
 

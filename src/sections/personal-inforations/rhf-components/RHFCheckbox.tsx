@@ -37,7 +37,7 @@ export const RHFCheckBox: FC<CheckBoxProps> = ({
         }}
       >
         <div className="w-5 h-5 p-1 text-sm rounded-full bg-black-500 text-white flex items-center justify-center cursor-pointer">
-          {isChecked && <SvgColor src={`/icons/ic_check.svg`} />}
+          {isChecked && <SvgColor src={`/src/assets/icons/ic_check.svg`} />}
         </div>
         {label ? (
           <p className="text-sm text-gray-300 font-semibold cursor-pointer select-none">

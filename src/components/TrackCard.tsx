@@ -18,13 +18,13 @@ const TrackCard: React.FC<TrackCardProps> = ({
   return (
     <div className="w-full py-3 px-4 flex items-center justify-between border border-gray-50 shadow rounded-xl">
       <div className="flex items-center gap-2 ">
-        <img className="w-6 h-6" src={`/icons/ic_${icon}`} alt="" />
+        <img className="w-6 h-6" src={`/src/assets/icons/ic_${icon}`} alt="" />
         <p className="text-base text-gray-900 font-semibold">{title}</p>
       </div>
       <div className="text-gray-300 text-sm flex items-center gap-1">
         {infoText && <p>{infoText}</p>}
         {type === "route" ? (
-          <SvgColor src={`/icons/ic_arrow-right.svg`} width={12} height={12} />
+          <SvgColor src={`/src/assets/icons/ic_arrow-right.svg`} width={12} height={12} />
         ) : type === "action" ? (
           <CustomSwitch />
         ) : null}

@@ -26,7 +26,7 @@ export const CreateAiPlanView: React.FC = () => {
         className="flex justify-center items-center gap-2.5 p-5 bg-green-500 rounded-xl text-gray-900 font-bold text-lg"
       >
         <span>AI Destekli Plan Oluştur</span>
-        <SvgColor src="/icons/ic_stars.svg" width={20} height={20} />
+        <SvgColor src="/src/assets/icons/ic_stars.svg" width={20} height={20} />
       </button>
       <CustomModal isOpen={isOpen} onClose={handleClose}>
         <div className="h-full flex flex-col justify-center gap-6">
