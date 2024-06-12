@@ -17,7 +17,7 @@ const SvgColor = forwardRef<HTMLSpanElement, SvgColorProps>(
         height,
         display: "inline-block",
         backgroundColor: "currentColor",
-        mask: `url(${src}) no-repeat center / contain`,
+        mask: `url(/public/${src}) no-repeat center / contain`,
         WebkitMask: `url(${src}) no-repeat center / contain`,
         ...style,
       }}
