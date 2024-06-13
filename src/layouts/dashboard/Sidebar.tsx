@@ -19,7 +19,7 @@ export const Sidebar: React.FC = () => {
   return (
     <aside className="flex flex-col gap-4 max-h-screen overflow-auto">
       <div className="flex items-center justify-start gap-3 py-6 px-8">
-        <SvgColor src="/logo/logo.svg" width={40} height={40} />
+        <SvgColor src="/src/assets/logo/logo.svg" width={40} height={40} />
         <Link to="/">
           <h1 className="text-4xl font-medium">
             Fit<span className="font-black">AI</span>

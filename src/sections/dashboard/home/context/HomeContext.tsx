@@ -432,17 +432,35 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 //   }
 // ]
 
+
+// const details = {
+//   exercise_1: "details",
+//   exercise_2: "details",
+//   exercise_3: "details",
+//   exercise_4: "details",
+//   exercise_5: "details",
+//   exercise_6: "details"
+// }
+
+// const temo3 = [
+//   {
+//     exercise: "exercise_1",
+//     details : "details"
+//   }
+// ]
+
+
 // const temp2 = [
 //   {
 //     title: "Yoga",
 //     desc: "60dk 100kcal",
 //     details: [
 //       {
-//         title: "Chest Press",
+//         exzesicze: "Chest Press",
 //         desc: " 4 set, 12 tekrar",
 //       },
 //       {
-//         title: "Barbell Rows",
+//         exzesicze: "Barbell Rows",
 //         desc: " 4 set, 12 tekrar",
 //       },
 //     ],

@@ -21,15 +21,30 @@ export const RHFMultiSelect: FC<SelectProps> = ({ name, options }) => {
 
   const error: FieldError | undefined = errors[name] as FieldError;
 
-  const handleOptionClick = (optionLabel: string) => {
-    if (selectedOptions.includes(optionLabel)) {
-      const newSelectedOptions = selectedOptions.filter(
-        (opt) => opt !== optionLabel
-      );
+  const handleOptionClick = (optionValue: string, optionLabel: string) => {
+    if (optionValue === "0") {
+      const newSelectedOptions = selectedOptions.includes(optionLabel)
+        ? []
+        : options.map((opt) => opt.label);
       setSelectedOptions(newSelectedOptions);
       setValue(name, newSelectedOptions);
     } else {
-      const newSelectedOptions = [...selectedOptions, optionLabel];
+      let newSelectedOptions;
+      if (selectedOptions.includes(optionLabel)) {
+        newSelectedOptions = selectedOptions.filter(
+          (opt) => opt !== optionLabel
+        );
+      } else {
+        newSelectedOptions = [...selectedOptions, optionLabel];
+      }
+
+      // Remove "0" option if any other options are selected
+      if (newSelectedOptions.length > 0) {
+        newSelectedOptions = newSelectedOptions.filter(
+          (opt) => opt !== options.find((opt) => opt.value === "0")?.label
+        );
+      }
+
       setSelectedOptions(newSelectedOptions);
       setValue(name, newSelectedOptions);
     }
@@ -44,7 +59,7 @@ export const RHFMultiSelect: FC<SelectProps> = ({ name, options }) => {
               isSelected(option.label) ? "border-green-500" : "border-black-50"
             }`}
             key={option.value}
-            onClick={() => handleOptionClick(option.label)}
+            onClick={() => handleOptionClick(option.value, option.label)}
           >
             <div className="flex items-center gap-3">
               {option?.icon ? (
