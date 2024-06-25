@@ -30,7 +30,7 @@ export const registrationRequest = async (data: FirstLoginFormSendValues) => {
 export const createAiWorkoutRequest = async (
   data: CreateWorkoutPlanValuesSend
 ) => {
-  const response = await serviceAxios.post("/User/workoutdetails", data);
+  const response = await serviceAxios.post("/WorkoutPlan/workoutdetails", data);
   return response.data;
 };
 

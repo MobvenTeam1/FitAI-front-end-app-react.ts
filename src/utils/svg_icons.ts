@@ -1,8 +1,71 @@
-import IcLogo from "../assets/icons/ic_walk.svg";
+import Logo from "./assets/icons/ic_walk.svg";
+// import Added from "./assets/icons/ic_user.svg";
+// import AiAssistan from "./assets/icons/ic_settings.svg";
+// import Alarm from "./assets/icons/ic_home.svg";
+// import AnalogClock from "./assets/icons/ic_search.svg";
+// import AppleHeart from "./assets/icons/ic_search.svg";
+// import Apple from "./assets/icons/ic_search.svg";
+// import Arm from "./assets/icons/ic_search.svg";
+// import ArrowLeft from "./assets/icons/ic_search.svg";
+// import ArrowRight from "./assets/icons/ic_search.svg";
+// import ArrowUp from "./assets/icons/ic_search.svg";
+// import BrainThink from "./assets/icons/ic_search.svg";
+// import Breast from "./assets/icons/ic_search.svg";
+// import Calendar from "./assets/icons/ic_search.svg";
+// import CaloryTracking from "./assets/icons/ic_search.svg";
+// import CheckDouble from "./assets/icons/ic_search.svg";
+// import Check from "./assets/icons/ic_search.svg";
+// import Climbing from "./assets/icons/ic_search.svg";
+// import Clock from "./assets/icons/ic_search.svg";
+// import Close from "./assets/icons/ic_search.svg";
+// import CloudDownload from "./assets/icons/ic_search.svg";
+// import Dart from "./assets/icons/ic_search.svg";
+// import Dashboard from "./assets/icons/ic_search.svg";
+// import Development from "./assets/icons/ic_search.svg";
+// import Discovery from "./assets/icons/ic_search.svg";
+// import DoubleStar from "./assets/icons/ic_search.svg";
+// import Dumbell from "./assets/icons/ic_search.svg";
+// import Explore from "./assets/icons/ic_search.svg";
+// import Facebook from "./assets/icons/ic_search.svg";
+// import FireUnion from "./assets/icons/ic_search.svg";
+// import Fitness from "./assets/icons/ic_search.svg";
+// import FoodPlan from "./assets/icons/ic_search.svg";
+// import Food1 from "./assets/icons/ic_search.svg";
+// import Food2 from "./assets/icons/ic_search.svg";
+// import Food3 from "./assets/icons/ic_search.svg";
+// import Food4 from "./assets/icons/ic_search.svg";
+// import Food5 from "./assets/icons/ic_search.svg";
+// import FootStep from "./assets/icons/ic_search.svg";
+// import Fork from "./assets/icons/ic_search.svg";
+// import GenderMen from "./assets/icons/ic_search.svg";
+// import GenderOther from "./assets/icons/ic_search.svg";
+// import GoalBodyBuilding from "./assets/icons/ic_search.svg";
+// import GoalDownWeight from "./assets/icons/ic_search.svg";
+// import GoalFitLife from "./assets/icons/ic_search.svg";
+// import GoalUpWeight from "./assets/icons/ic_search.svg";
+// import GoogleCalendar from "./assets/icons/ic_search.svg";
+// import Google from "./assets/icons/ic_search.svg";
+// import HeartEmpty from "./assets/icons/ic_search.svg";
+// import HeartFull from "./assets/icons/ic_search.svg";
+// import Heart from "./assets/icons/ic_search.svg";
+// import Hip from "./assets/icons/ic_search.svg";
+// import IncreaseChart from "./assets/icons/ic_search.svg";
+// import KcalEmpty from "./assets/icons/ic_search.svg";
+// import KcalFire from "./assets/icons/ic_search.svg";
+// import Kcal from "./assets/icons/ic_search.svg";
+// import Legs from "./assets/icons/ic_search.svg";
+// import Logout from "./assets/icons/ic_search.svg";
+// import Mail from "./assets/icons/ic_search.svg";
+// import MotivationRise from "./assets/icons/ic_search.svg";
+// import Music from "./assets/icons/ic_search.svg";
+// import NotFound from "./assets/icons/ic_search.svg";
+// import NotePan from "./assets/icons/ic_search.svg";
+// import Note from "./assets/icons/ic_search.svg";
+
 
 
 const Icons = {
-    ic_logo: IcLogo,
+    ic_logo: Logo,
 };
 
 export default Icons;

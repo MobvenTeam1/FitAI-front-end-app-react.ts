@@ -282,22 +282,29 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
           {
             optionId: 1,
             optionImage: "walking",
-            optionTitle: "Sun Salutation",
-            optionSubtitle: "Mat",
+            optionTitle: "Bench Press",
+            optionSubtitle: "4 set, 10 tekrar ",
             type: "training",
           },
           {
             optionId: 2,
             optionImage: "walk",
-            optionTitle: "Tree Pose",
-            optionSubtitle: "Mat",
+            optionTitle: "Hammer Curls",
+            optionSubtitle: "3 set, 12tekrar ",
             type: "training",
           },
           {
             optionId: 3,
             optionImage: "walk-reverse",
-            optionTitle: "Downward Dog",
-            optionSubtitle: "Mat",
+            optionTitle: "Leg Press",
+            optionSubtitle: "3 set, maxiumum tekrar ",
+            type: "training",
+          },
+          {
+            optionId: 3,
+            optionImage: "walk-reverse",
+            optionTitle: "Pull Ups",
+            optionSubtitle: "3 set, 15 tekrar ",
             type: "training",
           },
         ],
@@ -448,6 +455,8 @@ export const HomeContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 //     details : "details"
 //   }
 // ]
+
+// {"fitness_antrenman":[{"day":"day_one","program":{"exercise_1":"Barbell Bench Press - 4 sets, 8-10 reps","exercise_2":"Incline Dumbbell Press - 3 sets, 10-12 reps","exercise_3":"Chest Flyes - 3 sets, 12-15 reps","exercise_4":"Push-ups - 3 sets, max reps","exercise_5":"Tricep Dips - 3 sets, 10-12 reps","exercise_6":"Plank - 3 sets, 30 seconds hold"}},{"day":"day_two","program":{"exercise_1":"Seated Military Press - 4 sets, 8-10 reps","exercise_2":"Lateral Raises - 3 sets, 12-15 reps","exercise_3":"Front Raises - 3 sets, 10-12 reps","exercise_4":"Push Press - 3 sets, 8-10 reps","exercise_5":"Tricep Kickbacks - 3 sets, 12-15 reps","exercise_6":"Side Planks - 3 sets, 30 seconds each side"}}]}
 
 
 // const temp2 = [
