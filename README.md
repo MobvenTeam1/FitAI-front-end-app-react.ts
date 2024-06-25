@@ -2,6 +2,8 @@
 
 You can see the live preview [here](https://fit-ai-app-mobven.netlify.app/)
 
+https://github.com/MobvenTeam1/FitAI-front-end-app-react.ts/assets/105579500/98eb73f2-e675-457a-bd75-56a8a24434af
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
